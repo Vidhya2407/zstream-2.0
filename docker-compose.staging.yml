@@ -1,0 +1,40 @@
+﻿services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zstream-staging:latest
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      AUTH_URL: http://localhost:3000
+      NEXTAUTH_URL: http://localhost:3000
+      AUTH_SECRET: change_me_before_real_staging
+      MONGODB_URI: mongodb://mongo:27017/zstream
+      CACHE_PROVIDER: memory
+      CACHE_DEFAULT_TTL_SECONDS: 300
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:3000/api/health']
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  mongo:
+    image: mongo:7
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_staging_data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', 'db.adminCommand({ ping: 1 })']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mongo_staging_data:

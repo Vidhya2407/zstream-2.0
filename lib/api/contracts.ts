@@ -1,0 +1,15 @@
+﻿export type {
+  ApiResponse,
+  ApiResponseMeta,
+  DashboardApiResponse,
+  GamingApiResponse,
+  HomeApiResponse,
+  LiveApiResponse,
+  MinisApiResponse,
+  MusicApiData,
+  MusicApiResponse,
+  RegisterApiResponse,
+  RegisterResponseData,
+  SearchApiResponse,
+  WatchApiResponse,
+} from '@/types/api';

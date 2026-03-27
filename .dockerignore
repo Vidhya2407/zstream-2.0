@@ -1,0 +1,11 @@
+﻿.next
+node_modules
+npm-debug.log
+playwright-report
+test-results
+.git
+.gitignore
+.env.local
+.env*.local
+Dockerfile*
+docker-compose*.yml

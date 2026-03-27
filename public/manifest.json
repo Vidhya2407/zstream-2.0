@@ -1,0 +1,28 @@
+{
+  "name": "ZSTREAM — Zero Carbon Streaming",
+  "short_name": "ZSTREAM",
+  "description": "AI-powered carbon-neutral streaming platform. Watch unlimited content while saving the planet.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0A0F18",
+  "theme_color": "#00E5BA",
+  "categories": ["entertainment", "sustainability"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/logo-z.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    { "name": "Music", "short_name": "Music", "url": "/music", "description": "Carbon-free music streaming" },
+    { "name": "Live", "short_name": "Live", "url": "/live", "description": "Live streaming events" },
+    { "name": "Dashboard", "short_name": "Dashboard", "url": "/dashboard", "description": "Your carbon savings" }
+  ]
+}
