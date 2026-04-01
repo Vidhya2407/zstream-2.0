@@ -1,4 +1,4 @@
-﻿import type { Track } from '../../types/media';
+import type { Track } from '../../types/media';
 import { contentImages } from '../images/unsplash';
 import type { LocalizedText, SupportedLanguage } from '../types/content';
 
@@ -41,14 +41,14 @@ export interface MusicPlaylist {
 }
 
 export const LOCALIZED_TRACKS: LocalizedTrack[] = [
-  { id: 1, title: { en: 'Carbon Neutral Vibes', de: 'Kohlenstofffreie Vibes' }, artist: { en: 'Eco Beats Collective', de: 'Eco Beats Collective' }, album: { en: 'Green Sessions', de: 'Green Sessions' }, duration: '3:45', durationSeconds: 225, genre: 'Ambient', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', carbonPerMin: 0.002 },
-  { id: 2, title: { en: 'Sustainable Rhythms', de: 'Nachhaltige Rhythmen' }, artist: { en: 'Clean Energy Orchestra', de: 'Clean Energy Orchestra' }, album: { en: 'Electric Earth', de: 'Elektrische Erde' }, duration: '4:20', durationSeconds: 260, genre: 'Electronic', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', carbonPerMin: 0.002 },
-  { id: 3, title: { en: 'Planet Harmony', de: 'Planetare Harmonie' }, artist: { en: 'Earth Guardians', de: 'Earth Guardians' }, album: { en: 'Nature Calls', de: 'Die Natur ruft' }, duration: '3:15', durationSeconds: 195, genre: 'Lo-Fi', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', carbonPerMin: 0.002 },
-  { id: 4, title: { en: 'Solar Wind', de: 'Sonnenwind' }, artist: { en: 'Eco Beats Collective', de: 'Eco Beats Collective' }, album: { en: 'Green Sessions', de: 'Green Sessions' }, duration: '5:12', durationSeconds: 312, genre: 'Ambient', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', carbonPerMin: 0.002 },
-  { id: 5, title: { en: 'Ocean Waves Digital', de: 'Digitale Ozeanwellen' }, artist: { en: 'Blue Planet DJs', de: 'Blue Planet DJs' }, album: { en: 'Deep Blue', de: 'Tiefblau' }, duration: '6:44', durationSeconds: 404, genre: 'Electronic', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3', carbonPerMin: 0.002 },
-  { id: 6, title: { en: 'Forest Morning', de: 'Waldmorgen' }, artist: { en: 'Earth Guardians', de: 'Earth Guardians' }, album: { en: 'Nature Calls', de: 'Die Natur ruft' }, duration: '3:28', durationSeconds: 208, genre: 'Lo-Fi', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3', carbonPerMin: 0.002 },
-  { id: 7, title: { en: 'Rewild Anthem', de: 'Rewild-Hymne' }, artist: { en: 'Green Horizons', de: 'Green Horizons' }, album: { en: 'Rewild EP', de: 'Rewild EP' }, duration: '4:55', durationSeconds: 295, genre: 'Pop', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3', carbonPerMin: 0.002 },
-  { id: 8, title: { en: 'Zero Emission Groove', de: 'Null-Emissions-Groove' }, artist: { en: 'Clean Energy Orchestra', de: 'Clean Energy Orchestra' }, album: { en: 'Electric Earth', de: 'Elektrische Erde' }, duration: '3:59', durationSeconds: 239, genre: 'Jazz', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3', carbonPerMin: 0.002 },
+  { id: 1, title: { en: 'Carbon Neutral Vibes', de: 'Kohlenstofffreie Vibes' }, artist: { en: 'Eco Beats Collective', de: 'Eco Beats Collective' }, album: { en: 'Green Sessions', de: 'Green Sessions' }, duration: '3:45', durationSeconds: 225, genre: 'Ambient', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 2, title: { en: 'Sustainable Rhythms', de: 'Nachhaltige Rhythmen' }, artist: { en: 'Clean Energy Orchestra', de: 'Clean Energy Orchestra' }, album: { en: 'Electric Earth', de: 'Elektrische Erde' }, duration: '4:20', durationSeconds: 260, genre: 'Electronic', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 3, title: { en: 'Planet Harmony', de: 'Planetare Harmonie' }, artist: { en: 'Earth Guardians', de: 'Earth Guardians' }, album: { en: 'Nature Calls', de: 'Die Natur ruft' }, duration: '3:15', durationSeconds: 195, genre: 'Lo-Fi', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 4, title: { en: 'Solar Wind', de: 'Sonnenwind' }, artist: { en: 'Eco Beats Collective', de: 'Eco Beats Collective' }, album: { en: 'Green Sessions', de: 'Green Sessions' }, duration: '5:12', durationSeconds: 312, genre: 'Ambient', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 5, title: { en: 'Ocean Waves Digital', de: 'Digitale Ozeanwellen' }, artist: { en: 'Blue Planet DJs', de: 'Blue Planet DJs' }, album: { en: 'Deep Blue', de: 'Tiefblau' }, duration: '6:44', durationSeconds: 404, genre: 'Electronic', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 6, title: { en: 'Forest Morning', de: 'Waldmorgen' }, artist: { en: 'Earth Guardians', de: 'Earth Guardians' }, album: { en: 'Nature Calls', de: 'Die Natur ruft' }, duration: '3:28', durationSeconds: 208, genre: 'Lo-Fi', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 7, title: { en: 'Rewild Anthem', de: 'Rewild-Hymne' }, artist: { en: 'Green Horizons', de: 'Green Horizons' }, album: { en: 'Rewild EP', de: 'Rewild EP' }, duration: '4:55', durationSeconds: 295, genre: 'Pop', imageUrl: contentImages.music[0].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
+  { id: 8, title: { en: 'Zero Emission Groove', de: 'Null-Emissions-Groove' }, artist: { en: 'Clean Energy Orchestra', de: 'Clean Energy Orchestra' }, album: { en: 'Electric Earth', de: 'Elektrische Erde' }, duration: '3:59', durationSeconds: 239, genre: 'Jazz', imageUrl: contentImages.music[1].url, audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3', carbonPerMin: 1.0175, audioQuality: 'high' },
 ];
 
 export const LOCALIZED_ARTISTS: MusicArtist[] = [
@@ -139,6 +139,7 @@ export const PLAYLISTS = LOCALIZED_PLAYLISTS.map((playlist) => ({ ...playlist, t
 
 export const musicText = (value: string, language: 'en' | 'de') => language === 'de' ? (MUSIC_DE_TEXT[value] ?? value) : value;
 export const musicGenreLabel = (value: string, language: 'en' | 'de') => language === 'de' ? ({ All: 'Alle', Nature: 'Natur' }[value] ?? value) : value;
+
 
 
 

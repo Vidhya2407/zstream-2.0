@@ -1,4 +1,6 @@
-﻿export interface Track {
+export type MusicQuality = 'low' | 'normal' | 'high' | 'veryhigh' | 'lossless';
+
+export interface Track {
   id: number;
   title: string;
   artist: string;
@@ -9,6 +11,8 @@
   imageUrl: string;
   audioUrl: string;
   carbonPerMin: number;
+  audioQuality?: MusicQuality;
 }
+
 
 

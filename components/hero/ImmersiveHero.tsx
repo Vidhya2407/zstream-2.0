@@ -247,7 +247,7 @@ export default function ImmersiveHero() {
                   {carbonSaved.toFixed(2)} kg
                 </motion.div>
                 <p className="text-sm text-gray-400 mt-2">
-                  CO2 prevented this minute
+                  Current CO2 estimate
                 </p>
               </div>
 
@@ -258,7 +258,7 @@ export default function ImmersiveHero() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <div className="text-xs text-gray-400 uppercase tracking-wide">
-                    Water Saved
+                    Water Estimate
                   </div>
                   <div className="text-xl font-semibold text-cyan-neon">
                     124.5 L
@@ -266,7 +266,7 @@ export default function ImmersiveHero() {
                 </div>
                 <div className="space-y-1">
                   <div className="text-xs text-gray-400 uppercase tracking-wide">
-                    Energy Saved
+                    Energy Estimate
                   </div>
                   <div className="text-xl font-semibold text-electric-blue">
                     8.2 kWh

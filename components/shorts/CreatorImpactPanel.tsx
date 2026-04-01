@@ -115,7 +115,7 @@ export default function CreatorImpactPanel({
     {
       icon: <EarthIcon className="w-4 h-4 text-eco-green-bright" />,
       value: `${co2SavedTotal} kg`,
-      label: isGerman ? 'CO2 eingespart' : 'CO2 Saved',
+      label: isGerman ? 'CO2-Schaetzung' : 'CO2 Estimate',
       bg: 'rgba(0,229,186,0.05)',
       hoverBg: 'rgba(0,229,186,0.08)',
       iconBg: 'rgba(0,229,186,0.15)',
@@ -124,7 +124,7 @@ export default function CreatorImpactPanel({
     {
       icon: <WaterIcon className="w-4 h-4 text-cyan-neon" />,
       value: `${waterSavedTotal} L`,
-      label: isGerman ? 'Wasser gespart' : 'Water Saved',
+      label: isGerman ? 'Wasser-Schaetzung' : 'Water Estimate',
       bg: 'rgba(0,217,255,0.05)',
       hoverBg: 'rgba(0,217,255,0.08)',
       iconBg: 'rgba(0,217,255,0.15)',
@@ -133,7 +133,7 @@ export default function CreatorImpactPanel({
     {
       icon: <EnergyIcon className="w-4 h-4 text-electric-blue" />,
       value: `${energySavedTotal} kWh`,
-      label: isGerman ? 'Energie gespart' : 'Energy Saved',
+      label: isGerman ? 'Energie-Schaetzung' : 'Energy Estimate',
       bg: 'rgba(0,128,255,0.05)',
       hoverBg: 'rgba(0,128,255,0.08)',
       iconBg: 'rgba(0,128,255,0.15)',
@@ -196,7 +196,7 @@ export default function CreatorImpactPanel({
 
         <div className="space-y-2.5 pt-3 border-t border-white/5 relative">
           <div className="text-[10px] font-bold uppercase tracking-wider text-center mb-2" style={{ background: 'linear-gradient(90deg, rgba(0, 229, 186, 0.7), rgba(0, 217, 255, 0.5), rgba(0, 128, 255, 0.6))', WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            {isGerman ? 'Umwelt-Einsparungen' : 'Environmental Savings'}
+            {isGerman ? 'Umwelt-Schaetzung' : 'Environmental Estimate'}
           </div>
 
           {impactRows.map((row) => (

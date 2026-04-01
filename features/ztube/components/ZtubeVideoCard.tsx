@@ -1,9 +1,10 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import { fmtAge, translateZTube } from '../config';
 import type { ZVideo } from '../types';
 
@@ -70,16 +71,19 @@ export default function ZtubeVideoCard({ delay = 0, isGerman, isLight, video }: 
                 </svg>
               )}
             </div>
-            <p className="text-[10px] mt-0.5" style={{ color: isLight ? '#94a3b8' : '#4b5563' }}>{video.views} {isGerman ? 'Aufrufe' : 'views'} · {fmtAge(video.daysAgo, isGerman)}</p>
-            <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full mt-1 inline-block" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}>
-              {video.carbonScore}g CO2/hr {isGerman ? 'saved' : 'saved'}
-            </span>
+            <p className="text-[10px] mt-0.5" style={{ color: isLight ? '#94a3b8' : '#4b5563' }}>{video.views} {isGerman ? 'Aufrufe' : 'views'} | {fmtAge(video.daysAgo, isGerman)}</p>
+            <div className="mt-1.5">
+              <EstimatedFootprintBadge durationLabel={video.duration} isGerman={isGerman} isLight={isLight} />
+            </div>
           </div>
         </div>
       </motion.div>
     </Link>
   );
 }
+
+
+
 
 
 

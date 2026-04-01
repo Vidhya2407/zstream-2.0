@@ -66,13 +66,13 @@ export default function CarbonTimelineChart() {
     <div className="w-full">
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-base font-black" style={{ color: title }}>Carbon Savings Timeline</h2>
+          <h2 className="text-base font-black" style={{ color: title }}>Estimated Impact vs Industry</h2>
           <p className="mt-0.5 text-[11px]" style={{ color: muted }}>
-            You saved <span className="font-bold text-eco-green-bright">{totalSaved.toFixed(1)} kg CO2</span> this year vs <span className="font-bold text-red-400">{totalIndustry.toFixed(1)} kg</span> industry average, <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>{savingsPct}% less</span>
+            Your modeled ZSTREAM footprint is <span className="font-bold text-eco-green-bright">{totalSaved.toFixed(1)} kg CO2</span> this year vs <span className="font-bold text-red-400">{totalIndustry.toFixed(1)} kg</span> industry average, <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>{savingsPct}% lower</span>
           </p>
         </div>
         <div className="flex items-center gap-4 text-[10px] font-semibold">
-          <button onClick={() => setActiveView('saved')} className="flex items-center gap-1.5 transition-colors" style={{ color: activeView === 'saved' ? 'rgb(0,229,186)' : muted }}><span className="inline-block h-0.5 w-4 rounded-full" style={{ background: 'rgb(0,229,186)' }} />ZSTREAM</button>
+          <button onClick={() => setActiveView('saved')} className="flex items-center gap-1.5 transition-colors" style={{ color: activeView === 'saved' ? 'rgb(0,229,186)' : muted }}><span className="inline-block h-0.5 w-4 rounded-full" style={{ background: 'rgb(0,229,186)' }} />ZSTREAM estimate</button>
           <button onClick={() => setActiveView('industry')} className="flex items-center gap-1.5 transition-colors" style={{ color: activeView === 'industry' ? 'rgb(248,113,113)' : muted }}><span className="inline-block h-px w-4 rounded-full border-t border-dashed" style={{ borderColor: 'rgb(248,113,113)' }} />Industry avg</button>
         </div>
       </div>
@@ -89,12 +89,12 @@ export default function CarbonTimelineChart() {
           <motion.path d={industryPath} fill="none" stroke="rgba(248,113,113,0.45)" strokeWidth="1.5" strokeDasharray="5 4" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2.2, delay: 0.4, ease: 'easeOut' }} />
           <motion.path d={savedPath} fill="none" stroke="url(#lineGrad)" strokeWidth="2.5" strokeLinecap="round" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, delay: 0.2, ease: 'easeOut' }} />
           {savedPts.map((pt, i) => <g key={i}><rect x={pt.x - 26} y={PAD_T} width={52} height={H} fill="transparent" style={{ cursor: 'pointer' }} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)} /><motion.circle cx={pt.x} cy={pt.y} r={hovered === i ? 5 : 3.5} fill={hovered === i ? (isLight ? '#0f172a' : 'white') : 'rgb(0,229,186)'} stroke="rgb(0,229,186)" strokeWidth={hovered === i ? 2 : 0} initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 + i * 0.1, duration: 0.3 }} style={{ transition: 'r 0.15s, fill 0.15s' }} /></g>)}
-          {hovered !== null && (() => { const pt = savedPts[hovered]; const d = MONTHLY_DATA[hovered]; const tooltipX = Math.min(Math.max(pt.x - 48, PAD_L), PAD_L + W - 96); return <g><line x1={pt.x} y1={PAD_T} x2={pt.x} y2={PAD_T + H} stroke="rgba(0,229,186,0.25)" strokeWidth="1" strokeDasharray="3 3" /><rect x={tooltipX} y={pt.y - 52} width={96} height={46} rx={6} ry={6} fill={tooltipBg} stroke="rgba(0,229,186,0.3)" /><text x={tooltipX + 8} y={pt.y - 36} fill="rgb(0,229,186)" fontSize="10" fontWeight="800">{d.saved.toFixed(1)} kg saved</text><text x={tooltipX + 8} y={pt.y - 22} fill={muted} fontSize="9">{d.streams} streams · {d.month}</text><text x={tooltipX + 8} y={pt.y - 10} fill="rgba(248,113,113,0.8)" fontSize="9">Industry: {d.industry.toFixed(1)} kg</text></g>; })()}
+          {hovered !== null && (() => { const pt = savedPts[hovered]; const d = MONTHLY_DATA[hovered]; const tooltipX = Math.min(Math.max(pt.x - 48, PAD_L), PAD_L + W - 96); return <g><line x1={pt.x} y1={PAD_T} x2={pt.x} y2={PAD_T + H} stroke="rgba(0,229,186,0.25)" strokeWidth="1" strokeDasharray="3 3" /><rect x={tooltipX} y={pt.y - 52} width={96} height={46} rx={6} ry={6} fill={tooltipBg} stroke="rgba(0,229,186,0.3)" /><text x={tooltipX + 8} y={pt.y - 36} fill="rgb(0,229,186)" fontSize="10" fontWeight="800">{d.saved.toFixed(1)} kg estimate</text><text x={tooltipX + 8} y={pt.y - 22} fill={muted} fontSize="9">{d.streams} streams · {d.month}</text><text x={tooltipX + 8} y={pt.y - 10} fill="rgba(248,113,113,0.8)" fontSize="9">Industry: {d.industry.toFixed(1)} kg</text></g>; })()}
         </svg>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-        {[{ label: 'Total saved', value: `${totalSaved.toFixed(1)} kg`, color: 'rgb(0,229,186)' }, { label: 'Peak month', value: 'Dec · 4.2 kg', color: 'rgb(0,217,255)' }, { label: 'Total streams', value: `${MONTHLY_DATA.reduce((s, d) => s + d.streams, 0)}`, color: 'rgb(96,165,250)' }, { label: 'vs Industry', value: `${savingsPct}% less`, color: 'rgb(0,229,186)' }].map((stat) => <div key={stat.label} className="text-center"><p className="text-sm font-black" style={{ color: stat.color }}>{stat.value}</p><p className="mt-0.5 text-[10px]" style={{ color: muted }}>{stat.label}</p></div>)}
+        {[{ label: 'ZSTREAM estimate', value: `${totalSaved.toFixed(1)} kg`, color: 'rgb(0,229,186)' }, { label: 'Peak month', value: 'Dec · 4.2 kg', color: 'rgb(0,217,255)' }, { label: 'Total streams', value: `${MONTHLY_DATA.reduce((s, d) => s + d.streams, 0)}`, color: 'rgb(96,165,250)' }, { label: 'vs Industry', value: `${savingsPct}% lower`, color: 'rgb(0,229,186)' }].map((stat) => <div key={stat.label} className="text-center"><p className="text-sm font-black" style={{ color: stat.color }}>{stat.value}</p><p className="mt-0.5 text-[10px]" style={{ color: muted }}>{stat.label}</p></div>)}
       </div>
     </div>
   );

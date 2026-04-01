@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,6 +6,7 @@ import { contentImages } from '../../../lib/images/unsplash';
 import { useLanguageStore } from '../../../lib/stores/languageStore';
 import { useThemeStore } from '../../../lib/stores/themeStore';
 import { trDuration, trGenre, trMovieDescription, trMovieTitle, type Movie } from '../../../lib/data/moviesCatalog';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import CarbonBadge from './CarbonBadge';
 import StarRating from './StarRating';
 
@@ -49,6 +50,9 @@ export default function MovieCard({ delay = 0, isWatchlisted, movie, onToggleWat
         <Link href={`/movies/${movie.id}`}><h3 className="font-bold text-sm leading-tight mb-1 transition-colors" style={{ color: isLight ? '#1d1d1f' : 'white' }}>{trMovieTitle(movie, language)}</h3></Link>
         <p className="text-[10px] mb-2" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{trGenre(movie.genre, language)} | {trDuration(movie.duration, language)} | {movie.year} | {movie.language}</p>
         <p className="text-[10px] leading-relaxed mb-3 line-clamp-2" style={{ color: isLight ? '#4b5563' : '#d1d5db' }}>{trMovieDescription(movie, language)}</p>
+        <div className="mb-3">
+          <EstimatedFootprintBadge durationLabel={movie.duration} isGerman={isGerman} isLight={isLight} />
+        </div>
         <div className="flex items-center justify-between">
           <CarbonBadge score={movie.carbonScore} />
           <div className="flex items-center gap-2">
@@ -59,6 +63,10 @@ export default function MovieCard({ delay = 0, isWatchlisted, movie, onToggleWat
     </motion.div>
   );
 }
+
+
+
+
 
 
 

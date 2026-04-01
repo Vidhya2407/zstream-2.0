@@ -18,7 +18,7 @@ export default function ImpactMiniPanel({ watchTime }: ImpactMiniPanelProps) {
       transition={{ delay: 0.5 }}
     >
       <div className="space-y-2">
-        {/* CO2 Saved */}
+        {/* CO2 Estimate */}
         <div className="flex items-center gap-2">
           <motion.span
             className="text-lg"
@@ -36,11 +36,11 @@ export default function ImpactMiniPanel({ watchTime }: ImpactMiniPanelProps) {
             >
               {co2Saved.toFixed(4)} kg
             </motion.div>
-            <div className="text-xs text-gray-400">CO2 saved</div>
+            <div className="text-xs text-gray-400">CO2 estimate</div>
           </div>
         </div>
 
-        {/* Water Saved */}
+        {/* Water Estimate */}
         <div className="flex items-center gap-2">
           <motion.span
             className="text-lg"
@@ -58,7 +58,7 @@ export default function ImpactMiniPanel({ watchTime }: ImpactMiniPanelProps) {
             >
               {waterSaved.toFixed(2)} L
             </motion.div>
-            <div className="text-xs text-gray-400">water saved</div>
+            <div className="text-xs text-gray-400">Water estimate</div>
           </div>
         </div>
 

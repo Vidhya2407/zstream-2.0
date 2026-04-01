@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import ShakaPlayer from '../../../../components/players/ShakaPlayer';
+import CarbonPlaybackTracker from '../../../../components/watch/CarbonPlaybackTracker';
+import ImpactForecastCard from '../../../../components/watch/ImpactForecastCard';
 import { contentImages } from '../../../../lib/images/unsplash';
 
 interface ZComment {
@@ -35,6 +38,8 @@ interface ZVideo {
   uploadDate: string;
 }
 
+const PLAYER_SRC = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+
 const VIDEOS: ZVideo[] = [
   { id: 1, title: 'How Solar Panels Actually Work', channel: 'TechGreen Labs', description: 'In this deep-dive, we explore the science behind photovoltaic cells, the manufacturing process, and how modern solar installations are transforming energy grids worldwide. From monocrystalline to thin-film technology, we cover every aspect of solar power generation and its role in the renewable energy revolution.', views: '4.2M', likes: '142K', duration: '12:34', daysAgo: 2, imageIdx: 0, verified: true, subscribers: '1.8M', carbonScore: 0.05, type: 'video', tags: ['solar', 'renewable', 'energy', 'technology'], uploadDate: 'Mar 16, 2026' },
   { id: 2, title: 'Ocean Cleanup Project - Full Documentary', channel: 'EcoWorld', description: 'Follow the Ocean Cleanup Foundation as they deploy their revolutionary System 003 across the Great Pacific Garbage Patch. This full-length documentary captures the engineering challenges, environmental breakthroughs, and the human stories behind the world\'s largest ocean cleanup operation.', views: '8.7M', likes: '318K', duration: '48:12', daysAgo: 5, imageIdx: 1, verified: true, subscribers: '3.2M', carbonScore: 0.04, type: 'video', tags: ['ocean', 'cleanup', 'documentary', 'environment'], uploadDate: 'Mar 13, 2026' },
@@ -63,26 +68,24 @@ function fmtAge(d: number) {
   return `${Math.floor(d / 30)} month${Math.floor(d / 30) > 1 ? 's' : ''} ago`;
 }
 
-function CarbonSavings({ carbonScore }: { carbonScore: number }) {
-  const [seconds, setSeconds] = React.useState(0);
+function parseDurationToMinutes(duration: string) {
+  const hourMatch = duration.match(/(\d+)\s*h/i);
+  const minuteMatch = duration.match(/(\d+)\s*m/i);
+  const clockMatch = duration.match(/(\d+):(\d+)/);
 
-  React.useEffect(() => {
-    const t = setInterval(() => setSeconds(s => s + 1), 1000);
-    return () => clearInterval(t);
-  }, []);
+  if (hourMatch || minuteMatch) {
+    const hours = hourMatch ? parseInt(hourMatch[1], 10) : 0;
+    const minutes = minuteMatch ? parseInt(minuteMatch[1], 10) : 0;
+    return Math.max(1, hours * 60 + minutes);
+  }
 
-  const savedGrams = ((seconds / 3600) * carbonScore).toFixed(4);
+  if (clockMatch) {
+    const first = parseInt(clockMatch[1], 10);
+    const second = parseInt(clockMatch[2], 10);
+    return Math.max(1, first + second / 60);
+  }
 
-  return (
-    <div
-      className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-bold"
-      style={{ background: 'rgba(0,229,186,0.12)', border: '1px solid rgba(0,229,186,0.25)', color: 'rgb(0,229,186)' }}
-      aria-live="polite"
-    >
-      <span>🌿</span>
-      <span>You&apos;ve saved <strong>{savedGrams}g</strong> CO2</span>
-    </div>
-  );
+  return 12;
 }
 
 function CommentItem({ comment, depth = 0 }: { comment: ZComment; depth?: number }) {
@@ -146,6 +149,11 @@ export default function ZTubeWatchPage() {
   const [showDescription, setShowDescription] = React.useState(false);
   const [comments, setComments] = React.useState<ZComment[]>(COMMENTS);
   const [shareToast, setShareToast] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [currentResolution, setCurrentResolution] = React.useState(720);
+
+  const durationMinutes = React.useMemo(() => parseDurationToMinutes(video.duration), [video.duration]);
 
   const handleLike = () => { setLiked(l => !l); if (disliked) setDisliked(false); };
   const handleDislike = () => { setDisliked(d => !d); if (liked) setLiked(false); };
@@ -181,33 +189,32 @@ export default function ZTubeWatchPage() {
           <div className="flex-1 min-w-0">
 
             {/* Player */}
-            <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: '16/9', background: 'rgba(0,0,0,0.9)' }}>
-              <Image
-                src={contentImages.abstract[video.imageIdx % contentImages.abstract.length].url}
-                alt={video.title}
-                fill
-                sizes="(max-width: 1280px) 100vw, 900px"
-                className="object-cover opacity-70"
-                priority
+            <div className="overflow-hidden rounded-2xl">
+              <ShakaPlayer
+                src={PLAYER_SRC}
+                showQualitySelector
+                onQualityChange={({ resolution }) => setCurrentResolution(resolution)}
+                onTimeUpdate={(time) => setCurrentTime(time)}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                onEnded={() => setIsPlaying(false)}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="w-16 h-16 rounded-full flex items-center justify-center"
-                  style={{ background: 'rgba(239,68,68,0.9)', boxShadow: '0 0 40px rgba(239,68,68,0.4)' }}
-                  aria-label="Play video"
-                >
-                  <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </motion.button>
-              </div>
-              <div className="absolute bottom-3 left-3">
-                <CarbonSavings carbonScore={video.carbonScore} />
-              </div>
-              <div className="absolute bottom-3 right-3 text-xs font-bold text-white px-2 py-1 rounded-lg" style={{ background: 'rgba(0,0,0,0.8)' }}>
-                {video.duration}
-              </div>
+            </div>
+
+            <div className="mt-4">
+              <CarbonPlaybackTracker
+                isPlaying={isPlaying}
+                currentTime={currentTime}
+                resolution={currentResolution}
+              />
+            </div>
+
+            <div className="mt-4">
+              <ImpactForecastCard
+                durationMinutes={durationMinutes}
+                resolution={currentResolution}
+                title={video.title}
+              />
             </div>
 
             {/* Title + Actions */}
@@ -220,6 +227,9 @@ export default function ZTubeWatchPage() {
                   <span>{fmtAge(video.daysAgo)}</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(239,68,68,0.12)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.25)' }}>
                     {video.type === 'video' ? '🎬 Video' : video.type === 'music' ? '🎵 Music' : '🎙 Podcast'}
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.18)' }}>
+                    Playback {currentResolution}p
                   </span>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -258,6 +268,9 @@ export default function ZTubeWatchPage() {
                   )}
                 </div>
                 <p className="text-gray-500 text-xs">{video.subscribers} subscribers</p>
+                <p className="text-[10px] mt-1" style={{ color: 'rgb(0,229,186)' }}>
+                  Waste figures on this page now update with the selected playback quality.
+                </p>
               </div>
               <motion.button
                 onClick={() => setSubscribed(s => !s)}
@@ -413,11 +426,10 @@ export default function ZTubeWatchPage() {
             <div className="mt-4 p-4 rounded-2xl" style={{ background: 'rgba(0,229,186,0.05)', border: '1px solid rgba(0,229,186,0.15)' }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-base">🌍</span>
-                <span className="text-xs font-bold" style={{ color: 'rgb(0,229,186)' }}>Carbon Impact</span>
+                <span className="text-xs font-bold" style={{ color: 'rgb(0,229,186)' }}>Playback Impact</span>
               </div>
               <p className="text-gray-300 text-[10px] leading-relaxed">
-                This video runs on <strong>100% renewable energy</strong>. Viewing via ZStream saves{' '}
-                <strong style={{ color: 'rgb(0,229,186)' }}>{video.carbonScore}g CO2/hr</strong> vs. conventional CDN.
+                Current carbon waste, water waste, and e-waste now follow the selected playback quality here. Zero Carbon savings and carbon points remain shown as a coming-soon feature.
               </p>
               <p className="text-gray-600 text-[10px] mt-2 flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>

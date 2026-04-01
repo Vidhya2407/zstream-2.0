@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import type { SeriesItem } from '../types';
 import SeriesCarbonBadge from './SeriesCarbonBadge';
 import SeriesStarRating from './SeriesStarRating';
@@ -73,6 +74,9 @@ export default function SeriesCard({ delay = 0, isLight, isWatchlisted, onToggle
           <span>{series.genre} · {series.year} · {series.seasons}S/{series.episodes} eps · {series.language}</span>
         </div>
         <p className="mb-2 line-clamp-2 text-[10px] leading-relaxed" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{series.description}</p>
+        <div className="mb-2">
+          <EstimatedFootprintBadge durationLabel={`${series.averageEpisodeMinutes}m`} isLight={isLight} />
+        </div>
         <div className="flex items-center justify-between">
           <SeriesCarbonBadge score={series.carbonScore} />
           <div className="flex items-center gap-1">

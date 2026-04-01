@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { typeAccent } from '../../../lib/data/dashboardCatalog';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 
 interface DashboardWatchSectionsProps {
   continueWatching: {
@@ -12,6 +13,7 @@ interface DashboardWatchSectionsProps {
     subtitle: string;
     title: string;
     type: keyof typeof typeAccent;
+    estimateDuration?: string;
   }[];
   historyTab: 'continue' | 'history';
   isLight?: boolean;
@@ -123,6 +125,11 @@ export default function DashboardWatchSections({
                           <p className="mb-1.5 text-[10px]" style={{ color: muted }}>
                             {item.subtitle}
                           </p>
+                          {item.estimateDuration && (
+                            <div className="mb-2">
+                              <EstimatedFootprintBadge durationLabel={item.estimateDuration} isLight={isLight} />
+                            </div>
+                          )}
                           <div className="flex items-center justify-between">
                             <span className="text-[9px] font-bold" style={{ color: 'rgb(0,229,186)' }}>
                               {item.progress}% {labels?.watched ?? 'watched'}

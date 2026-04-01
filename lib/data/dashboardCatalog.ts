@@ -9,6 +9,7 @@ export interface DashboardContinueItem {
   imageUrl: string;
   type: 'video' | 'music' | 'live' | 'gaming' | 'shorts';
   co2: string;
+  estimateDuration?: string;
 }
 
 export interface DashboardHistoryItem {
@@ -21,11 +22,11 @@ export interface DashboardHistoryItem {
 }
 
 export const LOCALIZED_CONTINUE_WATCHING: DashboardContinueItem[] = [
-  { id: '1', title: { en: 'Planet: A New Hope', de: 'Planet: Eine neue Hoffnung' }, subtitle: { en: 'Ep 3 of 6 - 28 min left', de: 'Ep 3 von 6 - 28 Min uebrig' }, progress: 62, imageUrl: contentImages.hero[0].url, type: 'video', co2: '0.07g/hr' },
-  { id: '3', title: { en: 'Green Beats: Season 3', de: 'Green Beats: Staffel 3' }, subtitle: { en: 'Festival Set 2 - 1h 12m left', de: 'Festival-Set 2 - 1 Std 12 Min uebrig' }, progress: 35, imageUrl: contentImages.music[0].url, type: 'music', co2: '0.06g/hr' },
-  { id: '6', title: { en: 'Solar Run 2024', de: 'Solar Run 2024' }, subtitle: { en: 'Highlights - 14 min left', de: 'Highlights - 14 Min uebrig' }, progress: 78, imageUrl: contentImages.sports[0].url, type: 'live', co2: '0.09g/hr' },
-  { id: '5', title: { en: 'Quantum Forest', de: 'Quantum Forest' }, subtitle: { en: 'Ep 5 of 8 - 42 min left', de: 'Ep 5 von 8 - 42 Min uebrig' }, progress: 20, imageUrl: contentImages.abstract[1].url, type: 'video', co2: '0.07g/hr' },
-  { id: '8', title: { en: 'EcoTech Summit', de: 'EcoTech Summit' }, subtitle: { en: 'Panel 3 - 22 min left', de: 'Panel 3 - 22 Min uebrig' }, progress: 55, imageUrl: contentImages.live[1].url, type: 'live', co2: '0.06g/hr' },
+  { id: '1', title: { en: 'Planet: A New Hope', de: 'Planet: Eine neue Hoffnung' }, subtitle: { en: 'Ep 3 of 6 - 28 min left', de: 'Ep 3 von 6 - 28 Min uebrig' }, progress: 62, imageUrl: contentImages.hero[0].url, type: 'video', co2: '0.07g/hr', estimateDuration: '28 min' },
+  { id: '3', title: { en: 'Green Beats: Season 3', de: 'Green Beats: Staffel 3' }, subtitle: { en: 'Festival Set 2 - 1h 12m left', de: 'Festival-Set 2 - 1 Std 12 Min uebrig' }, progress: 35, imageUrl: contentImages.music[0].url, type: 'music', co2: '0.06g/hr', estimateDuration: '1h 12m' },
+  { id: '6', title: { en: 'Solar Run 2024', de: 'Solar Run 2024' }, subtitle: { en: 'Highlights - 14 min left', de: 'Highlights - 14 Min uebrig' }, progress: 78, imageUrl: contentImages.sports[0].url, type: 'live', co2: '0.09g/hr', estimateDuration: '14 min' },
+  { id: '5', title: { en: 'Quantum Forest', de: 'Quantum Forest' }, subtitle: { en: 'Ep 5 of 8 - 42 min left', de: 'Ep 5 von 8 - 42 Min uebrig' }, progress: 20, imageUrl: contentImages.abstract[1].url, type: 'video', co2: '0.07g/hr', estimateDuration: '42 min' },
+  { id: '8', title: { en: 'EcoTech Summit', de: 'EcoTech Summit' }, subtitle: { en: 'Panel 3 - 22 min left', de: 'Panel 3 - 22 Min uebrig' }, progress: 55, imageUrl: contentImages.live[1].url, type: 'live', co2: '0.06g/hr', estimateDuration: '22 min' },
 ];
 
 export const LOCALIZED_WATCH_HISTORY: DashboardHistoryItem[] = [

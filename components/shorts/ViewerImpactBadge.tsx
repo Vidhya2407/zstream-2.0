@@ -79,7 +79,7 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
             <EarthIcon />
           </motion.div>
           <div className="flex-1">
-            <div className="text-xs font-bold text-eco-green-bright">By watching this video, you saved:</div>
+            <div className="text-xs font-bold text-eco-green-bright">Current viewing estimate:</div>
           </div>
         </div>
 
@@ -118,7 +118,7 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
               >
                 +{co2Saved.toFixed(4)} kg
               </motion.div>
-              <div className="text-[9px] text-eco-green/70 uppercase tracking-wide">CO2</div>
+              <div className="text-[9px] text-eco-green/70 uppercase tracking-wide">CO2 estimate</div>
             </div>
           </motion.div>
 
@@ -145,7 +145,7 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
               >
                 +{waterSaved.toFixed(2)} L
               </motion.div>
-              <div className="text-[9px] text-cyan-neon/70 uppercase tracking-wide">Water</div>
+              <div className="text-[9px] text-cyan-neon/70 uppercase tracking-wide">Water estimate</div>
             </div>
           </motion.div>
         </div>
@@ -175,7 +175,7 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
           >
             <div className="text-xs text-eco-green font-semibold flex items-center justify-center gap-1.5">
               <StarIcon />
-              <span>Amazing! You&apos;re making a difference!</span>
+              <span>Amazing! Your impact estimate is growing.</span>
               <StarIcon />
             </div>
           </motion.div>

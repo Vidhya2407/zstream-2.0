@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
 import { getSeriesWatchId, getWatchHref } from '@/lib/navigation/playbackRoutes';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import type { SeriesItem } from '../types';
 import SeriesCarbonBadge from './SeriesCarbonBadge';
 
@@ -27,6 +28,9 @@ export default function MediaSeriesHero({ featured, isLight }: MediaSeriesHeroPr
         <h2 className="mb-1 text-3xl font-black" style={{ color: isLight ? '#1d1d1f' : 'white' }}>{featured.title}</h2>
         <p className="mb-1 text-sm" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{featured.seasons} seasons · {featured.episodes} episodes · {featured.rating} rating</p>
         <p className="mb-4 line-clamp-2 text-xs leading-relaxed" style={{ color: isLight ? '#4b5563' : '#d1d5db' }}>{featured.description}</p>
+        <div className="mb-4">
+          <EstimatedFootprintBadge durationLabel={`${featured.averageEpisodeMinutes}m`} isLight={isLight} />
+        </div>
         <div className="flex flex-wrap items-center gap-3">
           <Link href={playHref}>
             <motion.button className="flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold" style={{ background: 'rgba(0,229,186,0.9)', color: '#0A0F18' }} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
@@ -40,7 +44,7 @@ export default function MediaSeriesHero({ featured, isLight }: MediaSeriesHeroPr
         </div>
       </div>
       <div className="absolute right-5 top-5 rounded-xl px-3 py-2 text-right" style={{ background: isLight ? 'rgba(255,255,255,0.82)' : 'rgba(0,0,0,0.55)', backdropFilter: 'blur(10px)', border: isLight ? '1px solid rgba(15,23,42,0.1)' : '1px solid rgba(0,229,186,0.18)', boxShadow: isLight ? '0 10px 26px rgba(15,23,42,0.08)' : 'none' }}>
-        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>Carbon per episode</p>
+        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>Carbon per episode | estimated</p>
         <p className="text-sm font-black" style={{ color: 'rgb(0,229,186)' }}>{(featured.carbonScore * 1000).toFixed(0)}mg CO2</p>
       </div>
     </motion.div>

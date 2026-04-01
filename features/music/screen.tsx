@@ -1,16 +1,17 @@
-﻿'use client';
+'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { contentImages } from '../../lib/images/unsplash';
+import { calculateMusicImpact, formatMusicCo2, formatMusicEwaste, formatMusicWater } from '../../lib/impact/music';
 import { MusicAlbumsGrid, MusicArtistsGrid, MusicPlaylistsGrid } from './components/MusicContentGrids';
+import GemaModal from './components/GemaModal';
 import MusicCarbonPanel from './components/MusicCarbonPanel';
 import MusicFeaturedHero from './components/MusicFeaturedHero';
 import MusicHeader from './components/MusicHeader';
 import MusicLibraryFilters from './components/MusicLibraryFilters';
 import MusicLibraryList from './components/MusicLibraryList';
 import MusicTabBar from './components/MusicTabBar';
-import GemaModal from './components/GemaModal';
 import { useMusicScreen } from './hooks/useMusicScreen';
 
 export default function MusicPage() {
@@ -42,6 +43,11 @@ export default function MusicPage() {
     tracks,
   } = useMusicScreen();
 
+  const selectedTrack = currentTrack ?? tracks[0] ?? null;
+  const panelImpact = calculateMusicImpact(selectedTrack?.durationSeconds ?? 60, selectedTrack?.audioQuality ?? 'high');
+  const runtimeLabel = selectedTrack ? `${selectedTrack.duration} track basis` : '1 min basis';
+  const qualityLabel = `${panelImpact.qualityLabel} � ${panelImpact.kbps} kbps`;
+
   return (
     <main className="min-h-screen pb-24" style={{ background: bgGradient }}>
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -51,7 +57,7 @@ export default function MusicPage() {
         <motion.div animate={{ scale: [1, 1.18, 1] }} className="absolute rounded-full" style={{ width: '420px', height: '420px', bottom: '-10%', right: '-5%', background: 'radial-gradient(circle, rgba(0,229,186,0.12) 0%, transparent 70%)', filter: 'blur(40px)' }} transition={{ duration: 11, repeat: Infinity, delay: 3 }} />
       </div>
 
-      <div className="relative z-10 w-full px-8 lg:px-12 py-10">
+      <div className="relative z-10 w-full px-8 py-10 lg:px-12">
         <MusicHeader isLight={isLight} onShowGema={() => setShowGema(true)} pageTextPrimary={pageTextPrimary} pageTextSecondary={pageTextSecondary} subtitle={labels?.pageSubtitle ?? 'Carbon-free streaming | GEMA licensed'} title={labels?.pageTitle ?? 'Music Library'} />
         <MusicFeaturedHero featuredStation={labels?.featuredStation ?? 'Featured Station'} featuredSubtitle={labels?.featuredSubtitle ?? '24/7 Carbon-Free Music | 8.4K listening'} featuredTitle={labels?.featuredTitle ?? 'Eco Beats Radio'} hasTracks={tracks.length > 0} isLight={isLight} listenNow={labels?.listenNow ?? 'Listen Now'} onPlay={() => tracks[0] && handlePlay(tracks[0])} />
         <MusicTabBar isLight={isLight} language={language} tab={tab} tabs={tabs} onTabChange={setTab} />
@@ -68,12 +74,20 @@ export default function MusicPage() {
           {tab === 'playlists' && <motion.div key="playlists" animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} initial={{ opacity: 0, y: 8 }}><MusicPlaylistsGrid handlePlay={handlePlay} labels={labels} language={language} pageTextMuted={pageTextMuted} pageTextPrimary={pageTextPrimary} pageTextSecondary={pageTextSecondary} playlists={playlists} tracks={tracks} /></motion.div>}
         </AnimatePresence>
 
-        <MusicCarbonPanel carbonFreeDescription={labels?.carbonFreeDescription ?? 'Audio uses 94% less energy than video. Every minute saves 0.002g CO2.'} carbonFreeMetric={labels?.carbonFreeMetric ?? 'CO2/min saved'} carbonFreeTitle={labels?.carbonFreeTitle ?? 'Carbon-Free Audio Streaming'} pageTextMuted={pageTextMuted} pageTextSecondary={pageTextSecondary} />
+        <MusicCarbonPanel
+          carbonFreeDescription={labels?.carbonFreeDescription ?? 'Modeled with the music baseline from zstream-calc.html for platform-side audio delivery.'}
+          carbonFreeTitle={labels?.carbonFreeTitle ?? 'Audio Impact Estimate'}
+          co2Value={formatMusicCo2(panelImpact.estimatedCo2Grams)}
+          waterValue={formatMusicWater(panelImpact.waterMl)}
+          ewasteValue={formatMusicEwaste(panelImpact.ewasteMicrograms)}
+          pageTextMuted={pageTextMuted}
+          pageTextSecondary={pageTextSecondary}
+          qualityLabel={qualityLabel}
+          runtimeLabel={runtimeLabel}
+        />
       </div>
 
       <GemaModal isLight={isLight} isOpen={showGema} onClose={() => setShowGema(false)} pageTextPrimary={pageTextPrimary} title={labels?.gemaNoticeTitle ?? 'GEMA Licensing Notice'} understoodLabel={labels?.understood ?? 'Understood'} />
     </main>
   );
 }
-
-

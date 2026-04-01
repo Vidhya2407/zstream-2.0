@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { contentImages } from '../../lib/images/unsplash';
 import { useLanguageStore } from '../../lib/stores/languageStore';
 import { useThemeStore } from '../../lib/stores/themeStore';
+import EstimatedFootprintBadge from '../../components/impact/EstimatedFootprintBadge';
 
 interface ContentCardProps {
   title: string;
@@ -15,6 +16,7 @@ interface ContentCardProps {
   type: 'music' | 'video' | 'minis' | 'live' | 'gaming';
   index: number;
   carbonScore?: number;
+  estimateDuration?: string;
   genre?: string;
 }
 
@@ -89,7 +91,7 @@ function buildBadgeSurface(accentBorder: string, isLight: boolean) {
   } as const;
 }
 
-export default function PremiumContentCard({ title, subtitle, image, href, type, index, carbonScore, genre }: ContentCardProps) {
+export default function PremiumContentCard({ title, subtitle, image, href, type, index, carbonScore, estimateDuration, genre }: ContentCardProps) {
   const config = typeConfig[type];
   const { language } = useLanguageStore();
   const { theme } = useThemeStore();
@@ -193,6 +195,12 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
               {title}
             </h3>
             <p className="text-xs mb-3" style={{ color: isLight ? 'rgb(71, 85, 105)' : 'rgb(148, 163, 184)' }}>{subtitle}</p>
+
+            {estimateDuration && (
+              <div className="mb-3">
+                <EstimatedFootprintBadge durationLabel={estimateDuration} isGerman={language === 'de'} isLight={isLight} />
+              </div>
+            )}
 
             {carbonScore !== undefined ? (() => {
               const { grade, color } = getCarbonGrade(carbonScore);

@@ -1,9 +1,10 @@
-﻿import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
 import { trDuration, trGenre, trMovieTitle, type Movie } from '../../../lib/data/moviesCatalog';
 import type { SupportedLanguage } from '../../../lib/types/content';
+import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import CarbonBadge from './CarbonBadge';
 import MovieCard from './MovieCard';
 
@@ -46,6 +47,9 @@ export default function MoviesResults({ activeGenre, filtered, isGerman, isLight
                 <div className="flex-1 min-w-0">
                   <Link href={`/movies/${movie.id}`}><h3 className="font-bold text-sm transition-colors" style={{ color: isLight ? '#1d1d1f' : 'white' }}>{trMovieTitle(movie, language)}</h3></Link>
                   <p className="text-[10px] mt-0.5" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{trGenre(movie.genre, language)} | {trDuration(movie.duration, language)} | {movie.year} | * {movie.rating}</p>
+                  <div className="mt-1.5 mb-1.5">
+                    <EstimatedFootprintBadge durationLabel={movie.duration} isGerman={isGerman} isLight={isLight} />
+                  </div>
                   <div className="flex items-center gap-3 mt-1.5">
                     <CarbonBadge score={movie.carbonScore} />
                     {movie.isPremium && <span className="text-[9px] font-bold px-2 py-0.5 rounded-full" style={{ background: isLight ? 'rgba(251,191,36,0.18)' : 'rgba(251,191,36,0.1)', color: isLight ? '#9a6700' : 'rgb(251,191,36)' }}>PREMIUM</span>}
@@ -65,5 +69,9 @@ export default function MoviesResults({ activeGenre, filtered, isGerman, isLight
     </AnimatePresence>
   );
 }
+
+
+
+
 
 

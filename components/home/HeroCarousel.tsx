@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useThemeStore } from '../../lib/stores/themeStore';
+import EstimatedFootprintBadge from '../../components/impact/EstimatedFootprintBadge';
 import { useLanguageStore } from '../../lib/stores/languageStore';
 
 export interface HeroItem {
@@ -13,6 +14,7 @@ export interface HeroItem {
   genre: string;
   year: number;
   duration: string;
+  estimateDuration?: string;
   rating: string;
   carbonScore: number;
   type: 'video' | 'music' | 'live' | 'gaming' | 'shorts';
@@ -223,9 +225,15 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
               </h1>
 
               {/* Description */}
-              <p className="text-sm leading-relaxed mb-6 max-w-lg opacity-85" style={{ color: isLight ? '#374151' : '#d1d5db' }}>
+              <p className="text-sm leading-relaxed mb-4 max-w-lg opacity-85" style={{ color: isLight ? '#374151' : '#d1d5db' }}>
                 {current.description}
               </p>
+
+              {current.estimateDuration && (
+                <div className="mb-6">
+                  <EstimatedFootprintBadge durationLabel={current.estimateDuration} isGerman={language === 'de'} isLight={isLight} />
+                </div>
+              )}
 
               {/* Hashtags */}
               <div className="flex flex-wrap gap-2 mb-8">

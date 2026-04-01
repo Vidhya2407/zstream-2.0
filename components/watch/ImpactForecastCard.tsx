@@ -94,7 +94,7 @@ export default function ImpactForecastCard({ durationMinutes, resolution, title 
               {isGerman ? `Aktueller Abfall und kuenftige Einsparungen fuer ${title}` : `Current waste and future savings for ${title}`}
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-6" style={{ color: body }}>
-              {isGerman ? 'Diese Vorschau zeigt zuerst die aktuelle Streaming-Schaetzung und ergaenzt sie danach um modellierte Zero-Carbon-Einsparungen und geschaetzte Carbon-Punkte.' : 'This preview shows the current streaming estimate first, then layers in the modeled Zero Carbon savings and estimated carbon points once verified tracking goes live.'}
+              {isGerman ? 'Diese Ansicht zeigt zuerst die aktuelle Streaming-Schaetzung und ergaenzt sie danach um modellierte Zero-Carbon-Einsparungen und geschaetzte Carbon-Punkte.' : 'This view shows the current streaming estimate first, then layers in the modeled Zero Carbon savings and estimated carbon points.'}
             </p>
           </div>
           <div className="rounded-2xl px-4 py-3 text-sm" style={{ background: isLight ? 'rgba(255,255,255,0.76)' : 'rgba(2,6,23,0.32)', border: '1px solid rgba(0,229,186,0.18)' }}>
@@ -156,7 +156,7 @@ export default function ImpactForecastCard({ durationMinutes, resolution, title 
         </div>
 
         <div className="mt-4 rounded-2xl px-4 py-3 text-xs leading-5" style={{ background: isLight ? 'rgba(15,23,42,0.03)' : 'rgba(255,255,255,0.02)', border: '1px dashed rgba(148,163,184,0.35)', color: muted }}>
-          {isGerman ? 'Die aktuellen Abfallwerte sind auf Basis ueblicher Streaming-Annahmen geschaetzt. Zero-Carbon-Einsparungen und Carbon-Punkte werden hier als kommende Vorschau angezeigt.' : 'Current waste values are estimated using standard streaming assumptions. Zero Carbon savings and carbon points are shown here as an upcoming preview.'}
+          {isGerman ? 'Die aktuellen Abfallwerte sind auf Basis ueblicher Streaming-Annahmen geschaetzt. Zero-Carbon-Einsparungen und Carbon-Punkte sind als kommende Funktion dargestellt.' : 'Current waste values are estimated using standard streaming assumptions. Zero Carbon savings and carbon points are shown here as a coming-soon feature.'}
         </div>
       </div>
     </motion.section>

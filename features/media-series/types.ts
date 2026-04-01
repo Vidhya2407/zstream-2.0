@@ -1,6 +1,7 @@
 ﻿export type SeriesTab = 'trending' | 'originals' | 'continue' | 'genres';
 
 export interface SeriesItem {
+  averageEpisodeMinutes: number;
   carbonScore: number;
   description: string;
   episodes: number;

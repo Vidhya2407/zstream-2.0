@@ -7,6 +7,7 @@ import { useThemeStore } from '../../lib/stores/themeStore';
 import { useLanguageStore } from '../../lib/stores/languageStore';
 import { useAppTranslations } from '../../lib/utils/translations';
 import { toast } from 'sonner';
+import { calculateMusicImpact, formatMusicCo2, formatMusicEwaste, formatMusicWater } from '../../lib/impact/music';
 
 const MUSIC_DE_TEXT: Record<string, string> = {
   'Carbon Neutral Vibes': 'Kohlenstofffreie Vibes',
@@ -125,7 +126,10 @@ export default function MiniPlayer() {
     Math.floor((progress / Math.max(dur, 1)) * LYRICS.length),
     LYRICS.length - 1
   );
-  const co2Saved = (currentTrack.carbonPerMin * (progress / 60)).toFixed(4);
+  const liveImpact = calculateMusicImpact(Math.max(progress, 1), currentTrack.audioQuality ?? 'high');
+  const co2Estimate = formatMusicCo2(liveImpact.estimatedCo2Grams);
+  const waterEstimate = formatMusicWater(liveImpact.waterMl);
+  const ewasteEstimate = formatMusicEwaste(liveImpact.ewasteMicrograms);
   const playerBackground = isLight
     ? 'linear-gradient(135deg, rgba(255,255,255,0.96), rgba(240,244,247,0.98))'
     : 'linear-gradient(135deg, rgba(8,12,24,0.98), rgba(10,15,28,0.99))';
@@ -359,11 +363,17 @@ export default function MiniPlayer() {
               />
             </div>
 
-            <div
-              className="flex items-center gap-1 text-[9px] font-bold px-2 py-1 rounded-full"
-              style={{ background: 'rgba(0,229,186,0.07)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}
-            >
-              {co2Saved}g {t('player.co2Saved', 'CO2 saved')}
+            <div className="hidden lg:flex items-center gap-2">
+              {[
+                { value: co2Estimate, label: t('player.co2Estimate', 'CO2 estimate'), color: 'rgb(0,229,186)' },
+                { value: waterEstimate, label: t('player.waterEstimate', 'Water estimate'), color: 'rgb(0,217,255)' },
+                { value: ewasteEstimate, label: t('player.ewasteEstimate', 'E-waste estimate'), color: 'rgb(96,165,250)' },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-1 rounded-full px-2 py-1 text-[9px] font-bold" style={{ background: 'rgba(0,229,186,0.07)', color: item.color, border: '1px solid rgba(0,229,186,0.15)' }}>
+                  <span>{item.value}</span>
+                  <span style={{ color: mutedText }}>{item.label}</span>
+                </div>
+              ))}
             </div>
 
             <motion.button

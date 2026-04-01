@@ -226,80 +226,76 @@ export default function CarbonPlaybackTracker({
               </div>
 
               <div
-                className="rounded-xl p-3"
+                className="rounded-xl p-2.5 sm:p-3"
                 style={{
                   background: isLight ? 'rgba(248,250,252,0.92)' : 'rgba(0,0,0,0.2)',
                   border: isLight ? '1px solid rgba(15,23,42,0.08)' : '1px solid rgba(255,255,255,0.04)',
                 }}
               >
-                <div className="mb-3 flex items-center justify-between">
+                <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: muted }}>
                       {isGerman ? 'Zero-Carbon-Sparvergleich' : 'Zero Carbon Savings Comparison'}
                     </p>
-                    <p className="mt-1 text-xs font-medium" style={{ color: faint }}>
+                    <p className="mt-0.5 text-[11px] font-medium" style={{ color: faint }}>
                       {isGerman ? 'Projizierte Zero-Carbon-Lieferung gegen Standard-Streaming' : 'Projected Zero Carbon delivery vs standard streaming'}
                     </p>
                   </div>
-                  <div className="text-right">
-                    <p className="text-[10px] uppercase tracking-wider" style={{ color: faint }}>
+                  <div className="text-right min-w-[92px]">
+                    <p className="text-[9px] uppercase tracking-wider" style={{ color: faint }}>
                       {isGerman ? 'Projizierte Einsparung' : 'Projected savings'}
                     </p>
-                    <p className="text-sm font-bold text-eco-green-bright">{projectedSavings}</p>
+                    <p className="text-base font-black text-eco-green-bright">{projectedSavings}</p>
                   </div>
                 </div>
 
-                <div className="mb-2">
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className="text-[11px] font-medium" style={{ color: muted }}>
+                <div className="space-y-2">
+                  <div>
+                    <div className="mb-1 flex items-center justify-between gap-3">
+                      <span className="text-[10px] font-semibold" style={{ color: muted }}>
                       {isGerman ? 'Projizierte Zero-Carbon-Lieferung' : 'Projected Zero Carbon delivery'}
-                    </span>
-                    <span className="text-[11px] font-medium" style={{ color: muted }}>
-                      28 g/GB
-                    </span>
+                      </span>
+                      <span className="text-[10px] font-semibold" style={{ color: muted }}>
+                        28 g/GB
+                      </span>
+                    </div>
+                    <div
+                      className="h-1.5 overflow-hidden rounded-full"
+                      style={{ background: isLight ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.06)' }}
+                    >
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: 'linear-gradient(90deg, rgb(0,229,186), rgb(0,217,255))' }}
+                        initial={{ width: 0 }}
+                        animate={{ width: '38%' }}
+                        transition={{ duration: 1.2, delay: 0.2 }}
+                      />
+                    </div>
                   </div>
-                  <div
-                    className="h-1.5 overflow-hidden rounded-full"
-                    style={{ background: isLight ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.06)' }}
-                  >
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ background: 'linear-gradient(90deg, rgb(0,229,186), rgb(0,217,255))' }}
-                      initial={{ width: 0 }}
-                      animate={{ width: '38%' }}
-                      transition={{ duration: 1.2, delay: 0.2 }}
-                    />
+
+                  <div>
+                    <div className="mb-1 flex items-center justify-between gap-3">
+                      <span className="text-[10px] font-semibold" style={{ color: faint }}>
+                        {isGerman ? 'Standard-Streaming-Basislinie' : 'Standard streaming baseline'}
+                      </span>
+                      <span className="text-[10px] font-semibold" style={{ color: faint }}>
+                        72 g/GB
+                      </span>
+                    </div>
+                    <div
+                      className="h-1.5 overflow-hidden rounded-full"
+                      style={{ background: isLight ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.06)' }}
+                    >
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ background: 'rgba(239,68,68,0.5)' }}
+                        initial={{ width: 0 }}
+                        animate={{ width: '100%' }}
+                        transition={{ duration: 1.2, delay: 0.3 }}
+                      />
+                    </div>
                   </div>
                 </div>
-
-                <div>
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className="text-[11px] font-medium" style={{ color: faint }}>
-                      {isGerman ? 'Standard-Streaming-Basislinie' : 'Standard streaming baseline'}
-                    </span>
-                    <span className="text-[11px] font-medium" style={{ color: faint }}>
-                      72 g/GB
-                    </span>
-                  </div>
-                  <div
-                    className="h-1.5 overflow-hidden rounded-full"
-                    style={{ background: isLight ? 'rgba(15,23,42,0.08)' : 'rgba(255,255,255,0.06)' }}
-                  >
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ background: 'rgba(239,68,68,0.5)' }}
-                      initial={{ width: 0 }}
-                      animate={{ width: '100%' }}
-                      transition={{ duration: 1.2, delay: 0.3 }}
-                    />
-                  </div>
-                </div>
-
-                <p className="mt-3 text-[10px]" style={{ color: muted }}>
-                  {isGerman
-                    ? 'Oben steht die aktuelle Abfall-Schaetzung. Darunter steht, wie viel geringer die ZSTREAM-Lieferung gegenueber Standard-Streaming modelliert ist.'
-                    : 'Top metrics show the current waste estimate. The comparison bars show how much lower ZSTREAM is modeled than standard streaming.'}
-                </p>
               </div>
             </div>
           </motion.div>

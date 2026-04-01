@@ -1,4 +1,4 @@
-﻿import dbConnect from '../db/mongodb';
+import dbConnect from '../db/mongodb';
 import Video from '../models/Video';
 import { getOrSetCache } from '../cache/runtime';
 import {
@@ -7,7 +7,8 @@ import {
   normalizeCatalogLanguage,
   type MusicPageContent,
 } from './catalogService';
-import type { Track } from '../../types/media';
+import type { Track, MusicQuality } from '../../types/media';
+import { calculateMusicImpact } from '../impact/music';
 import type { ContentResolution } from './homeService';
 
 export interface ResolvedMusicPageContent extends MusicPageContent {
@@ -29,18 +30,25 @@ export async function getMusicPagePrimaryContent(language: string | null | undef
   if (!items.length) return null;
 
   const fallback = getMusicPageFallbackContent(locale);
-  const tracks: Track[] = items.map((item, index) => ({
-    id: index + 1,
-    title: item.title,
-    artist: typeof item.metadata?.artist === 'string' ? item.metadata.artist : 'ZSTREAM Audio',
-    album: typeof item.metadata?.album === 'string' ? item.metadata.album : 'Green Sessions',
-    duration: item.duration || '3:00',
-    durationSeconds: typeof item.metadata?.durationSeconds === 'number' ? item.metadata.durationSeconds : 180,
-    genre: item.category || 'Ambient',
-    imageUrl: item.thumbnailUrl || fallback.tracks[index % fallback.tracks.length]?.imageUrl || '',
-    audioUrl: item.audioUrl || item.videoUrl || fallback.tracks[index % fallback.tracks.length]?.audioUrl || '',
-    carbonPerMin: typeof item.metadata?.carbonPerMin === 'number' ? item.metadata.carbonPerMin : 0.002,
-  }));
+  const tracks: Track[] = items.map((item, index) => {
+    const audioQuality = (typeof item.metadata?.audioQuality === 'string' ? item.metadata.audioQuality : 'high') as MusicQuality;
+    const durationSeconds = typeof item.metadata?.durationSeconds === 'number' ? item.metadata.durationSeconds : 180;
+    const minuteImpact = calculateMusicImpact(60, audioQuality);
+
+    return {
+      id: index + 1,
+      title: item.title,
+      artist: typeof item.metadata?.artist === 'string' ? item.metadata.artist : 'ZSTREAM Audio',
+      album: typeof item.metadata?.album === 'string' ? item.metadata.album : 'Green Sessions',
+      duration: item.duration || '3:00',
+      durationSeconds,
+      genre: item.category || 'Ambient',
+      imageUrl: item.thumbnailUrl || fallback.tracks[index % fallback.tracks.length]?.imageUrl || '',
+      audioUrl: item.audioUrl || item.videoUrl || fallback.tracks[index % fallback.tracks.length]?.audioUrl || '',
+      carbonPerMin: typeof item.metadata?.carbonPerMin === 'number' ? item.metadata.carbonPerMin : minuteImpact.estimatedCo2Grams,
+      audioQuality,
+    };
+  });
 
   return {
     ...fallback,
@@ -66,5 +74,3 @@ export async function resolveMusicPageContent(language: string | null | undefine
 export const getMusicPageContent = getMusicPageFallbackContent;
 export { getMusicTracksByGenre };
 export type { MusicPageContent };
-
-
