@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -51,7 +51,7 @@ const PARTICIPANTS: Participant[] = [
   { id: 3, name: 'Amara Diallo', email: 'amara@ecofuture.sn', avatarIdx: 3, role: 'speaker', location: '🇸🇳 Dakar', co2Saved: 0.51, attendanceRate: 88 },
   { id: 4, name: 'Prof. Erik Larsen', email: 'erik@uni-berlin.de', avatarIdx: 2, role: 'speaker', location: '🇩🇪 Berlin', co2Saved: 0.28, attendanceRate: 92 },
   { id: 5, name: 'Yuki Tanaka', email: 'yuki@greenjp.co', avatarIdx: 1, role: 'attendee', location: '🇯🇵 Tokyo', co2Saved: 0.61, attendanceRate: 78 },
-  { id: 6, name: 'Leo Martins', email: 'leo@ecobr.com', avatarIdx: 0, role: 'attendee', location: '🇧🇷 São Paulo', co2Saved: 0.72, attendanceRate: 82 },
+  { id: 6, name: 'Leo Martins', email: 'leo@ecobr.com', avatarIdx: 0, role: 'attendee', location: 'Sao Paulo, Brazil', co2Saved: 0.72, attendanceRate: 82 },
 ];
 
 const TABS: { id: DashTab; label: string; icon: string }[] = [
@@ -59,7 +59,7 @@ const TABS: { id: DashTab; label: string; icon: string }[] = [
   { id: 'upcoming', label: 'Upcoming', icon: '📅' },
   { id: 'past', label: 'Past Meetings', icon: '📼' },
   { id: 'participants', label: 'Participants', icon: '👥' },
-  { id: 'settings', label: 'Room Settings', icon: '⚙️' },
+  { id: 'settings', label: 'Room Settings', icon: 'Set' },
   { id: 'analytics', label: 'Analytics', icon: '📈' },
 ];
 
@@ -122,7 +122,7 @@ function NewMeetingModal({ onClose }: { onClose: () => void }) {
               </div>
             </div>
             <div className="flex gap-3">
-              <button onClick={() => setInstant(true)} className="flex-1 py-2 rounded-xl text-xs font-bold transition-all" style={instant ? { background: 'rgba(0,128,255,0.15)', color: 'rgb(96,165,250)', border: '2px solid rgba(0,128,255,0.3)' } : { background: 'rgba(255,255,255,0.03)', color: 'rgb(107,114,128)', border: '2px solid rgba(255,255,255,0.07)' }}>⚡ Instant</button>
+              <button onClick={() => setInstant(true)} className="flex-1 py-2 rounded-xl text-xs font-bold transition-all" style={instant ? { background: 'rgba(0,128,255,0.15)', color: 'rgb(96,165,250)', border: '2px solid rgba(0,128,255,0.3)' } : { background: 'rgba(255,255,255,0.03)', color: 'rgb(107,114,128)', border: '2px solid rgba(255,255,255,0.07)' }}>Instant</button>
               <button onClick={() => setInstant(false)} className="flex-1 py-2 rounded-xl text-xs font-bold transition-all" style={!instant ? { background: 'rgba(0,128,255,0.15)', color: 'rgb(96,165,250)', border: '2px solid rgba(0,128,255,0.3)' } : { background: 'rgba(255,255,255,0.03)', color: 'rgb(107,114,128)', border: '2px solid rgba(255,255,255,0.07)' }}>📅 Schedule</button>
             </div>
             {!instant && (
@@ -150,17 +150,16 @@ function NewMeetingModal({ onClose }: { onClose: () => void }) {
             ))}
             <div className="p-3 rounded-xl" style={{ background: 'rgba(0,229,186,0.06)', border: '1px solid rgba(0,229,186,0.15)' }}>
               <p className="text-[10px] font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 Carbon savings estimate</p>
-              <p className="text-gray-300 text-[10px] mt-0.5">With {maxPart} participants meeting virtually instead of travelling, this saves approximately <strong style={{ color: 'rgb(0,229,186)' }}>{(parseInt(maxPart) * 0.018).toFixed(2)} kg CO₂</strong> per hour.</p>
+              <p className="text-gray-300 text-[10px] mt-0.5">With {maxPart} participants meeting virtually instead of travelling, this saves approximately <strong style={{ color: 'rgb(0,229,186)' }}>{(parseInt(maxPart) * 0.018).toFixed(2)} kg CO2</strong> per hour.</p>
             </div>
           </div>
         )}
 
         <div className="flex gap-3 mt-6">
-          {step > 1 && <button onClick={() => setStep(1)} className="flex-1 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.1)' }}>← Back</button>}
-          {step === 1
-            ? <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setStep(2)} disabled={!meetingTitle.trim()} className="flex-1 py-2.5 rounded-xl text-xs font-bold disabled:opacity-40" style={{ background: 'rgba(0,128,255,0.85)', color: 'white' }}>Continue →</motion.button>
+          {step > 1 && <button onClick={() => setStep(1)} className="flex-1 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.1)' }}>Back</button>}
+          {step === 1 ? <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => setStep(2)} disabled={!meetingTitle.trim()} className="flex-1 py-2.5 rounded-xl text-xs font-bold disabled:opacity-40" style={{ background: 'rgba(0,128,255,0.85)', color: 'white' }}>Continue</motion.button>
             : <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={onClose} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-black" style={{ background: instant ? 'rgba(0,128,255,0.85)' : 'rgba(0,229,186,0.85)', color: 'white' }}>
-                {instant ? '▶ Start Now' : '📅 Schedule'}
+                {instant ? 'Start Now' : 'Schedule'}
               </motion.button>
           }
         </div>
@@ -182,7 +181,7 @@ function OverviewTab({ onNew }: { onNew: () => void }) {
           <motion.div className="w-3 h-3 rounded-full bg-blue-400 flex-shrink-0" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
           <div className="flex-1 min-w-0">
             <p className="text-white font-bold text-sm">{liveMeeting.title}</p>
-            <p className="text-blue-300 text-xs">{liveMeeting.attendees} participants · In progress</p>
+            <p className="text-blue-300 text-xs">{liveMeeting.attendees} participants  In progress</p>
           </div>
           <Link href="/meetings">
             <button className="px-4 py-2 rounded-xl text-xs font-bold flex-shrink-0" style={{ background: 'rgba(0,128,255,0.85)', color: 'white' }}>Join</button>
@@ -193,7 +192,7 @@ function OverviewTab({ onNew }: { onNew: () => void }) {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Total CO₂ Saved', value: `${totalCO2.toFixed(2)} kg`, icon: '🌿', color: 'rgb(0,229,186)' },
+          { label: 'Total CO2 Saved', value: `${totalCO2.toFixed(2)} kg`, icon: '🌿', color: 'rgb(0,229,186)' },
           { label: 'Upcoming', value: upcoming.length, icon: '📅', color: 'rgb(96,165,250)' },
           { label: 'Recordings', value: MEETINGS.filter(m => m.hasRecording).length, icon: '📼', color: 'rgb(196,132,252)' },
           { label: 'Trees Equivalent', value: Math.round(totalCO2 / 0.021), icon: '🌳', color: 'rgb(0,200,80)' },
@@ -209,9 +208,9 @@ function OverviewTab({ onNew }: { onNew: () => void }) {
       {/* Quick Actions */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {[
-          { label: 'Instant Meeting', icon: '⚡', desc: 'Start a room right now', color: 'rgba(0,128,255,0.85)', action: onNew },
+          { label: 'Instant Meeting', icon: 'Now', desc: 'Start a room right now', color: 'rgba(0,128,255,0.85)', action: onNew },
           { label: 'Schedule Meeting', icon: '📅', desc: 'Plan for later', color: 'rgba(0,229,186,0.12)', textColor: 'rgb(0,229,186)', action: onNew },
-          { label: 'Join by ID', icon: '🔗', desc: 'Enter a room code', color: 'rgba(196,132,252,0.12)', textColor: 'rgb(196,132,252)', action: onNew },
+          { label: 'Join by ID', icon: 'ID', desc: 'Enter a room code', color: 'rgba(196,132,252,0.12)', textColor: 'rgb(196,132,252)', action: onNew },
         ].map((a, i) => (
           <motion.button key={a.label} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={a.action} className="p-4 rounded-2xl text-left transition-all" style={{ background: i === 0 ? a.color : 'rgba(255,255,255,0.03)', border: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-2xl mb-2">{a.icon}</div>
@@ -229,9 +228,9 @@ function OverviewTab({ onNew }: { onNew: () => void }) {
         </div>
         <div className="grid grid-cols-3 gap-4">
           {[
-            { label: 'vs. Flying', saving: `${(totalCO2 * 4.2).toFixed(1)} kg`, desc: 'Short-haul flight emissions avoided', icon: '✈️' },
-            { label: 'vs. Driving', saving: `${(totalCO2 * 1.8).toFixed(1)} kg`, desc: 'Car trip emissions avoided', icon: '🚗' },
-            { label: 'vs. Train', saving: `${(totalCO2 * 0.3).toFixed(2)} kg`, desc: 'Train journey emissions avoided', icon: '🚄' },
+            { label: 'vs. Flying', saving: `${(totalCO2 * 4.2).toFixed(1)} kg`, desc: 'Short-haul flight emissions avoided', icon: 'Air' },
+            { label: 'vs. Driving', saving: `${(totalCO2 * 1.8).toFixed(1)} kg`, desc: 'Car trip emissions avoided', icon: 'Car' },
+            { label: 'vs. Train', saving: `${(totalCO2 * 0.3).toFixed(2)} kg`, desc: 'Train journey emissions avoided', icon: 'Rail' },
           ].map(item => (
             <div key={item.label} className="text-center">
               <div className="text-3xl mb-1">{item.icon}</div>
@@ -255,8 +254,7 @@ function OverviewTab({ onNew }: { onNew: () => void }) {
             <div key={cal.name} className="flex items-center gap-2 px-3 py-2 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <span>{cal.icon}</span>
               <span className="text-white text-xs font-medium">{cal.name}</span>
-              {cal.connected
-                ? <span className="text-[9px] font-bold" style={{ color: cal.color }}>✓ Connected</span>
+              {cal.connected ? <span className="text-[9px] font-bold" style={{ color: cal.color }}>Connected</span>
                 : <button className="text-[9px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgb(156,163,175)' }}>Connect</button>
               }
             </div>
@@ -287,15 +285,15 @@ function UpcomingTab({ onNew }: { onNew: () => void }) {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <h4 className="text-white font-bold text-sm truncate">{m.title}</h4>
-                  {m.status === 'live' && <motion.span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: 'rgba(0,128,255,0.2)', color: 'rgb(96,165,250)' }} animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>● LIVE</motion.span>}
+                  {m.status === 'live' && <motion.span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: 'rgba(0,128,255,0.2)', color: 'rgb(96,165,250)' }} animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>LIVE</motion.span>}
                   <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: tc.bg, color: tc.color, border: `1px solid ${tc.border}` }}>{tc.label}</span>
                 </div>
-                <p className="text-gray-500 text-xs">{m.date} · {m.time} · {m.duration}</p>
+                <p className="text-gray-500 text-xs">{m.date}  {m.time}  {m.duration}</p>
                 <div className="flex items-center gap-3 mt-2 text-[10px] text-gray-500">
                   <span>👥 {m.attendees.toLocaleString()} / {m.maxAttendees.toLocaleString()}</span>
                   {m.password && <span>🔒 Password</span>}
-                  {m.waitingRoom && <span>⏳ Waiting room</span>}
-                  <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 ~{m.co2Saved} kg CO₂ saved</span>
+                  {m.waitingRoom && <span> Waiting room</span>}
+                  <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 ~{m.co2Saved} kg CO2 saved</span>
                 </div>
               </div>
               <div className="flex gap-2 flex-shrink-0">
@@ -330,11 +328,11 @@ function PastTab() {
                   <h4 className="text-white font-bold text-sm truncate">{m.title}</h4>
                   <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: tc.bg, color: tc.color, border: `1px solid ${tc.border}` }}>{tc.label}</span>
                 </div>
-                <p className="text-gray-500 text-xs">{m.date} · {m.duration} · Host: {m.hostName}</p>
+                <p className="text-gray-500 text-xs">{m.date}  {m.duration}  Host: {m.hostName}</p>
                 <div className="flex items-center gap-3 mt-2 text-[10px] text-gray-500">
                   <span>👥 {m.attendees.toLocaleString()} attended</span>
-                  <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 {m.co2Saved} kg CO₂ saved</span>
-                  <span>≈ {(m.co2Saved / (IN_PERSON_KG_PER_HR * (parseInt(m.duration) || 1)) * 100).toFixed(0)}% less than in-person</span>
+                  <span className="font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 {m.co2Saved} kg CO2 saved</span>
+                  <span>Approx. {(m.co2Saved / (IN_PERSON_KG_PER_HR * (parseInt(m.duration) || 1)) * 100).toFixed(0)}% less than in-person</span>
                 </div>
               </div>
               <div className="flex gap-2 flex-shrink-0">
@@ -379,7 +377,7 @@ function ParticipantsTab() {
                   <p className="text-white text-xs font-semibold truncate">{p.name}</p>
                   <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ color: rc.color, background: `${rc.color}15` }}>{rc.label}</span>
                 </div>
-                <p className="text-gray-500 text-[10px] truncate">{p.email} · {p.location}</p>
+                <p className="text-gray-500 text-[10px] truncate">{p.email}  {p.location}</p>
                 <div className="flex items-center gap-3 mt-1 text-[9px]">
                   <span style={{ color: 'rgb(0,229,186)' }}>🌿 {p.co2Saved} kg saved</span>
                   <span className="text-gray-500">Attendance: {p.attendanceRate}%</span>
@@ -445,7 +443,7 @@ function SettingsTab() {
       <div className="flex items-center gap-3">
         <button type="submit" className="px-5 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(0,128,255,0.85)', color: 'white' }}>Save Settings</button>
         <AnimatePresence>
-          {saved && <motion.span initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="text-xs font-bold" style={{ color: 'rgb(0,229,186)' }}>✓ Saved</motion.span>}
+          {saved && <motion.span initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="text-xs font-bold" style={{ color: 'rgb(0,229,186)' }}>Saved</motion.span>}
         </AnimatePresence>
       </div>
     </form>
@@ -463,10 +461,10 @@ function AnalyticsTab() {
     <div className="space-y-5">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Avg. Duration', value: `${avgDuration}m`, icon: '⏱️', color: 'rgb(96,165,250)' },
+          { label: 'Avg. Duration', value: `${avgDuration}m`, icon: '', color: 'rgb(96,165,250)' },
           { label: 'Avg. Attendance', value: `${avgAttendance}%`, icon: '👥', color: 'rgb(0,229,186)' },
           { label: 'Total Meetings', value: MEETINGS.length, icon: '🎥', color: 'rgb(196,132,252)' },
-          { label: 'Total CO₂ Saved', value: `${totalCO2.toFixed(2)} kg`, icon: '🌿', color: 'rgb(0,229,186)' },
+          { label: 'Total CO2 Saved', value: `${totalCO2.toFixed(2)} kg`, icon: '🌿', color: 'rgb(0,229,186)' },
         ].map((s, i) => (
           <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{s.icon}</div>
@@ -492,8 +490,8 @@ function AnalyticsTab() {
         <h3 className="text-white font-bold text-sm mb-3">Carbon Impact Report</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
-            { label: 'vs. Flights avoided', value: `${(totalCO2 / 0.255).toFixed(0)} flights`, icon: '✈️' },
-            { label: 'vs. Car km avoided', value: `${(totalCO2 / 0.17 * 1000).toFixed(0)} km`, icon: '🚗' },
+            { label: 'vs. Flights avoided', value: `${(totalCO2 / 0.255).toFixed(0)} flights`, icon: 'Air' },
+            { label: 'vs. Car km avoided', value: `${(totalCO2 / 0.17 * 1000).toFixed(0)} km`, icon: 'Car' },
             { label: 'Trees equivalent', value: `${Math.round(totalCO2 / 0.021)} trees/yr`, icon: '🌳' },
           ].map(item => (
             <div key={item.label} className="text-center">
@@ -527,7 +525,7 @@ export default function MeetingsDashboardPage() {
             </div>
             <div>
               <h1 className="text-white font-black text-2xl">Meetings Dashboard</h1>
-              <p className="text-gray-500 text-xs">WebRTC Meetings · ZStream Connect</p>
+              <p className="text-gray-500 text-xs">WebRTC Meetings  ZStream Connect</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -536,7 +534,7 @@ export default function MeetingsDashboardPage() {
               New Meeting
             </motion.button>
             <Link href="/meetings">
-              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Meetings</button>
+              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Meetings</button>
             </Link>
           </div>
         </motion.div>

@@ -38,3 +38,5 @@ export default function JoinModal({ inputBg, inputBorder, joinCode, joinLabel, o
     </AnimatePresence>
   );
 }
+
+

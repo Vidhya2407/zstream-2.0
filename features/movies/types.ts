@@ -1,1 +1,3 @@
-export type MoviesFeatureStatus = 'idle' | 'loading' | 'ready' | 'error';
+﻿export type MoviesFeatureStatus = 'idle' | 'loading' | 'ready' | 'error';
+
+

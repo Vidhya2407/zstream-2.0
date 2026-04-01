@@ -20,3 +20,5 @@ export const seriesCatalog: SeriesItem[] = [
   { id: 's8', title: 'The Carbon Code', genre: 'Thriller', seasons: 2, episodes: 18, rating: '9.0', year: 2023, status: 'Complete', imageIdx: 1, carbonScore: 0.07, isPremium: true, isOriginal: true, progress: 35, description: 'A financial thriller about a whistleblower exposing the corporate conspiracy behind a fraudulent carbon credit scheme.', studio: 'ZStream Originals', language: 'EN', tags: ['Thriller', 'Finance', 'Crime'] },
   { id: 's9', title: 'Kelp & Carbon', genre: 'Documentary', seasons: 1, episodes: 4, rating: '9.2', year: 2025, status: 'Ongoing', imageIdx: 0, carbonScore: 0.04, isPremium: false, isOriginal: false, progress: 0, description: 'Scientists discover that ocean kelp forests may be humanity\'s greatest untapped tool in the fight against climate change.', studio: 'Ocean Science Media', language: 'EN', tags: ['Science', 'Ocean', 'Climate'] },
 ];
+
+

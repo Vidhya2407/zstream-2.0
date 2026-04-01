@@ -83,8 +83,8 @@ export default function Footer() {
         style={{ background: 'radial-gradient(ellipse at 30% 0%, rgba(0, 229, 186, 0.04) 0%, transparent 60%)' }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-10">
+      <div className="relative z-10 app-container py-14 md:py-16">
+        <div className="grid gap-10 md:grid-cols-4 mb-10 md:mb-12">
           <div className="space-y-4 md:col-span-1">
             <Link href="/" className="flex items-center gap-3 group w-fit">
               <div className="relative w-8 h-8 flex-shrink-0">
@@ -187,3 +187,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+

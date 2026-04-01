@@ -65,3 +65,5 @@ export async function resolveSearchPageContent(language: string | null | undefin
 }
 
 export { filterSearchResults, getSearchPageFallbackContent as getSearchPageContent, sanitizeSearchQuery };
+
+

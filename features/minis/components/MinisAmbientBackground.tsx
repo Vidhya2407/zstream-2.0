@@ -20,3 +20,5 @@ export default function MinisAmbientBackground({ isLight }: MinisAmbientBackgrou
     </div>
   );
 }
+
+

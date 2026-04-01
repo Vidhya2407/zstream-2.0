@@ -1,4 +1,4 @@
-# Image Licenses and Attributions
+﻿# Image Licenses and Attributions
 
 All images used in this project are sourced from royalty-free, commercial-use platforms and comply with their respective licenses.
 
@@ -44,3 +44,5 @@ While not required by license, we acknowledge photographers:
 - ✅ Abstract/generic visuals to avoid legal exposure
 
 Last updated: 2026-02-20
+
+

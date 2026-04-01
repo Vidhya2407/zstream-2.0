@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -22,13 +22,13 @@ const CATEGORIES = [
 const CONTENT_TYPES: { id: ContentType; label: string; icon: string; desc: string }[] = [
   { id: 'video', label: 'Video', icon: '🎬', desc: 'Upload a video file (MP4, MOV, MKV, WebM)' },
   { id: 'music', label: 'Music', icon: '🎵', desc: 'Upload audio (MP3, FLAC, WAV, AAC)' },
-  { id: 'podcast', label: 'Podcast', icon: '🎙️', desc: 'Upload podcast episode (MP3, MP4 audio)' },
-  { id: 'mini', label: 'Mini', icon: '📱', desc: 'Short vertical video · 9:16 · Max 60 seconds' },
+  { id: 'podcast', label: 'Podcast', icon: '🎙', desc: 'Upload podcast episode (MP3, MP4 audio)' },
+  { id: 'mini', label: 'Mini', icon: '📱', desc: 'Short vertical video  9:16  Max 60 seconds' },
 ];
 
 const VISIBILITY_OPTIONS: { id: Visibility; label: string; icon: string; desc: string }[] = [
   { id: 'public', label: 'Public', icon: '🌍', desc: 'Anyone can watch' },
-  { id: 'unlisted', label: 'Unlisted', icon: '🔗', desc: 'Only people with the link' },
+  { id: 'unlisted', label: 'Unlisted', icon: 'Link', desc: 'Only people with the link' },
   { id: 'private', label: 'Private', icon: '🔒', desc: 'Only you can watch' },
   { id: 'scheduled', label: 'Scheduled', icon: '📅', desc: 'Publish at a set time' },
 ];
@@ -47,14 +47,12 @@ function StepIndicator({ current }: { current: UploadStep }) {
             <div className="flex flex-col items-center">
               <div
                 className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-black transition-all"
-                style={done
-                  ? { background: 'rgba(0,229,186,0.2)', color: 'rgb(0,229,186)', border: '2px solid rgba(0,229,186,0.5)' }
-                  : active
-                    ? { background: 'rgba(239,68,68,0.85)', color: 'white', border: '2px solid rgba(239,68,68,0.5)' }
+                style={done ? { background: 'rgba(0,229,186,0.2)', color: 'rgb(0,229,186)', border: '2px solid rgba(0,229,186,0.5)' }
+                  : active ? { background: 'rgba(239,68,68,0.85)', color: 'white', border: '2px solid rgba(239,68,68,0.5)' }
                     : { background: 'rgba(255,255,255,0.06)', color: 'rgb(107,114,128)', border: '2px solid rgba(255,255,255,0.1)' }
                 }
               >
-                {done ? '✓' : step}
+                {done ? 'Done' : step}
               </div>
               <span className="text-[9px] mt-1 font-semibold" style={{ color: active ? 'rgb(252,165,165)' : done ? 'rgb(0,229,186)' : 'rgb(107,114,128)' }}>
                 {label}
@@ -115,11 +113,9 @@ function DropZone({ contentType, onFileSelect }: { contentType: ContentType; onF
         <p className="text-white font-bold text-base mb-1">Drop your file here</p>
         <p className="text-gray-500 text-xs">or <span style={{ color: 'rgb(252,165,165)' }}>click to browse</span></p>
         <p className="text-gray-600 text-[10px] mt-2">
-          {contentType === 'mini'
-            ? 'MP4, MOV · 9:16 vertical · Max 60s · Max 500 MB'
-            : contentType === 'video'
-              ? 'MP4, MOV, MKV, WebM · Max 20 GB'
-              : 'MP3, FLAC, WAV, AAC · Max 500 MB'}
+          {contentType === 'mini' ? 'MP4, MOV  9:16 vertical  Max 60s  Max 500 MB'
+            : contentType === 'video' ? 'MP4, MOV, MKV, WebM  Max 20 GB'
+              : 'MP3, FLAC, WAV, AAC  Max 500 MB'}
         </p>
       </motion.div>
     </div>
@@ -128,7 +124,7 @@ function DropZone({ contentType, onFileSelect }: { contentType: ContentType; onF
 
 function ZTubeUploadInner() {
   const searchParams = useSearchParams();
-  const initialType = (searchParams.get('type') as ContentType) ?? 'video';
+  const initialType = (searchParams.get('type') as ContentType) || 'video';
   const validTypes: ContentType[] = ['video', 'music', 'podcast', 'mini'];
 
   const [step, setStep] = React.useState<UploadStep>(1);
@@ -249,7 +245,7 @@ function ZTubeUploadInner() {
           </Link>
           <div>
             <h1 className="text-white font-black text-2xl">Upload Content</h1>
-            <p className="text-gray-500 text-xs">ZTube Studio · Creator Tools</p>
+            <p className="text-gray-500 text-xs">ZTube Studio  Creator Tools</p>
           </div>
         </motion.div>
 
@@ -257,7 +253,7 @@ function ZTubeUploadInner() {
 
         <AnimatePresence mode="wait">
 
-          {/* ── STEP 1: File & Type ── */}
+          {/* STEP 1: File & Type */}
           {step === 1 && (
             <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
               {contentType === 'mini' && (
@@ -265,7 +261,7 @@ function ZTubeUploadInner() {
                   <span className="text-xl flex-shrink-0">📱</span>
                   <div>
                     <p className="text-white text-xs font-bold">Minis Format Requirements</p>
-                    <p className="text-gray-400 text-[10px] mt-0.5 leading-relaxed">Vertical 9:16 aspect ratio · Max 60 seconds · MP4 or MOV · Shown in the Minis feed on ZStream. Short, punchy eco content performs best.</p>
+                    <p className="text-gray-400 text-[10px] mt-0.5 leading-relaxed">Vertical 9:16 aspect ratio  Max 60 seconds  MP4 or MOV  Shown in the Minis feed on ZStream. Short, punchy eco content performs best.</p>
                   </div>
                 </div>
               )}
@@ -278,8 +274,7 @@ function ZTubeUploadInner() {
                       key={ct.id}
                       onClick={() => setContentType(ct.id)}
                       className="p-4 rounded-2xl text-left transition-all"
-                      style={contentType === ct.id
-                        ? { background: 'rgba(239,68,68,0.12)', border: '2px solid rgba(239,68,68,0.4)' }
+                      style={contentType === ct.id ? { background: 'rgba(239,68,68,0.12)', border: '2px solid rgba(239,68,68,0.4)' }
                         : { background: 'rgba(255,255,255,0.03)', border: '2px solid rgba(255,255,255,0.07)' }
                       }
                       aria-pressed={contentType === ct.id}
@@ -320,7 +315,7 @@ function ZTubeUploadInner() {
                         transition={{ duration: 0.2 }}
                       />
                     </div>
-                    <p className="text-gray-600 text-[10px] mt-1">{Math.round(uploadProgress)}%{uploadProgress >= 100 ? ' · Ready' : ''}</p>
+                    <p className="text-gray-600 text-[10px] mt-1">{Math.round(uploadProgress)}%{uploadProgress >= 100 ? '  Ready' : ''}</p>
                   </div>
                 )}
               </div>
@@ -334,13 +329,13 @@ function ZTubeUploadInner() {
                   className="px-6 py-2.5 rounded-xl text-xs font-bold transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}
                 >
-                  Continue →
+                  Continue
                 </motion.button>
               </div>
             </motion.div>
           )}
 
-          {/* ── STEP 2: Details ── */}
+          {/* STEP 2: Details */}
           {step === 2 && (
             <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
               <div>
@@ -371,7 +366,7 @@ function ZTubeUploadInner() {
               {/* Thumbnail */}
               <div>
                 <label className="text-gray-400 text-xs block mb-1.5">Thumbnail</label>
-                <input ref={thumbnailRef} type="file" accept=".jpg,.jpeg,.png,.webp" className="hidden" onChange={e => setThumbnailName(e.target.files?.[0]?.name ?? '')} />
+                <input ref={thumbnailRef} type="file" accept=".jpg,.jpeg,.png,.webp" className="hidden" onChange={e => setThumbnailName(e.target.files?.[0]?.name || '')} />
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
@@ -390,7 +385,7 @@ function ZTubeUploadInner() {
               {/* Subtitle/Caption Upload */}
               <div>
                 <label className="text-gray-400 text-xs block mb-1.5">Subtitles / Captions</label>
-                <input ref={subtitleRef} type="file" accept=".vtt,.srt" className="hidden" onChange={e => setSubtitleName(e.target.files?.[0]?.name ?? '')} />
+                <input ref={subtitleRef} type="file" accept=".vtt,.srt" className="hidden" onChange={e => setSubtitleName(e.target.files?.[0]?.name || '')} />
                 <div className="flex items-center gap-3">
                   <button
                     type="button"
@@ -413,14 +408,14 @@ function ZTubeUploadInner() {
                     <input value={tags} onChange={e => setTags(e.target.value)} placeholder="#ClimateAction #EcoLife #ZeroWaste" className="w-full bg-transparent border rounded-xl px-3 py-2.5 text-white text-xs outline-none transition-colors" style={{ borderColor: 'rgba(0,229,186,0.25)' }} />
                   </div>
                   <div className="flex items-center gap-2 text-[10px]" style={{ color: 'rgb(0,229,186)' }}>
-                    <span>⏱️</span>
+                    <span></span>
                     <span className="font-bold">Max duration: 60 seconds.</span>
                     <span className="text-gray-500">Longer clips will be trimmed to 60s automatically.</span>
                   </div>
                 </div>
               )}
 
-              {/* Chapter Markers — hidden for minis */}
+              {/* Chapter Markers - hidden for minis */}
               {contentType !== 'music' && contentType !== 'mini' && (
                 <div>
                   <div className="flex items-center justify-between mb-2">
@@ -443,13 +438,13 @@ function ZTubeUploadInner() {
               )}
 
               <div className="flex justify-between">
-                <button onClick={() => setStep(1)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Back</button>
-                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(3)} disabled={!title.trim()} className="px-6 py-2.5 rounded-xl text-xs font-bold transition-all disabled:opacity-40" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Continue →</motion.button>
+                <button onClick={() => setStep(1)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Back</button>
+                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(3)} disabled={!title.trim()} className="px-6 py-2.5 rounded-xl text-xs font-bold transition-all disabled:opacity-40" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Continue</motion.button>
               </div>
             </motion.div>
           )}
 
-          {/* ── STEP 3: Settings ── */}
+          {/* STEP 3: Settings */}
           {step === 3 && (
             <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
 
@@ -462,8 +457,7 @@ function ZTubeUploadInner() {
                       key={v.id}
                       onClick={() => setVisibility(v.id)}
                       className="p-4 rounded-2xl text-left transition-all"
-                      style={visibility === v.id
-                        ? { background: 'rgba(239,68,68,0.12)', border: '2px solid rgba(239,68,68,0.4)' }
+                      style={visibility === v.id ? { background: 'rgba(239,68,68,0.12)', border: '2px solid rgba(239,68,68,0.4)' }
                         : { background: 'rgba(255,255,255,0.03)', border: '2px solid rgba(255,255,255,0.07)' }
                       }
                     >
@@ -533,13 +527,13 @@ function ZTubeUploadInner() {
               </div>
 
               <div className="flex justify-between">
-                <button onClick={() => setStep(2)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Back</button>
-                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(4)} className="px-6 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Review →</motion.button>
+                <button onClick={() => setStep(2)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Back</button>
+                <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(4)} className="px-6 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Review</motion.button>
               </div>
             </motion.div>
           )}
 
-          {/* ── STEP 4: Publish ── */}
+          {/* STEP 4: Publish */}
           {step === 4 && (
             <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
               <div className="p-5 rounded-2xl space-y-4" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
@@ -549,7 +543,7 @@ function ZTubeUploadInner() {
                   <div><p className="text-gray-500 mb-0.5">File</p><p className="text-white font-medium truncate">{fileName}</p></div>
                   <div><p className="text-gray-500 mb-0.5">Type</p><p className="text-white font-medium capitalize">{contentType}</p></div>
                   <div className="col-span-2"><p className="text-gray-500 mb-0.5">Title</p><p className="text-white font-medium">{title || <span className="text-red-400">Not set</span>}</p></div>
-                  <div><p className="text-gray-500 mb-0.5">Category</p><p className="text-white font-medium">{category || '—'}</p></div>
+                  <div><p className="text-gray-500 mb-0.5">Category</p><p className="text-white font-medium">{category || '-'}</p></div>
                   <div><p className="text-gray-500 mb-0.5">Visibility</p><p className="text-white font-medium capitalize">{visibility}</p></div>
                   <div><p className="text-gray-500 mb-0.5">Ad Revenue</p><p className="font-medium" style={{ color: monetization ? 'rgb(0,229,186)' : 'rgb(107,114,128)' }}>{monetization ? 'Enabled' : 'Disabled'}</p></div>
                   <div><p className="text-gray-500 mb-0.5">Tip Jar</p><p className="font-medium" style={{ color: tipJar ? 'rgb(0,229,186)' : 'rgb(107,114,128)' }}>{tipJar ? 'Enabled' : 'Disabled'}</p></div>
@@ -563,7 +557,7 @@ function ZTubeUploadInner() {
               {contentType === 'music' && (
                 <div className="p-4 rounded-2xl" style={{ background: 'rgba(251,191,36,0.05)', border: '1px solid rgba(251,191,36,0.2)' }}>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-base">⚠️</span>
+                    <span className="text-base">Note</span>
                     <p className="text-white text-xs font-bold">GEMA Licensing Notice</p>
                   </div>
                   <p className="text-gray-400 text-[10px] leading-relaxed">
@@ -573,7 +567,7 @@ function ZTubeUploadInner() {
               )}
 
               <div className="flex justify-between">
-                <button onClick={() => setStep(3)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Back</button>
+                <button onClick={() => setStep(3)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Back</button>
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}

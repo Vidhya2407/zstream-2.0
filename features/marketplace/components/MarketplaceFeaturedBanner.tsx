@@ -17,3 +17,5 @@ export default function MarketplaceFeaturedBanner({ description, label, title }:
     </motion.div>
   );
 }
+
+

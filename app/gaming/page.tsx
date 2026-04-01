@@ -1,1 +1,3 @@
-export { default } from '../../features/gaming/screen';
+﻿export { default } from '../../features/gaming/screen';
+
+

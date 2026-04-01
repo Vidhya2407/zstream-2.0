@@ -26,7 +26,7 @@ export const initialComments: WatchComment[] = [
     id: 1,
     author: 'EcoMindedViewer',
     avatarUrl: contentImages.creators[0].url,
-    text: 'This is exactly the kind of content I signed up for. Watched the full episode and the carbon tracker said I saved 0.14g. It feels small, but knowing millions are doing the same adds up.',
+    text: 'This is exactly the kind of content I signed up for. Watched the full episode and the carbon tracker estimated 0.14g could be avoided. It feels small, but knowing millions are doing the same adds up.',
     time: '2h ago',
     likes: 247,
     badge: { label: 'Eco Member', color: 'rgb(0,229,186)' },
@@ -139,3 +139,4 @@ export const premiumDownloadFeatures = {
     'Early access to new releases',
   ],
 } as const;
+

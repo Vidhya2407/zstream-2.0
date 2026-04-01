@@ -44,8 +44,21 @@ export default function MinisViewer({ currentIndex, currentMini, interactions, i
           </motion.div>
         </AnimatePresence>
       </div>
-      <div className="hidden xl:block flex-shrink-0 h-full" style={{ width: MINIS_SIDEBAR_WIDTH.desktop, borderLeft: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(0,229,186,0.1)', boxShadow: isLight ? 'inset 8px 0 16px rgba(0,0,0,0.04)' : 'inset 8px 0 16px rgba(0,0,0,0.3)' }}><div className="h-full overflow-y-auto py-6 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}><CreatorImpactPanel appreciations={currentMini.appreciations} co2SavedTotal={currentMini.co2SavedTotal} creator={currentMini.creator} energySavedTotal={currentMini.energySavedTotal} recycles={currentMini.recycles} shares={currentMini.shares} verified={currentMini.verified} views={currentMini.views} waterSavedTotal={currentMini.waterSavedTotal} /></div></div>
-      <div className="hidden lg:block xl:hidden flex-shrink-0 h-full" style={{ width: MINIS_SIDEBAR_WIDTH.tablet, borderLeft: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(0,229,186,0.1)', boxShadow: isLight ? 'inset 8px 0 16px rgba(0,0,0,0.04)' : 'inset 8px 0 16px rgba(0,0,0,0.3)' }}><div className="h-full overflow-y-auto py-6 px-3" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}><CreatorImpactPanel appreciations={currentMini.appreciations} co2SavedTotal={currentMini.co2SavedTotal} creator={currentMini.creator} energySavedTotal={currentMini.energySavedTotal} recycles={currentMini.recycles} shares={currentMini.shares} verified={currentMini.verified} views={currentMini.views} waterSavedTotal={currentMini.waterSavedTotal} /></div></div>
+      <div
+        className="hidden lg:block flex-shrink-0 h-full xl:w-[360px]"
+        style={{
+          width: MINIS_SIDEBAR_WIDTH.tablet,
+          borderLeft: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(0,229,186,0.1)',
+          boxShadow: isLight ? 'inset 8px 0 16px rgba(0,0,0,0.04)' : 'inset 8px 0 16px rgba(0,0,0,0.3)'
+        }}
+      >
+        <div className="h-full overflow-y-auto py-6 px-3 xl:px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <CreatorImpactPanel appreciations={currentMini.appreciations} co2SavedTotal={currentMini.co2SavedTotal} creator={currentMini.creator} energySavedTotal={currentMini.energySavedTotal} recycles={currentMini.recycles} shares={currentMini.shares} verified={currentMini.verified} views={currentMini.views} waterSavedTotal={currentMini.waterSavedTotal} />
+        </div>
+      </div>
     </div>
   );
 }
+
+
+

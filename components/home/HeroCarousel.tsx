@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -121,13 +121,11 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
 
       {/* Gradient overlays */}
       <div className="absolute inset-0" style={{
-        background: isLight
-          ? 'linear-gradient(to right, rgba(240,244,247,0.94) 0%, rgba(240,244,247,0.58) 55%, rgba(240,244,247,0.12) 100%)'
+        background: isLight ? 'linear-gradient(to right, rgba(240,244,247,0.94) 0%, rgba(240,244,247,0.58) 55%, rgba(240,244,247,0.12) 100%)'
           : 'linear-gradient(to right, rgba(10,15,24,0.97) 0%, rgba(10,15,24,0.7) 55%, rgba(10,15,24,0.2) 100%)'
       }} />
       <div className="absolute inset-0" style={{
-        background: isLight
-          ? 'linear-gradient(to top, rgba(240,244,247,0.98) 0%, transparent 44%)'
+        background: isLight ? 'linear-gradient(to top, rgba(240,244,247,0.98) 0%, transparent 44%)'
           : 'linear-gradient(to top, rgba(10,15,24,1) 0%, transparent 40%)'
       }} />
 
@@ -202,11 +200,11 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-8m0 0c-2-2-4-4-4-6a4 4 0 018 0c0 2-2 4-4 6z" />
                   </svg>
-                  {current.carbonScore.toFixed(2)}g CO₂ · {grade.grade}
+                  {current.carbonScore.toFixed(2)}g CO2  {grade.grade}
                 </span>
 
                 <span className="text-[11px] text-gray-400">{current.year}</span>
-                <span className="text-[11px] text-gray-500">·</span>
+                <span className="text-[11px] text-gray-500"></span>
                 <span className="text-[11px] text-gray-400">{current.duration}</span>
                 <span
                   className="text-[10px] font-medium px-2 py-0.5 rounded border text-gray-400"
@@ -314,7 +312,7 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
         </div>
       </div>
 
-      {/* Slide thumbnails — small clickable previews */}
+      {/* Slide thumbnails with small clickable previews */}
       <div className="absolute bottom-16 right-6 lg:right-8 z-20 hidden lg:flex flex-col gap-2">
         {items.map((item, i) => (
           <motion.button
@@ -324,8 +322,7 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
             style={{
               width: '100px',
               height: '56px',
-              border: i === active
-                ? '1.5px solid rgba(0, 229, 186, 0.7)'
+              border: i === active ? '1.5px solid rgba(0, 229, 186, 0.7)'
                 : '1.5px solid rgba(255,255,255,0.1)',
               opacity: i === active ? 1 : 0.55
             }}
@@ -334,8 +331,7 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
           >
             <Image src={item.imageUrl} alt={item.title} fill className="object-cover" />
             <div className="absolute inset-0" style={{
-              background: isLight
-                ? 'linear-gradient(to top, rgba(240,244,247,0.9) 0%, transparent 60%)'
+              background: isLight ? 'linear-gradient(to top, rgba(240,244,247,0.9) 0%, transparent 60%)'
                 : 'linear-gradient(to top, rgba(10,15,24,0.8) 0%, transparent 60%)'
             }} />
             <span className="absolute bottom-1 left-1.5 text-[9px] font-semibold leading-tight max-w-[84px] truncate" style={{ color: isLight ? '#1d1d1f' : '#fff' }}>
@@ -347,3 +343,4 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
     </section>
   );
 }
+

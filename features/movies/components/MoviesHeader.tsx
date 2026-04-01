@@ -30,3 +30,5 @@ export default function MoviesHeader({ isGerman, isLight, viewMode, setViewMode 
     </motion.div>
   );
 }
+
+

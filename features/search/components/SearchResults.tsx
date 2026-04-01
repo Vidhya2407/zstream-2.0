@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+﻿import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import ReportButton from '../../../components/content/ReportButton';
 import type { SearchResultItem } from '../../../lib/data/searchCatalog';
@@ -136,3 +136,5 @@ export default function SearchResults({
     </>
   );
 }
+
+

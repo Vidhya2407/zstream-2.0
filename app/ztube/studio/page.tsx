@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -19,38 +19,38 @@ interface ContentRow {
 }
 
 const CONTENT_ROWS: ContentRow[] = [
-  { id: 1, title: 'How Solar Panels Actually Work', type: 'video', status: 'published', views: '4.2M', date: 'Mar 16, 2026', revenue: '€ 1,240', imageIdx: 0 },
-  { id: 2, title: 'Ocean Cleanup — Full Documentary', type: 'video', status: 'published', views: '8.7M', date: 'Mar 13, 2026', revenue: '€ 3,180', imageIdx: 1 },
-  { id: 3, title: 'Zero Waste Kitchen in 30 Days', type: 'video', status: 'published', views: '2.1M', date: 'Mar 17, 2026', revenue: '€ 870', imageIdx: 0 },
-  { id: 4, title: 'Climate Science Explained Simply', type: 'video', status: 'draft', views: '—', date: 'Mar 18, 2026', revenue: '—', imageIdx: 1 },
-  { id: 5, title: 'Wind Turbine Farm — Inside Look', type: 'video', status: 'processing', views: '—', date: 'Mar 18, 2026', revenue: '—', imageIdx: 0 },
-  { id: 6, title: 'Eco Beats: Solar Sessions Vol.3', type: 'music', status: 'published', views: '1.9M', date: 'Mar 14, 2026', revenue: '€ 640', imageIdx: 1 },
-  { id: 7, title: 'EcoTech Weekly — Episode 84', type: 'podcast', status: 'published', views: '280K', date: 'Mar 15, 2026', revenue: '€ 210', imageIdx: 0 },
-  { id: 8, title: '60-Second Climate Hack 🌿', type: 'mini', status: 'published', views: '2.4M', date: 'Mar 17, 2026', revenue: '€ 180', imageIdx: 0 },
-  { id: 9, title: 'Zero Waste Kitchen — Quick Tip', type: 'mini', status: 'published', views: '1.1M', date: 'Mar 16, 2026', revenue: '€ 92', imageIdx: 1 },
-  { id: 10, title: 'Solar Panel Install in 30s', type: 'mini', status: 'draft', views: '—', date: 'Mar 18, 2026', revenue: '—', imageIdx: 0 },
+  { id: 1, title: 'How Solar Panels Actually Work', type: 'video', status: 'published', views: '4.2M', date: 'Mar 16, 2026', revenue: 'EUR 1,240', imageIdx: 0 },
+  { id: 2, title: 'Ocean Cleanup - Full Documentary', type: 'video', status: 'published', views: '8.7M', date: 'Mar 13, 2026', revenue: 'EUR 3,180', imageIdx: 1 },
+  { id: 3, title: 'Zero Waste Kitchen in 30 Days', type: 'video', status: 'published', views: '2.1M', date: 'Mar 17, 2026', revenue: 'EUR 870', imageIdx: 0 },
+  { id: 4, title: 'Climate Science Explained Simply', type: 'video', status: 'draft', views: '-', date: 'Mar 18, 2026', revenue: '-', imageIdx: 1 },
+  { id: 5, title: 'Wind Turbine Farm - Inside Look', type: 'video', status: 'processing', views: '-', date: 'Mar 18, 2026', revenue: '-', imageIdx: 0 },
+  { id: 6, title: 'Eco Beats: Solar Sessions Vol.3', type: 'music', status: 'published', views: '1.9M', date: 'Mar 14, 2026', revenue: 'EUR 640', imageIdx: 1 },
+  { id: 7, title: 'EcoTech Weekly - Episode 84', type: 'podcast', status: 'published', views: '280K', date: 'Mar 15, 2026', revenue: 'EUR 210', imageIdx: 0 },
+  { id: 8, title: '60-Second Climate Hack 🌿', type: 'mini', status: 'published', views: '2.4M', date: 'Mar 17, 2026', revenue: 'EUR 180', imageIdx: 0 },
+  { id: 9, title: 'Zero Waste Kitchen - Quick Tip', type: 'mini', status: 'published', views: '1.1M', date: 'Mar 16, 2026', revenue: 'EUR 92', imageIdx: 1 },
+  { id: 10, title: 'Solar Panel Install in 30s', type: 'mini', status: 'draft', views: '-', date: 'Mar 18, 2026', revenue: '-', imageIdx: 0 },
 ];
 
 const PAYOUT_HISTORY = [
-  { date: 'Feb 28, 2026', amount: '€ 4,821.00', status: 'paid', method: 'Stripe' },
-  { date: 'Jan 31, 2026', amount: '€ 3,940.50', status: 'paid', method: 'Stripe' },
-  { date: 'Dec 31, 2025', amount: '€ 5,112.80', status: 'paid', method: 'Stripe' },
-  { date: 'Nov 30, 2025', amount: '€ 2,875.00', status: 'paid', method: 'Stripe' },
+  { date: 'Feb 28, 2026', amount: 'EUR 4,821.00', status: 'paid', method: 'Stripe' },
+  { date: 'Jan 31, 2026', amount: 'EUR 3,940.50', status: 'paid', method: 'Stripe' },
+  { date: 'Dec 31, 2025', amount: 'EUR 5,112.80', status: 'paid', method: 'Stripe' },
+  { date: 'Nov 30, 2025', amount: 'EUR 2,875.00', status: 'paid', method: 'Stripe' },
 ];
 
 const OVERVIEW_STATS = [
-  { label: 'Total Views', value: '17.2M', delta: '+12%', icon: '👁️', color: 'rgb(0,229,186)' },
-  { label: 'Watch Time', value: '284K hrs', delta: '+8%', icon: '⏱️', color: 'rgb(0,217,255)' },
+  { label: 'Total Views', value: '17.2M', delta: '+12%', icon: '👁', color: 'rgb(0,229,186)' },
+  { label: 'Watch Time', value: '284K hrs', delta: '+8%', icon: '', color: 'rgb(0,217,255)' },
   { label: 'Subscribers', value: '1.8M', delta: '+3.4K', icon: '🔔', color: 'rgb(239,68,68)' },
-  { label: 'Revenue (MTD)', value: '€ 6,140', delta: '+18%', icon: '💶', color: 'rgb(251,191,36)' },
-  { label: 'CO₂ Saved', value: '12.4 t', delta: '+0.8 t', icon: '🌿', color: 'rgb(0,229,186)' },
-  { label: 'Tip Jar', value: '€ 342', delta: '+€ 48', icon: '🫙', color: 'rgb(196,132,252)' },
+  { label: 'Revenue (MTD)', value: 'EUR 6,140', delta: '+18%', icon: '💶', color: 'rgb(251,191,36)' },
+  { label: 'CO2 Saved', value: '12.4 t', delta: '+0.8 t', icon: '🌿', color: 'rgb(0,229,186)' },
+  { label: 'Tip Jar', value: 'EUR 342', delta: '+EUR 48', icon: 'Tip', color: 'rgb(196,132,252)' },
 ];
 
 const TOP_CONTENT = [
-  { title: 'Ocean Cleanup Project', views: '8.7M', revenue: '€ 3,180', trend: '+24%', imageIdx: 1 },
-  { title: 'How Solar Panels Work', views: '4.2M', revenue: '€ 1,240', trend: '+11%', imageIdx: 0 },
-  { title: 'Climate Science Explained', views: '5.6M', revenue: '€ 2,010', trend: '+7%', imageIdx: 1 },
+  { title: 'Ocean Cleanup Project', views: '8.7M', revenue: 'EUR 3,180', trend: '+24%', imageIdx: 1 },
+  { title: 'How Solar Panels Work', views: '4.2M', revenue: 'EUR 1,240', trend: '+11%', imageIdx: 0 },
+  { title: 'Climate Science Explained', views: '5.6M', revenue: 'EUR 2,010', trend: '+7%', imageIdx: 1 },
 ];
 
 const CHART_BARS = [28, 42, 38, 55, 48, 62, 71, 58, 80, 74, 88, 95];
@@ -62,7 +62,7 @@ const TABS: { id: StudioTab; label: string; icon: string }[] = [
   { id: 'analytics', label: 'Analytics', icon: '📈' },
   { id: 'monetization', label: 'Monetization', icon: '💶' },
   { id: 'community', label: 'Community', icon: '💬' },
-  { id: 'settings', label: 'Settings', icon: '⚙️' },
+  { id: 'settings', label: 'Settings', icon: 'Set' },
 ];
 
 const statusConfig: Record<ContentRow['status'], { label: string; color: string; bg: string; border: string }> = {
@@ -95,7 +95,7 @@ function OverviewTab() {
 
       {/* Views Chart */}
       <div className="p-5 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-        <h3 className="text-white font-bold text-sm mb-4">Views — Last 12 Months</h3>
+        <h3 className="text-white font-bold text-sm mb-4">Views - Last 12 Months</h3>
         <div className="flex items-end gap-1.5 h-32">
           {CHART_BARS.map((h, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1">
@@ -123,7 +123,7 @@ function OverviewTab() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-white text-xs font-semibold truncate">{item.title}</p>
-                <p className="text-gray-500 text-[10px]">{item.views} views · {item.revenue}</p>
+                <p className="text-gray-500 text-[10px]">{item.views} views  {item.revenue}</p>
               </div>
               <span className="text-[10px] font-bold flex-shrink-0" style={{ color: 'rgb(0,229,186)' }}>{item.trend}</span>
             </div>
@@ -139,7 +139,7 @@ function OverviewTab() {
         </div>
         <div className="grid grid-cols-3 gap-4">
           {[
-            { label: 'Total CO₂ Saved', value: '12.4 t', sub: 'by all your viewers' },
+            { label: 'Total CO2 Saved', value: '12.4 t', sub: 'by all your viewers' },
             { label: 'Trees Equivalent', value: '562', sub: 'trees planted equivalent' },
             { label: 'Avg. Score', value: 'A+', sub: 'per stream efficiency' },
           ].map((m, i) => (
@@ -184,8 +184,7 @@ function ContentTab({ onUpload }: { onUpload: () => void }) {
               key={f}
               onClick={() => setFilterStatus(f)}
               className="px-3 py-1.5 rounded-full text-xs font-bold capitalize transition-all"
-              style={filterStatus === f
-                ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
+              style={filterStatus === f ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
                 : { background: 'rgba(255,255,255,0.05)', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }
               }
             >
@@ -198,12 +197,11 @@ function ContentTab({ onUpload }: { onUpload: () => void }) {
               key={t}
               onClick={() => setFilterType(t)}
               className="px-3 py-1.5 rounded-full text-xs font-bold capitalize transition-all"
-              style={filterType === t
-                ? { background: 'rgba(0,229,186,0.12)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' }
+              style={filterType === t ? { background: 'rgba(0,229,186,0.12)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' }
                 : { background: 'rgba(255,255,255,0.05)', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }
               }
             >
-              {t === 'all' ? 'All Types' : t === 'mini' ? '📱 Mini' : t === 'video' ? '🎬 Video' : t === 'music' ? '🎵 Music' : '🎙️ Podcast'}
+              {t === 'all' ? 'All Types' : t === 'mini' ? '📱 Mini' : t === 'video' ? '🎬 Video' : t === 'music' ? '🎵 Music' : '🎙 Podcast'}
             </button>
           ))}
         </div>
@@ -321,7 +319,7 @@ function AnalyticsTab() {
     { country: '🇩🇪 Germany', pct: 28 },
     { country: '🇺🇸 USA', pct: 22 },
     { country: '🇬🇧 UK', pct: 14 },
-    { country: '🇫🇷 France', pct: 10 },
+    { country: 'France', pct: 10 },
     { country: '🌍 Other', pct: 26 },
   ];
 
@@ -344,7 +342,7 @@ function AnalyticsTab() {
             </div>
           ))}
         </div>
-        <p className="text-gray-500 text-[10px] mt-2">Avg. view duration: <strong className="text-white">7m 42s</strong> · Avg. retention: <strong className="text-white">62%</strong></p>
+        <p className="text-gray-500 text-[10px] mt-2">Avg. view duration: <strong className="text-white">7m 42s</strong>  Avg. retention: <strong className="text-white">62%</strong></p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-5">
@@ -409,10 +407,10 @@ function MonetizationTab() {
       {/* Revenue Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Ad Revenue (MTD)', value: '€ 5,798', icon: '📢', color: 'rgb(251,191,36)' },
-          { label: 'Tip Jar Earnings', value: '€ 342', icon: '🫙', color: 'rgb(196,132,252)' },
-          { label: 'Pending Payout', value: '€ 6,140', icon: '⏳', color: 'rgb(0,229,186)' },
-          { label: 'Total Earned (YTD)', value: '€ 16,750', icon: '💰', color: 'rgb(239,68,68)' },
+          { label: 'Ad Revenue (MTD)', value: 'EUR 5,798', icon: '📢', color: 'rgb(251,191,36)' },
+          { label: 'Tip Jar Earnings', value: 'EUR 342', icon: 'Tip', color: 'rgb(196,132,252)' },
+          { label: 'Pending Payout', value: 'EUR 6,140', icon: '', color: 'rgb(0,229,186)' },
+          { label: 'Total Earned (YTD)', value: 'EUR 16,750', icon: '💰', color: 'rgb(239,68,68)' },
         ].map(m => (
           <div key={m.label} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{m.icon}</div>
@@ -426,28 +424,28 @@ function MonetizationTab() {
       <div className="p-5 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-bold text-sm">Payout History (Stripe Connect)</h3>
-          <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>Stripe Connected ✓</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>Stripe Connected</span>
         </div>
         <div className="space-y-2">
           {PAYOUT_HISTORY.map((p, i) => (
             <div key={i} className="flex items-center justify-between py-2 border-b" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
               <div>
                 <p className="text-white text-xs font-semibold">{p.amount}</p>
-                <p className="text-gray-500 text-[10px]">{p.date} · {p.method}</p>
+                <p className="text-gray-500 text-[10px]">{p.date}  {p.method}</p>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>✓ Paid</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>Paid</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* German Tax — Steuernummer */}
+      {/* German Tax - Steuernummer */}
       <div className="p-5 rounded-2xl" style={{ background: 'rgba(251,191,36,0.05)', border: '1px solid rgba(251,191,36,0.15)' }}>
         <div className="flex items-center gap-2 mb-3">
           <span className="text-lg">🇩🇪</span>
           <h3 className="text-white font-bold text-sm">German Tax Documents</h3>
         </div>
-        <p className="text-gray-400 text-xs mb-4">Required for payouts in Germany (§ 22a EStG / UStG). Your Steuernummer is kept encrypted and only shared with tax authorities.</p>
+        <p className="text-gray-400 text-xs mb-4">Required for payouts in Germany ( 22a EStG / UStG). Your Steuernummer is kept encrypted and only shared with tax authorities.</p>
         <div className="space-y-3">
           <div>
             <label className="text-gray-400 text-xs block mb-1.5">Steuernummer <span className="text-red-400">*</span></label>
@@ -474,7 +472,7 @@ function CommunityTab() {
   const [pollQuestion, setPollQuestion] = React.useState('');
   const [activeType, setActiveType] = React.useState<'text' | 'poll'>('text');
   const [posts, setPosts] = React.useState<{ id: number; text: string; likes: number; time: string; type: 'text' | 'poll' }[]>([
-    { id: 1, text: 'New video dropping this Friday — carbon capture in Antarctica! 🧊', likes: 2840, time: '1 day ago', type: 'text' },
+    { id: 1, text: 'New video dropping this Friday - carbon capture in Antarctica!', likes: 2840, time: '1 day ago', type: 'text' },
     { id: 2, text: 'We hit 2 MILLION subscribers! Thank you for this green journey. 🌿', likes: 12400, time: '1 week ago', type: 'text' },
   ]);
 
@@ -498,8 +496,7 @@ function CommunityTab() {
               key={t}
               onClick={() => setActiveType(t)}
               className="px-3 py-1.5 rounded-full text-xs font-bold capitalize transition-all"
-              style={activeType === t
-                ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
+              style={activeType === t ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
                 : { background: 'rgba(255,255,255,0.05)', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }
               }
             >
@@ -555,7 +552,7 @@ function CommunityTab() {
               </div>
             </div>
             <p className="text-gray-200 text-xs leading-relaxed">{post.text}</p>
-            <p className="mt-2 text-gray-600 text-[10px]">❤️ {post.likes.toLocaleString()} likes</p>
+            <p className="mt-2 text-gray-600 text-[10px]">d {post.likes.toLocaleString()} likes</p>
           </div>
         ))}
       </div>
@@ -594,7 +591,7 @@ function SettingsTab() {
           </div>
           <div>
             <p className="text-white text-xs font-semibold">Channel Avatar</p>
-            <p className="text-gray-500 text-[10px] mt-0.5">JPG, PNG or WebP · Max 2MB</p>
+            <p className="text-gray-500 text-[10px] mt-0.5">JPG, PNG or WebP  Max 2MB</p>
             <button type="button" className="mt-1.5 text-[10px] font-bold px-2.5 py-1 rounded-lg transition-all" style={{ background: 'rgba(239,68,68,0.1)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.2)' }}>Change Avatar</button>
           </div>
         </div>
@@ -660,7 +657,7 @@ function SettingsTab() {
         <AnimatePresence>
           {saved && (
             <motion.span initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="text-xs font-bold" style={{ color: 'rgb(0,229,186)' }}>
-              ✓ Saved
+              Saved
             </motion.span>
           )}
         </AnimatePresence>
@@ -690,13 +687,13 @@ export default function ZTubeStudioPage() {
             </div>
             <div>
               <h1 className="text-white font-black text-2xl">ZTube Studio</h1>
-              <p className="text-gray-500 text-xs">Creator Dashboard · TechGreen Labs</p>
+              <p className="text-gray-500 text-xs">Creator Dashboard  TechGreen Labs</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/ztube">
               <button className="px-4 py-2 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                ← Back to ZTube
+                Back to ZTube
               </button>
             </Link>
             <Link href="/ztube/studio/upload">
@@ -722,8 +719,7 @@ export default function ZTubeStudioPage() {
               aria-selected={activeTab === t.id}
               onClick={() => setActiveTab(t.id)}
               className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex-shrink-0"
-              style={activeTab === t.id
-                ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
+              style={activeTab === t.id ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
                 : { background: 'transparent', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }
               }
             >

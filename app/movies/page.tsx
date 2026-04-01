@@ -1,1 +1,3 @@
-export { default } from '../../features/movies/screen';
+﻿export { default } from '../../features/movies/screen';
+
+

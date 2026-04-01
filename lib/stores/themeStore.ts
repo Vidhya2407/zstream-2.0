@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type Theme = 'dark' | 'light';
@@ -19,3 +19,5 @@ export const useThemeStore = create<ThemeState>()(
     { name: 'zstream-theme' }
   )
 );
+
+

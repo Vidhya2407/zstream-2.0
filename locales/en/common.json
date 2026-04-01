@@ -33,7 +33,7 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "cookies": "Cookie Policy",
-      "copyright": "© 2024 ZSTREAM. All rights reserved.",
+      "copyright": "Â© 2024 ZSTREAM. All rights reserved.",
       "followUs": "Follow Us",
       "partner": "Partner With Us",
       "advertise": "Advertise",
@@ -83,12 +83,12 @@
     },
     "meetings": {
       "title": "Green Meetings",
-      "subtitle": "WebRTC video rooms · Carbon savings vs in-person · Zero emissions",
+      "subtitle": "WebRTC video rooms ? Carbon savings vs in-person ? Zero emissions",
       "joinWithCode": "Join with Code",
       "joinARoom": "Join a Room",
-      "secureConnection": "Eco-secure Webrtc connection",
+      "secureConnection": "Eco-secure WebRTC connection",
       "enterCode": "Enter an ECO room code to join a video call",
-      "joinNow": "Join Now →",
+      "joinNow": "Join Now ->",
       "cancel": "Cancel",
       "roomSetup": "Room Setup",
       "roomName": "Room Name",
@@ -459,7 +459,7 @@
       "gaming": "Gaming",
       "music": "Music",
       "videos": "Videos",
-      "live": "Live Streams",
+      "live": "Live",
       "sports": "Sports",
       "shorts": "Shorts",
       "marketplace": "Marketplace",
@@ -610,7 +610,3 @@
     }
   }
 }
-
-
-
-

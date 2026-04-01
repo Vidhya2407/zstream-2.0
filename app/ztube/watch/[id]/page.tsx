@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -37,10 +37,10 @@ interface ZVideo {
 
 const VIDEOS: ZVideo[] = [
   { id: 1, title: 'How Solar Panels Actually Work', channel: 'TechGreen Labs', description: 'In this deep-dive, we explore the science behind photovoltaic cells, the manufacturing process, and how modern solar installations are transforming energy grids worldwide. From monocrystalline to thin-film technology, we cover every aspect of solar power generation and its role in the renewable energy revolution.', views: '4.2M', likes: '142K', duration: '12:34', daysAgo: 2, imageIdx: 0, verified: true, subscribers: '1.8M', carbonScore: 0.05, type: 'video', tags: ['solar', 'renewable', 'energy', 'technology'], uploadDate: 'Mar 16, 2026' },
-  { id: 2, title: 'Ocean Cleanup Project — Full Documentary', channel: 'EcoWorld', description: 'Follow the Ocean Cleanup Foundation as they deploy their revolutionary System 003 across the Great Pacific Garbage Patch. This full-length documentary captures the engineering challenges, environmental breakthroughs, and the human stories behind the world\'s largest ocean cleanup operation.', views: '8.7M', likes: '318K', duration: '48:12', daysAgo: 5, imageIdx: 1, verified: true, subscribers: '3.2M', carbonScore: 0.04, type: 'video', tags: ['ocean', 'cleanup', 'documentary', 'environment'], uploadDate: 'Mar 13, 2026' },
+  { id: 2, title: 'Ocean Cleanup Project - Full Documentary', channel: 'EcoWorld', description: 'Follow the Ocean Cleanup Foundation as they deploy their revolutionary System 003 across the Great Pacific Garbage Patch. This full-length documentary captures the engineering challenges, environmental breakthroughs, and the human stories behind the world\'s largest ocean cleanup operation.', views: '8.7M', likes: '318K', duration: '48:12', daysAgo: 5, imageIdx: 1, verified: true, subscribers: '3.2M', carbonScore: 0.04, type: 'video', tags: ['ocean', 'cleanup', 'documentary', 'environment'], uploadDate: 'Mar 13, 2026' },
   { id: 3, title: 'Zero Waste Kitchen in 30 Days', channel: 'GreenLife DIY', description: 'Join me on a 30-day challenge to transform a regular kitchen into a completely zero-waste space. From composting systems to package-free shopping strategies, this video documents every step, mistake, and victory in achieving a sustainable home cooking environment.', views: '2.1M', likes: '87K', duration: '22:08', daysAgo: 1, imageIdx: 0, verified: false, subscribers: '540K', carbonScore: 0.06, type: 'video', tags: ['zero-waste', 'kitchen', 'sustainability', 'DIY'], uploadDate: 'Mar 17, 2026' },
-  { id: 4, title: 'Climate Science Explained Simply', channel: 'EcoEducate', description: 'Climate change can seem overwhelming — but it doesn\'t have to be. This video breaks down the core science in plain language, explaining greenhouse gases, feedback loops, tipping points, and what the data actually tells us about our planet\'s future.', views: '5.6M', likes: '201K', duration: '18:45', daysAgo: 7, imageIdx: 1, verified: true, subscribers: '2.4M', carbonScore: 0.04, type: 'video', tags: ['climate', 'science', 'education', 'explainer'], uploadDate: 'Mar 11, 2026' },
-  { id: 5, title: 'Wind Turbine Farm — Inside Look', channel: 'RenewableTech', description: 'An exclusive inside look at how a 500MW offshore wind farm is built, maintained, and operated. We go inside the nacelles, speak with engineers, and explore the grid integration challenges that make large-scale wind energy viable.', views: '1.3M', likes: '54K', duration: '9:52', daysAgo: 3, imageIdx: 0, verified: true, subscribers: '890K', carbonScore: 0.05, type: 'video', tags: ['wind', 'renewable', 'engineering', 'offshore'], uploadDate: 'Mar 15, 2026' },
+  { id: 4, title: 'Climate Science Explained Simply', channel: 'EcoEducate', description: 'Climate change can seem overwhelming - but it doesn\'t have to be. This video breaks down the core science in plain language, explaining greenhouse gases, feedback loops, tipping points, and what the data actually tells us about our planet\'s future.', views: '5.6M', likes: '201K', duration: '18:45', daysAgo: 7, imageIdx: 1, verified: true, subscribers: '2.4M', carbonScore: 0.04, type: 'video', tags: ['climate', 'science', 'education', 'explainer'], uploadDate: 'Mar 11, 2026' },
+  { id: 5, title: 'Wind Turbine Farm - Inside Look', channel: 'RenewableTech', description: 'An exclusive inside look at how a 500MW offshore wind farm is built, maintained, and operated. We go inside the nacelles, speak with engineers, and explore the grid integration challenges that make large-scale wind energy viable.', views: '1.3M', likes: '54K', duration: '9:52', daysAgo: 3, imageIdx: 0, verified: true, subscribers: '890K', carbonScore: 0.05, type: 'video', tags: ['wind', 'renewable', 'engineering', 'offshore'], uploadDate: 'Mar 15, 2026' },
   { id: 6, title: 'Carbon Capture Technology 2026', channel: 'FuturePlanet', description: 'Carbon capture and storage is now commercially viable at scale. This video reviews the latest DAC (Direct Air Capture) installations, compares costs per tonne across different technologies, and evaluates the role of CCS in the net-zero pathway.', views: '3.8M', likes: '130K', duration: '31:20', daysAgo: 10, imageIdx: 1, verified: true, subscribers: '1.1M', carbonScore: 0.06, type: 'video', tags: ['carbon-capture', 'CCS', 'climate-tech', 'net-zero'], uploadDate: 'Mar 8, 2026' },
 ];
 
@@ -49,7 +49,7 @@ const COMMENTS: ZComment[] = [
     { id: 11, author: 'TechGreen Labs', avatarIdx: 2, text: 'Thank you! We spent a lot of time getting those efficiency numbers right. The monocrystalline vs. perovskite comparison surprised even us.', likes: 387, time: '2 days ago', liked: false },
     { id: 12, author: 'SolarFarmer_DE', avatarIdx: 1, text: 'Same! I installed 24 panels last summer and this video would have saved me weeks of research beforehand.', likes: 92, time: '1 day ago', liked: false },
   ]},
-  { id: 2, author: 'EcoMaria', avatarIdx: 3, text: 'The carbon savings counter on ZStream makes me actually feel good about watching this. 0.05g CO₂/hr saved is small but it adds up at scale!', likes: 874, time: '1 day ago', liked: false },
+  { id: 2, author: 'EcoMaria', avatarIdx: 3, text: 'The carbon savings counter on ZStream makes me actually feel good about watching this. 0.05g CO2/hr saved is small but it adds up at scale!', likes: 874, time: '1 day ago', liked: false },
   { id: 3, author: 'SkepticalViewer', avatarIdx: 1, text: 'Good video overall but you glossed over the manufacturing carbon cost of panels. That payback period needs to be addressed more honestly.', likes: 451, time: '18 hours ago', liked: false, replies: [
     { id: 31, author: 'TechGreen Labs', avatarIdx: 2, text: 'Fair point! We actually have a full video on manufacturing LCA (Life Cycle Assessment) coming next week that addresses exactly this.', likes: 288, time: '17 hours ago', liked: false },
   ]},
@@ -80,13 +80,13 @@ function CarbonSavings({ carbonScore }: { carbonScore: number }) {
       aria-live="polite"
     >
       <span>🌿</span>
-      <span>You&apos;ve saved <strong>{savedGrams}g</strong> CO₂</span>
+      <span>You&apos;ve saved <strong>{savedGrams}g</strong> CO2</span>
     </div>
   );
 }
 
 function CommentItem({ comment, depth = 0 }: { comment: ZComment; depth?: number }) {
-  const [liked, setLiked] = React.useState(comment.liked ?? false);
+  const [liked, setLiked] = React.useState(comment.liked || false);
   const [showReplies, setShowReplies] = React.useState(false);
 
   return (
@@ -131,10 +131,10 @@ function CommentItem({ comment, depth = 0 }: { comment: ZComment; depth?: number
 
 export default function ZTubeWatchPage() {
   const params = useParams();
-  const rawId = Array.isArray(params.id) ? params.id[0] : (params.id ?? '1');
+  const rawId = Array.isArray(params.id) ? params.id[0] : (params.id || '1');
   const id = parseInt(rawId, 10);
 
-  const video = VIDEOS.find(v => v.id === id) ?? VIDEOS[0];
+  const video = VIDEOS.find(v => v.id === id) || VIDEOS[0];
   const related = VIDEOS.filter(v => v.id !== video.id).slice(0, 5);
 
   const [liked, setLiked] = React.useState(false);
@@ -216,10 +216,10 @@ export default function ZTubeWatchPage() {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3 text-gray-400 text-xs">
                   <span>{video.views} views</span>
-                  <span>·</span>
+                  <span></span>
                   <span>{fmtAge(video.daysAgo)}</span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(239,68,68,0.12)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.25)' }}>
-                    {video.type === 'video' ? '🎬 Video' : video.type === 'music' ? '🎵 Music' : '🎙️ Podcast'}
+                    {video.type === 'video' ? '🎬 Video' : video.type === 'music' ? '🎵 Music' : '🎙 Podcast'}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -264,13 +264,12 @@ export default function ZTubeWatchPage() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="px-4 py-2 rounded-full text-xs font-bold flex-shrink-0 transition-all"
-                style={subscribed
-                  ? { background: 'rgba(255,255,255,0.08)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.15)' }
+                style={subscribed ? { background: 'rgba(255,255,255,0.08)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.15)' }
                   : { background: 'rgba(239,68,68,0.85)', color: 'white' }
                 }
                 aria-pressed={subscribed}
               >
-                {subscribed ? '✓ Subscribed' : 'Subscribe'}
+                {subscribed ? 'Subscribed' : 'Subscribe'}
               </motion.button>
             </div>
 
@@ -295,7 +294,7 @@ export default function ZTubeWatchPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
-              <p className="text-gray-600 text-[10px] mt-2">{video.views} views · {video.uploadDate}</p>
+              <p className="text-gray-600 text-[10px] mt-2">{video.views} views  {video.uploadDate}</p>
             </div>
 
             {/* Comments / Community Tabs */}
@@ -308,8 +307,7 @@ export default function ZTubeWatchPage() {
                     aria-selected={activeTab === tab}
                     onClick={() => setActiveTab(tab)}
                     className="px-4 py-2 rounded-full text-xs font-bold capitalize transition-all"
-                    style={activeTab === tab
-                      ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
+                    style={activeTab === tab ? { background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }
                       : { background: 'transparent', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }
                     }
                   >
@@ -347,7 +345,7 @@ export default function ZTubeWatchPage() {
               {activeTab === 'community' && (
                 <div className="space-y-3">
                   {[
-                    { text: 'New video dropping this Friday — carbon capture in Antarctica! 🧊', likes: 2840, time: '1 day ago' },
+                    { text: 'New video dropping this Friday - carbon capture in Antarctica!', likes: 2840, time: '1 day ago' },
                     { text: 'We hit 2 MILLION subscribers! Thank you all for being part of this green journey. 🌿', likes: 12400, time: '1 week ago' },
                   ].map((post, i) => (
                     <div key={i} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
@@ -361,7 +359,7 @@ export default function ZTubeWatchPage() {
                         </div>
                       </div>
                       <p className="text-gray-200 text-xs leading-relaxed">{post.text}</p>
-                      <p className="mt-2 text-gray-500 text-[10px]">❤️ {post.likes.toLocaleString()} likes</p>
+                      <p className="mt-2 text-gray-500 text-[10px]">d {post.likes.toLocaleString()} likes</p>
                     </div>
                   ))}
                 </div>
@@ -391,7 +389,7 @@ export default function ZTubeWatchPage() {
                       <p className="text-gray-500 text-[10px] truncate">{v.channel}</p>
                       <p className="text-gray-600 text-[10px] mt-0.5">{v.views} views</p>
                       <span className="text-[9px] px-1.5 py-0.5 rounded-full mt-1 inline-block font-bold" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}>
-                        🌿 {v.carbonScore}g CO₂/hr
+                        🌿 {v.carbonScore}g CO2/hr
                       </span>
                     </div>
                   </motion.div>
@@ -419,11 +417,11 @@ export default function ZTubeWatchPage() {
               </div>
               <p className="text-gray-300 text-[10px] leading-relaxed">
                 This video runs on <strong>100% renewable energy</strong>. Viewing via ZStream saves{' '}
-                <strong style={{ color: 'rgb(0,229,186)' }}>{video.carbonScore}g CO₂/hr</strong> vs. conventional CDN.
+                <strong style={{ color: 'rgb(0,229,186)' }}>{video.carbonScore}g CO2/hr</strong> vs. conventional CDN.
               </p>
               <p className="text-gray-600 text-[10px] mt-2 flex items-center gap-1">
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-                Verified by TÜV SÜD · Bureau Veritas
+                Verified by TÜV SÜD  Bureau Veritas
               </p>
             </div>
           </div>
@@ -440,7 +438,7 @@ export default function ZTubeWatchPage() {
             style={{ background: 'rgba(10,18,30,0.95)', border: '1px solid rgba(0,229,186,0.3)', backdropFilter: 'blur(20px)', color: 'rgb(0,229,186)' }}
             role="alert"
           >
-            ✓ Link copied to clipboard
+            Link copied to clipboard
           </motion.div>
         )}
       </AnimatePresence>

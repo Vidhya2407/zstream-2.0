@@ -19,3 +19,5 @@ export interface SeriesItem {
   title: string;
   year: number;
 }
+
+

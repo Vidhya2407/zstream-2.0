@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import Hls from 'hls.js';
 
@@ -57,3 +57,5 @@ export default function VideoPlayer({ src }: VideoPlayerProps) {
     />
   );
 }
+
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -78,6 +78,17 @@ const typeConfig = {
   }
 };
 
+function buildBadgeSurface(accentBorder: string, isLight: boolean) {
+  return {
+    background: isLight ? 'rgba(255, 255, 255, 0.84)' : 'rgba(8, 12, 22, 0.78)',
+    border: `1px solid ${isLight ? accentBorder : accentBorder.replace('0.4', '0.52')}`,
+    color: isLight ? '#0f172a' : '#f8fafc',
+    boxShadow: isLight ? '0 10px 24px rgba(15, 23, 42, 0.12)' : '0 14px 28px rgba(0, 0, 0, 0.28)',
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+  } as const;
+}
+
 export default function PremiumContentCard({ title, subtitle, image, href, type, index, carbonScore, genre }: ContentCardProps) {
   const config = typeConfig[type];
   const { language } = useLanguageStore();
@@ -87,6 +98,7 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
   const imageUrl = image || defaultImage.url;
   const isLive = type === 'live';
   const isLight = theme === 'light';
+  const badgeSurface = buildBadgeSurface(config.accentBorder, isLight);
   const typeLabel = language === 'de'
     ? { Music: 'Musik', Video: 'Video', Minis: 'Kurzvideos', Live: 'Live', Gaming: 'Gaming' }[config.label] ?? config.label
     : config.label;
@@ -127,15 +139,12 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div className="absolute inset-0" style={{ background: isLight ? 'linear-gradient(to top, rgba(248,250,252,0.92), rgba(248,250,252,0.28), transparent)' : 'linear-gradient(to top, rgba(15,22,35,0.95), rgba(15,22,35,0.24), transparent)' }} />
+            <div className="absolute inset-0" style={{ background: isLight ? 'linear-gradient(to top, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.32) 38%, rgba(15,23,42,0.16) 100%)' : 'linear-gradient(to top, rgba(15,22,35,0.95) 0%, rgba(15,22,35,0.24) 42%, rgba(0,0,0,0.34) 100%)' }} />
+            <div className="absolute inset-x-0 top-0 h-20" style={{ background: isLight ? 'linear-gradient(to bottom, rgba(15,23,42,0.18), rgba(15,23,42,0))' : 'linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0))' }} />
 
             <div
-              className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-              style={{
-                background: config.accent.replace('0.85', '0.15'),
-                border: `1px solid ${config.accentBorder}`,
-                color: isLight ? 'rgb(15, 23, 42)' : 'white'
-              }}
+              className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+              style={badgeSurface}
             >
               {config.icon}
               <span className="text-[10px] font-bold uppercase tracking-wider">{typeLabel}</span>
@@ -143,8 +152,14 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
 
             {isLive && (
               <motion.div
-                className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-                style={{ background: 'rgba(239, 68, 68, 0.85)' }}
+                className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full"
+                style={{
+                  background: 'rgba(220, 38, 38, 0.92)',
+                  border: '1px solid rgba(254, 202, 202, 0.28)',
+                  boxShadow: '0 12px 24px rgba(127, 29, 29, 0.28)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                }}
                 animate={{ opacity: [1, 0.75, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -217,3 +232,4 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
     </motion.div>
   );
 }
+

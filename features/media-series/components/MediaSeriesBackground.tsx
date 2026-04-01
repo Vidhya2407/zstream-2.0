@@ -17,3 +17,5 @@ export default function MediaSeriesBackground({ isLight }: MediaSeriesBackground
   );
 }
 
+
+

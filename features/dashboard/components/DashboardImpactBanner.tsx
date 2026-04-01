@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 interface DashboardImpactBannerProps {
@@ -15,3 +15,5 @@ export default function DashboardImpactBanner({ isLight = false, labels }: Dashb
     </motion.div>
   );
 }
+
+

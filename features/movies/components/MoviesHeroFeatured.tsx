@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
@@ -47,3 +47,5 @@ export default function MoviesHeroFeatured({ isWatchlisted, movie, onToggle }: M
     </motion.div>
   );
 }
+
+

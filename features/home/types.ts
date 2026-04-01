@@ -8,3 +8,5 @@ export interface HomeScreenViewModel {
   selectedGenre: string;
   setSelectedGenre: (genre: string) => void;
 }
+
+

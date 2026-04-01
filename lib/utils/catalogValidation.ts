@@ -1,4 +1,4 @@
-import type { WatchContent } from '../data/watchContent';
+﻿import type { WatchContent } from '../data/watchContent';
 
 export function validateWatchContentRecord(value: WatchContent | null | undefined): value is WatchContent {
   if (!value) {
@@ -19,3 +19,5 @@ export function validateWatchContentRecord(value: WatchContent | null | undefine
 
   return true;
 }
+
+

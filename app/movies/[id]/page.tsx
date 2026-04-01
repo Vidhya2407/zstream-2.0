@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -100,10 +100,10 @@ export default function MovieDetailPage() {
                   </button>
                 </Link>
                 <p className="mt-4 text-sm font-semibold text-white">Ready to stream</p>
-                <p className="mt-1 text-xs text-gray-300">Licensed DRM · {movie.isPremium ? 'Premium' : 'Free'} access</p>
+                <p className="mt-1 text-xs text-gray-300">Licensed DRM  {movie.isPremium ? 'Premium' : 'Free'} access</p>
               </div>
-              <div className="absolute left-4 top-4 rounded-full px-3 py-1 text-[10px] font-bold" style={{ background: 'rgba(0,0,0,0.55)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>
-                Widevine DRM · 1080p
+              <div className="absolute left-4 top-4 rounded-full px-3 py-1.5 text-[10px] font-bold" style={{ background: theme.isLight ? 'rgba(255,255,255,0.84)' : 'rgba(8,12,22,0.78)', color: theme.isLight ? '#0f172a' : '#f8fafc', border: '1px solid rgba(0,229,186,0.28)', boxShadow: theme.isLight ? '0 10px 24px rgba(15, 23, 42, 0.12)' : '0 14px 28px rgba(0, 0, 0, 0.28)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
+                Widevine DRM  1080p
               </div>
             </div>
 
@@ -113,13 +113,13 @@ export default function MovieDetailPage() {
                   <h1 className="text-3xl font-black leading-tight md:text-4xl" style={{ color: theme.text }}>{movie.title}</h1>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs" style={{ color: theme.muted }}>
                     <span>{movie.year}</span>
-                    <span>·</span>
+                    <span></span>
                     <span>{movie.genre}</span>
-                    <span>·</span>
+                    <span></span>
                     <span>{movie.duration}</span>
-                    <span>·</span>
+                    <span></span>
                     <span>{movie.language}</span>
-                    <span>·</span>
+                    <span></span>
                     <span className="rounded-full px-2 py-0.5 text-[10px] font-bold" style={{ background: theme.card, border: `1px solid ${theme.border}` }}>{movie.ageRating}</span>
                   </div>
                   <div className="mt-3">
@@ -196,7 +196,7 @@ export default function MovieDetailPage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-semibold" style={{ color: theme.text }}>{item.title}</p>
-                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.genre} · * {item.rating}</p>
+                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.genre}  * {item.rating}</p>
                       </div>
                     </div>
                   </Link>

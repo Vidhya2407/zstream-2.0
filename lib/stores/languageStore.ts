@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 import { persist, PersistStorage } from 'zustand/middleware';
 import enTranslations from '../../locales/en/common.json';
 import deTranslations from '../../locales/de/common.json';
@@ -56,3 +56,5 @@ export const useLanguageStore = create<LanguageStore>()(
     }
   )
 );
+
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { contentImages } from '../../../lib/images/unsplash';
@@ -67,3 +67,5 @@ export default function MarketplaceItemGrid({ isLight, items, title, translate }
     </>
   );
 }
+
+

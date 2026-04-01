@@ -1,4 +1,4 @@
-import type { LocalizedText, SupportedLanguage } from '../types/content';
+﻿import type { LocalizedText, SupportedLanguage } from '../types/content';
 
 export type Stream = {
   id: number;
@@ -96,3 +96,5 @@ export function fmtViewers(n: number) {
 }
 
 export const resolveLiveText = (value: LocalizedText, language: SupportedLanguage) => value[language] ?? value.en;
+
+

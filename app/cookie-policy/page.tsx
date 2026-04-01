@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import LegalDocument from '@/components/legal/LegalDocument';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | ZSTREAM',
+  title: 'Cookie Policy',
   description: 'Cookie policy for the ZSTREAM beta application.',
 };
 
@@ -91,3 +91,7 @@ export default function CookiePolicyPage() {
     />
   );
 }
+
+
+
+

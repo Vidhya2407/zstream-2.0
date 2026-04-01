@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 
 interface CarbonState {
   totalSaved: number;
@@ -15,3 +15,4 @@ export const useCarbonStore = create<CarbonState>((set) => ({
   incrementStreamingTime: (minutes) => set((state) => ({ streamingTime: state.streamingTime + minutes })),
   reset: () => set({ totalSaved: 0, streamingTime: 0 })
 }));
+

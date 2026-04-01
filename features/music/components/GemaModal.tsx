@@ -41,3 +41,5 @@ export default function GemaModal({ isLight, isOpen, onClose, pageTextPrimary, t
     </AnimatePresence>
   );
 }
+
+

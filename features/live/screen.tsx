@@ -56,7 +56,7 @@ export default function LivePage() {
         <motion.div animate={{ scale: [1, 1.12, 1] }} className="absolute rounded-full" style={{ width: '400px', height: '400px', bottom: '-10%', right: '-5%', background: 'radial-gradient(circle, rgba(0,229,186,0.08) 0%, transparent 70%)', filter: 'blur(50px)' }} transition={{ duration: 8, repeat: Infinity, delay: 3 }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-12">
         <div className="min-h-5 mb-3">
           {isLoading && <p className="text-xs" style={{ color: pageTextMuted }}>{LIVE_LOADING_COPY.en}</p>}
           {loadError && <p className="text-xs text-red-400">{loadError}</p>}
@@ -64,7 +64,7 @@ export default function LivePage() {
 
         <LiveHeader carbonOffset={carbonOffset} minutesLive={minutesLive} offsetLabel={labels.offsetLabel} pageTextMuted={pageTextMuted} pageTextPrimary={pageTextPrimary} pageTextSecondary={pageTextSecondary} subtitle={labels.heroSubtitle} title={labels.heroTitle} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-5">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div className="space-y-5">
             {stream && (
               <LiveHeroCard healthLabel={labels.healthLabel} healthMetrics={generateHealthMetrics(stream)} heroMetaBg={heroMetaBg} heroMetaBorder={heroMetaBorder} heroOverlay={heroOverlay} heroTitleColor="#ffffff" isLight={isLight} offsetLabel={labels.offsetLabel} showHealth={showHealth} statusButtonBg={statusButtonBg} stream={stream} streamHealthLabel={labels.streamHealthLabel} toggleHealth={toggleHealth} watchLiveLabel={labels.watchLiveLabel} watchHref={getWatchHref(getLiveWatchId(stream.id))} />
@@ -78,4 +78,7 @@ export default function LivePage() {
     </main>
   );
 }
+
+
+
 

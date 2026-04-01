@@ -34,3 +34,5 @@ export interface RegisterResponseData {
 }
 
 export type RegisterApiResponse = ApiResponse<RegisterResponseData>;
+
+

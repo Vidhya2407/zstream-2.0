@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -118,7 +118,7 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
               >
                 +{co2Saved.toFixed(4)} kg
               </motion.div>
-              <div className="text-[9px] text-eco-green/70 uppercase tracking-wide">CO₂</div>
+              <div className="text-[9px] text-eco-green/70 uppercase tracking-wide">CO2</div>
             </div>
           </motion.div>
 
@@ -184,3 +184,5 @@ export default function ViewerImpactBadge({ watchProgress, co2Saved, waterSaved 
     </AnimatePresence>
   );
 }
+
+

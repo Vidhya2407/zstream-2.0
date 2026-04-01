@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Theme-aware color utilities for pages
  * Centralized colors for light/dark theme that can be used across pages
  */
@@ -53,3 +53,5 @@ export const pageThemeColors = (isLight: boolean) => ({
 });
 
 export type PageThemeColors = ReturnType<typeof pageThemeColors>;
+
+

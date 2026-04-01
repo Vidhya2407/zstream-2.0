@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Leaf, Globe, Sprout, Recycle, MessageCircle } from 'lucide-react';
@@ -119,3 +119,5 @@ function SproutGrowAnimation() {
 function RecycleSpinAnimation() {
   return <motion.div className="absolute inset-0 rounded-full" style={{ background: 'conic-gradient(from 0deg, rgba(0, 229, 186, 0.3), transparent)' }} animate={{ rotate: 360 }} transition={{ duration: 1, ease: 'linear', repeat: 2 }} />;
 }
+
+

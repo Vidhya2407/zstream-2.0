@@ -90,3 +90,5 @@ export const SEARCH_RESULTS: SearchResultItem[] = [
 ];
 
 export const SEARCH_TRENDING = ['Climate fiction', 'Berlin noir', 'Zero emission docs', 'Eco animation', 'K-drama'];
+
+

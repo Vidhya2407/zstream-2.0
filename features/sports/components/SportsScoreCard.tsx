@@ -53,3 +53,5 @@ export default function SportsScoreCard({ isGerman, isLight, match }: SportsScor
     </motion.div>
   );
 }
+
+

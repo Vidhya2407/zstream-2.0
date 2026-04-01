@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { motion } from 'framer-motion';
 import CarbonCreditPanel from '../../components/dashboard/CarbonCreditPanel';
 import CarbonTimelineChart from '../../components/dashboard/CarbonTimelineChart';
@@ -59,3 +59,5 @@ export default function DashboardPage() {
     </main>
   );
 }
+
+

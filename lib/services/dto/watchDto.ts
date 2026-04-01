@@ -1,4 +1,4 @@
-import type { WatchContent } from '../../data/watchContent';
+﻿import type { WatchContent } from '../../data/watchContent';
 
 export interface WatchContentDto {
   id: string;
@@ -31,3 +31,5 @@ export const toWatchContentDto = (content: WatchContent): WatchContentDto => ({
   tags: [...content.tags],
   isPremium: content.isPremium,
 });
+
+

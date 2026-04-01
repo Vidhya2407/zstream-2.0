@@ -1,4 +1,4 @@
-﻿export interface SustainabilityLeaderboardEntry {
+export interface SustainabilityLeaderboardEntry {
   rank: number;
   name: string;
   country: string;
@@ -46,8 +46,11 @@ export const sustainabilityCertifications: SustainabilityCertification[] = [
 ];
 
 export const sustainabilityStats: SustainabilityStat[] = [
-  { icon: '🌿', value: '8,241', unit: 'g', labelKey: 'sustainability.co2SavedMonth' },
-  { icon: '🌳', value: '41', unit: 'trees', labelKey: 'sustainability.treesPlanted' },
-  { icon: '⚡', value: '12.8', unit: 'kWh', labelKey: 'sustainability.greenEnergyUsed' },
-  { icon: '📊', value: '#9', unit: '', labelKey: 'sustainability.globalRank' },
+  { icon: 'CO2', value: '8,241', unit: 'g', labelKey: 'sustainability.co2SavedMonth' },
+  { icon: 'TREE', value: '41', unit: 'trees', labelKey: 'sustainability.treesPlanted' },
+  { icon: 'GRID', value: '12.8', unit: 'kWh', labelKey: 'sustainability.greenEnergyUsed' },
+  { icon: 'RANK', value: '#9', unit: '', labelKey: 'sustainability.globalRank' },
 ];
+
+
+

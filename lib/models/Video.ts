@@ -109,3 +109,5 @@ VideoSchema.index({ source: 1, contentType: 1, publishedAt: -1 });
 VideoSchema.index({ externalKey: 1, locale: 1 }, { unique: true, partialFilterExpression: { externalKey: { $type: 'string', $ne: '' } } });
 
 export default mongoose.models.Video || mongoose.model('Video', VideoSchema);
+
+

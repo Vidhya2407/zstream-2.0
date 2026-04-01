@@ -45,3 +45,5 @@ export async function POST(req: Request) {
     return apiError('An error occurred during registration', 500);
   }
 }
+
+

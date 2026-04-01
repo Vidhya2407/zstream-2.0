@@ -12,3 +12,5 @@ export default function MinisStatus({ isLoading, language, loadError }: MinisSta
     </div>
   );
 }
+
+

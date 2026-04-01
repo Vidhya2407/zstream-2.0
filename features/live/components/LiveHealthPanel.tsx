@@ -25,3 +25,5 @@ export default function LiveHealthPanel({ isLight, metrics, streamHealthLabel }:
     </motion.div>
   );
 }
+
+

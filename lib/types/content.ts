@@ -1,4 +1,4 @@
-export type ContentKind = 'video' | 'music' | 'live' | 'gaming' | 'shorts' | 'series' | 'meeting' | 'marketplace';
+﻿export type ContentKind = 'video' | 'music' | 'live' | 'gaming' | 'shorts' | 'series' | 'meeting' | 'marketplace';
 export type SupportedLanguage = 'en' | 'de';
 
 export interface LocalizedText {
@@ -79,5 +79,7 @@ export const toPlayableContent = (content: BaseCatalogContent, language: Support
   carbonScore: content.metadata?.carbonScore,
   isPremium: content.isPremium,
 });
+
+
 
 

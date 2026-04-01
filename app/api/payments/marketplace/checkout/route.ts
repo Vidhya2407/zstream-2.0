@@ -1,4 +1,4 @@
-import Stripe from 'stripe';
+﻿import Stripe from 'stripe';
 import { z } from 'zod';
 import { apiError, apiSuccess } from '@/lib/api/response';
 import { appEnv, hasConfiguredStripeSecret } from '@/lib/config/env';
@@ -80,3 +80,5 @@ export async function POST(request: Request) {
     return apiError(message, 500);
   }
 }
+
+

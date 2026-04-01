@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { calculateImpact, formatImpact, StreamMetrics } from '../../lib/impact/calculator';
@@ -37,7 +37,7 @@ export default function ImpactDisplay({ streamMetrics, updateInterval = 5000 }: 
               <span className="text-2xl">🌍</span>
               <div>
                 <div className="text-eco-green font-bold text-lg">{formatImpact(impact.co2SavedKg, 'co2')}</div>
-                <div className="text-xs text-gray-400">CO₂ saved</div>
+                <div className="text-xs text-gray-400">CO2 saved</div>
               </div>
             </motion.div>
 
@@ -50,7 +50,7 @@ export default function ImpactDisplay({ streamMetrics, updateInterval = 5000 }: 
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-2xl">♻️</span>
+              <span className="text-2xl">â™»</span>
               <div>
                 <div className="text-electric-blue font-bold text-lg">{formatImpact(impact.ewasteAvoidedGrams, 'ewaste')}</div>
                 <div className="text-xs text-gray-400">e-waste avoided</div>
@@ -62,7 +62,7 @@ export default function ImpactDisplay({ streamMetrics, updateInterval = 5000 }: 
             className="glass px-4 py-2 rounded-full text-xs text-eco-green hover:glow-green transition-all"
             animate={{ rotate: expanded ? 180 : 0 }}
           >
-            ▼
+            â - ¼
           </motion.button>
         </div>
 
@@ -103,7 +103,7 @@ export default function ImpactDisplay({ streamMetrics, updateInterval = 5000 }: 
                 href="/methodology"
                 className="block text-center text-xs text-cyan-neon hover:text-eco-green transition-colors"
               >
-                View Methodology →
+                View Methodology â†’
               </a>
             </motion.div>
           )}
@@ -112,3 +112,5 @@ export default function ImpactDisplay({ streamMetrics, updateInterval = 5000 }: 
     </div>
   );
 }
+
+

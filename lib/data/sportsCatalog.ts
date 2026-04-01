@@ -1,4 +1,4 @@
-import { contentImages } from '../images/unsplash';
+﻿import { contentImages } from '../images/unsplash';
 
 export type SportTab = 'scores' | 'fixtures' | 'highlights' | 'broadcasts';
 
@@ -13,7 +13,7 @@ export interface LiveMatch {
   status: 'LIVE' | 'Soon' | 'FT';
   viewers: string;
   imageIdx: number;
-  league?: string;
+  league: string;
 }
 
 export interface Fixture {
@@ -85,19 +85,20 @@ export const FIXTURES: Fixture[] = [
 ];
 
 export const HIGHLIGHTS: HighlightCard[] = [
-  { id: 'h1', title: 'FC EcoCity — Stunning Free Kick', match: 'EcoCity vs Green United', duration: '0:48', views: '2.1M', imageIdx: 0, daysAgo: 0, sport: 'Football', carbonScore: 0.02, rating: 9.1 },
+  { id: 'h1', title: 'FC EcoCity - Stunning Free Kick', match: 'EcoCity vs Green United', duration: '0:48', views: '2.1M', imageIdx: 0, daysAgo: 0, sport: 'Football', carbonScore: 0.02, rating: 9.1 },
   { id: 'h2', title: 'Basketball Game Winner at Buzzer', match: 'Solar Hawks vs Climate Bulls', duration: '1:12', views: '890K', imageIdx: 1, daysAgo: 1, sport: 'Basketball', carbonScore: 0.02, rating: 8.8 },
   { id: 'h3', title: 'World Record 100m Sprint', match: 'Eco Sprinters Championships', duration: '2:05', views: '4.8M', imageIdx: 0, daysAgo: 2, sport: 'Athletics', carbonScore: 0.01, rating: 9.7 },
   { id: 'h4', title: 'Cycling Tour Stage 12 Final Sprint', match: 'Wind Riders Grand Tour', duration: '3:30', views: '1.4M', imageIdx: 1, daysAgo: 3, sport: 'Cycling', carbonScore: 0.02, rating: 8.4 },
-  { id: 'h5', title: 'Penalty Shootout — All 5 Scored', match: 'Green United Cup Final', duration: '4:15', views: '6.2M', imageIdx: 0, daysAgo: 5, sport: 'Football', carbonScore: 0.02, rating: 9.5 },
+  { id: 'h5', title: 'Penalty Shootout - All 5 Scored', match: 'Green United Cup Final', duration: '4:15', views: '6.2M', imageIdx: 0, daysAgo: 5, sport: 'Football', carbonScore: 0.02, rating: 9.5 },
   { id: 'h6', title: 'Swimming World Championship Recap', match: 'Aqua Center Open', duration: '5:00', views: '730K', imageIdx: 1, daysAgo: 7, sport: 'Swimming', carbonScore: 0.01, rating: 8.2 },
 ];
 
 export const BROADCASTS: HighlightCard[] = [
-  { id: 'b1', title: 'Green United Cup Final — Full Match', match: 'FC EcoCity vs Green United', duration: '1h 47m', views: '1.8M', imageIdx: 1, daysAgo: 3, sport: 'Football', carbonScore: 0.06, rating: 9.4 },
+  { id: 'b1', title: 'Green United Cup Final - Full Match', match: 'FC EcoCity vs Green United', duration: '1h 47m', views: '1.8M', imageIdx: 1, daysAgo: 3, sport: 'Football', carbonScore: 0.06, rating: 9.4 },
   { id: 'b2', title: 'Solar Energy Athletics Championship', match: 'Nature Track Open', duration: '2h 30m', views: '560K', imageIdx: 0, daysAgo: 7, sport: 'Athletics', carbonScore: 0.05, rating: 8.6 },
   { id: 'b3', title: 'Climate Basketball League Finals', match: 'Solar Hawks vs Climate Bulls', duration: '2h 15m', views: '820K', imageIdx: 1, daysAgo: 10, sport: 'Basketball', carbonScore: 0.06, rating: 9.0 },
   { id: 'b4', title: 'Wind Riders Grand Tour Stage 15', match: 'Mountain Route Challenge', duration: '3h 50m', views: '430K', imageIdx: 0, daysAgo: 14, sport: 'Cycling', carbonScore: 0.07, rating: 8.3 },
 ];
 
 export const SPORT_FILTERS = ['All', 'Football', 'Basketball', 'Tennis', 'Cricket', 'Golf', 'Ice Hockey', 'Racing', 'Athletics', 'Cycling', 'Swimming', 'Volleyball'];
+

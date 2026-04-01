@@ -13,3 +13,5 @@ export default function MarketplaceHeader({ isLight, subtitle, title }: Marketpl
     </motion.div>
   );
 }
+
+

@@ -48,14 +48,14 @@ interface DonationEvent {
 }
 
 const SEED_CHAT: ChatMessage[] = [
-  { id: 1, user: 'EcoWarrior99', msg: 'Stream looks amazing tonight! 🌿', time: '14:23', color: 'rgb(0,229,186)' },
+  { id: 1, user: 'EcoWarrior99', msg: 'Stream looks amazing tonight! ??', time: '14:23', color: 'rgb(0,229,186)' },
   { id: 2, user: 'GreenStreamer', msg: 'Love the zero-carbon broadcast!', time: '14:23', color: 'rgb(0,217,255)' },
-  { id: 3, user: 'ClimateHero', msg: 'How many viewers right now?', time: '14:24', color: 'rgb(167,139,250)' },
-  { id: 4, user: 'NatureLover', msg: '🔥🔥🔥', time: '14:24', color: 'rgb(251,146,60)' },
+  { id: 3, user: 'ClimateHero', msg: 'How many viewers right now ? ', time: '14:24', color: 'rgb(167,139,250)' },
+  { id: 4, user: 'NatureLover', msg: '??????', time: '14:24', color: 'rgb(251,146,60)' },
   { id: 5, user: 'SolarFuture', msg: 'Carbon offset counter is amazing', time: '14:24', color: 'rgb(96,165,250)' },
-  { id: 6, user: 'ZeroEmissioner', msg: 'Can we get a replay? 🙏', time: '14:25', color: 'rgb(251,191,36)' },
-  { id: 7, user: 'EcoBeats', msg: 'Stream quality is 🔥 tonight', time: '14:25', color: 'rgb(0,229,186)' },
-  { id: 8, user: 'GreenGrid', msg: 'Watching from Berlin 🇩🇪', time: '14:25', color: 'rgb(167,139,250)' },
+  { id: 6, user: 'ZeroEmissioner', msg: 'Can we get a replay ? ??', time: '14:25', color: 'rgb(251,191,36)' },
+  { id: 7, user: 'EcoBeats', msg: 'Stream quality is ?? tonight', time: '14:25', color: 'rgb(0,229,186)' },
+  { id: 8, user: 'GreenGrid', msg: 'Watching from Berlin ????', time: '14:25', color: 'rgb(167,139,250)' },
 ];
 
 const SCHEDULED: ScheduledStream[] = [
@@ -66,34 +66,34 @@ const SCHEDULED: ScheduledStream[] = [
 ];
 
 const VODS: VOD[] = [
-  { id: 1, title: 'Climate Action Livestream — Mar 15', date: 'Mar 15, 2026', duration: '2h 14m', views: '84K', imageIdx: 0, autoSave: true },
-  { id: 2, title: 'Community Q&A — Mar 12', date: 'Mar 12, 2026', duration: '1h 32m', views: '41K', imageIdx: 1, autoSave: true },
-  { id: 3, title: 'Solar Tech Deep-Dive — Mar 8', date: 'Mar 8, 2026', duration: '3h 05m', views: '127K', imageIdx: 0, autoSave: false },
-  { id: 4, title: 'Eco Gaming Session — Mar 5', date: 'Mar 5, 2026', duration: '4h 20m', views: '62K', imageIdx: 1, autoSave: true },
+  { id: 1, title: 'Climate Action Livestream - Mar 15', date: 'Mar 15, 2026', duration: '2h 14m', views: '84K', imageIdx: 0, autoSave: true },
+  { id: 2, title: 'Community Q&A - Mar 12', date: 'Mar 12, 2026', duration: '1h 32m', views: '41K', imageIdx: 1, autoSave: true },
+  { id: 3, title: 'Solar Tech Deep-Dive - Mar 8', date: 'Mar 8, 2026', duration: '3h 05m', views: '127K', imageIdx: 0, autoSave: false },
+  { id: 4, title: 'Eco Gaming Session - Mar 5', date: 'Mar 5, 2026', duration: '4h 20m', views: '62K', imageIdx: 1, autoSave: true },
 ];
 
 const DONATIONS: DonationEvent[] = [
-  { id: 1, user: 'EcoWarrior99', amount: '€ 50.00', type: 'superchat', time: '14:28', message: 'Keep up the amazing work! 🌿' },
-  { id: 2, user: 'GreenBlaster', amount: '€ 5.99/mo', type: 'subscription', time: '14:24', message: 'Just subbed! Love the channel' },
-  { id: 3, user: 'ClimateHero', amount: '€ 20.00', type: 'donation', time: '14:21', message: 'One tree planted for this stream 🌳' },
-  { id: 4, user: 'SolarFuture', amount: '€ 100.00', type: 'superchat', time: '14:18', message: 'Best stream on the internet!' },
-  { id: 5, user: 'NatureLover', amount: '€ 5.99/mo', type: 'subscription', time: '14:15' },
+  { id: 1, user: 'EcoWarrior99', amount: 'EUR 50.00', type: 'superchat', time: '14:28', message: 'Keep up the amazing work! ??' },
+  { id: 2, user: 'GreenBlaster', amount: 'EUR 5.99/mo', type: 'subscription', time: '14:24', message: 'Just subbed! Love the channel' },
+  { id: 3, user: 'ClimateHero', amount: 'EUR 20.00', type: 'donation', time: '14:21', message: 'One tree planted for this stream ??' },
+  { id: 4, user: 'SolarFuture', amount: 'EUR 100.00', type: 'superchat', time: '14:18', message: 'Best stream on the internet!' },
+  { id: 5, user: 'NatureLover', amount: 'EUR 5.99/mo', type: 'subscription', time: '14:15' },
 ];
 
 const BOT_MESSAGES = [
-  { user: 'StreamBot', msg: '🎉 100K viewers milestone reached!', color: 'rgb(251,191,36)' },
-  { user: 'EcoAlert', msg: '🌱 500g CO₂ offset this stream!', color: 'rgb(0,229,186)' },
-  { user: 'Moderator', msg: 'Keep chat eco-friendly! 🌍', color: 'rgb(239,68,68)', isMod: true },
-  { user: 'ClimateWatch', msg: 'Next segment starts in 5 min ⏰', color: 'rgb(0,217,255)' },
-  { user: 'EcoCitizen', msg: 'Shared this with 50 friends! 🙌', color: 'rgb(167,139,250)' },
+  { user: 'StreamBot', msg: '?? 100K viewers milestone reached!', color: 'rgb(251,191,36)' },
+  { user: 'EcoAlert', msg: '?? 500g CO2 offset this stream!', color: 'rgb(0,229,186)' },
+  { user: 'Moderator', msg: 'Keep chat eco-friendly! ??', color: 'rgb(239,68,68)', isMod: true },
+  { user: 'ClimateWatch', msg: 'Next segment starts in 5 min ', color: 'rgb(0,217,255)' },
+  { user: 'EcoCitizen', msg: 'Shared this with 50 friends! ??', color: 'rgb(167,139,250)' },
 ];
 
-const STREAM_KEY = 'live_sk_zstream_••••••••••••1a2b';
+const STREAM_KEY = 'live_sk_zstream_------------1a2b';
 
 const typeConfig: Record<DonationEvent['type'], { label: string; color: string; bg: string; border: string; icon: string }> = {
-  superchat: { label: 'Super Chat', color: 'rgb(251,191,36)', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)', icon: '💬' },
-  subscription: { label: 'Subscription', color: 'rgb(196,132,252)', bg: 'rgba(196,132,252,0.08)', border: 'rgba(196,132,252,0.2)', icon: '🔔' },
-  donation: { label: 'Donation', color: 'rgb(0,229,186)', bg: 'rgba(0,229,186,0.08)', border: 'rgba(0,229,186,0.2)', icon: '💚' },
+  superchat: { label: 'Super Chat', color: 'rgb(251,191,36)', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)', icon: '??' },
+  subscription: { label: 'Subscription', color: 'rgb(196,132,252)', bg: 'rgba(196,132,252,0.08)', border: 'rgba(196,132,252,0.2)', icon: '??' },
+  donation: { label: 'Donation', color: 'rgb(0,229,186)', bg: 'rgba(0,229,186,0.08)', border: 'rgba(0,229,186,0.2)', icon: '??' },
 };
 
 function CarbonOffsetCounter() {
@@ -112,8 +112,8 @@ function CarbonOffsetCounter() {
 
   return (
     <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(0,229,186,0.08)', border: '1px solid rgba(0,229,186,0.2)', color: 'rgb(0,229,186)' }}>
-      <span className="text-base animate-pulse">🌿</span>
-      <span>{String(displayMins).padStart(2, '0')}:{String(displaySecs).padStart(2, '0')} live · <strong>{grams}g</strong> CO₂ offset</span>
+      <span className="text-base animate-pulse">??</span>
+      <span>{String(displayMins).padStart(2, '0')}:{String(displaySecs).padStart(2, '0')} live  <strong>{grams}g</strong> CO2 offset</span>
     </div>
   );
 }
@@ -139,16 +139,16 @@ function OverviewTab({ onGoLive }: { onGoLive: () => void }) {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-white font-black text-lg">Climate Action Summit Live</h2>
-                {isLive && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(239,68,68,0.2)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }}>🔴 LIVE</span>}
+                {isLive && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'rgba(239,68,68,0.2)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }}>?? LIVE</span>}
               </div>
-              <p className="text-gray-500 text-xs">Events & Talk · Started 1h 24m ago</p>
+              <p className="text-gray-500 text-xs">Events & Talk  Started 1h 24m ago</p>
             </div>
           </div>
           <div className="flex gap-3">
             {isLive ? (
-              <button onClick={() => setIsLive(false)} className="px-4 py-2 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }}>■ End Stream</button>
+              <button onClick={() => setIsLive(false)} className="px-4 py-2 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(239,68,68,0.15)', color: 'rgb(252,165,165)', border: '1px solid rgba(239,68,68,0.3)' }}>End Stream</button>
             ) : (
-              <button onClick={onGoLive} className="px-5 py-2.5 rounded-xl text-xs font-black transition-all" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>🔴 Go Live</button>
+              <button onClick={onGoLive} className="px-5 py-2.5 rounded-xl text-xs font-black transition-all" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>?? Go Live</button>
             )}
           </div>
         </div>
@@ -157,16 +157,16 @@ function OverviewTab({ onGoLive }: { onGoLive: () => void }) {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Current Viewers', value: viewers.toLocaleString(), icon: '👁️', color: 'rgb(0,229,186)', live: true },
-          { label: 'Peak Viewers', value: peakViewers.toLocaleString(), icon: '📈', color: 'rgb(0,217,255)', live: false },
-          { label: 'Stream Duration', value: '1h 24m', icon: '⏱️', color: 'rgb(251,191,36)', live: false },
-          { label: 'CO₂ Offset', value: '68.5g', icon: '🌿', color: 'rgb(0,229,186)', live: true },
+          { label: 'Current Viewers', value: viewers.toLocaleString(), icon: '??', color: 'rgb(0,229,186)', live: true },
+          { label: 'Peak Viewers', value: peakViewers.toLocaleString(), icon: '??', color: 'rgb(0,217,255)', live: false },
+          { label: 'Stream Duration', value: '1h 24m', icon: '', color: 'rgb(251,191,36)', live: false },
+          { label: 'CO2 Offset', value: '68.5g', icon: '??', color: 'rgb(0,229,186)', live: true },
         ].map((s, i) => (
           <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{s.icon}</div>
             <div className="font-black text-xl text-white">{s.value}</div>
             <div className="text-gray-500 text-[10px] mt-0.5">{s.label}</div>
-            {s.live && isLive && <div className="text-[9px] font-bold mt-1" style={{ color: s.color }}>● Live updating</div>}
+            {s.live && isLive && <div className="text-[9px] font-bold mt-1" style={{ color: s.color }}>Live updating</div>}
           </motion.div>
         ))}
       </div>
@@ -185,9 +185,9 @@ function OverviewTab({ onGoLive }: { onGoLive: () => void }) {
       {/* Revenue Summary */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: 'Donations', value: '€ 120.00', icon: '💚', color: 'rgb(0,229,186)' },
-          { label: 'Super Chats', value: '€ 150.00', icon: '💬', color: 'rgb(251,191,36)' },
-          { label: 'New Subs', value: '2 × €5.99', icon: '🔔', color: 'rgb(196,132,252)' },
+          { label: 'Donations', value: 'EUR 120.00', icon: '??', color: 'rgb(0,229,186)' },
+          { label: 'Super Chats', value: 'EUR 150.00', icon: '??', color: 'rgb(251,191,36)' },
+          { label: 'New Subs', value: '2 x EUR 5.99', icon: '??', color: 'rgb(196,132,252)' },
         ].map(r => (
           <div key={r.label} className="p-4 rounded-2xl text-center" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{r.icon}</div>
@@ -225,11 +225,11 @@ function HealthTab() {
       {/* Overall Health */}
       <div className="p-5 rounded-2xl flex items-center gap-5" style={{ background: 'rgba(255,255,255,0.03)', border: `1px solid ${healthColor}30` }}>
         <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0" style={{ background: `${healthColor}15`, border: `1px solid ${healthColor}30` }}>
-          {health === 'Excellent' ? '✅' : health === 'Good' ? '⚠️' : '❌'}
+          {health === 'Excellent' ? 'OK' : health === 'Good' ? 'Warn' : 'Poor'}
         </div>
         <div>
           <p className="text-white font-black text-xl">{health}</p>
-          <p className="text-gray-400 text-xs">Stream health · Updated every 2s</p>
+          <p className="text-gray-400 text-xs">Stream health  Updated every 2s</p>
         </div>
         <div className="ml-auto text-right">
           <p className="text-white font-bold text-sm">1080p60</p>
@@ -240,10 +240,10 @@ function HealthTab() {
       {/* Metrics Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Bitrate', value: `${bitrate.toFixed(1)} Mb/s`, icon: '📶', good: bitrate > 5, color: bitrate > 5 ? 'rgb(0,229,186)' : 'rgb(239,68,68)' },
-          { label: 'FPS', value: `${fps} fps`, icon: '🎞️', good: fps >= 60, color: fps >= 60 ? 'rgb(0,229,186)' : 'rgb(251,191,36)' },
-          { label: 'Dropped Frames', value: `${dropped.toFixed(1)}%`, icon: '⚡', good: dropped < 0.5, color: dropped < 0.5 ? 'rgb(0,229,186)' : dropped < 1 ? 'rgb(251,191,36)' : 'rgb(239,68,68)' },
-          { label: 'Latency', value: `${latency}ms`, icon: '🕐', good: latency < 20, color: latency < 20 ? 'rgb(0,229,186)' : latency < 25 ? 'rgb(251,191,36)' : 'rgb(239,68,68)' },
+          { label: 'Bitrate', value: `${bitrate.toFixed(1)} Mb/s`, icon: '??', good: bitrate > 5, color: bitrate > 5 ? 'rgb(0,229,186)' : 'rgb(239,68,68)' },
+          { label: 'FPS', value: `${fps} fps`, icon: '??', good: fps >= 60, color: fps >= 60 ? 'rgb(0,229,186)' : 'rgb(251,191,36)' },
+          { label: 'Dropped Frames', value: `${dropped.toFixed(1)}%`, icon: 'Drop', good: dropped < 0.5, color: dropped < 0.5 ? 'rgb(0,229,186)' : dropped < 1 ? 'rgb(251,191,36)' : 'rgb(239,68,68)' },
+          { label: 'Latency', value: `${latency}ms`, icon: 'Ping', good: latency < 20, color: latency < 20 ? 'rgb(0,229,186)' : latency < 25 ? 'rgb(251,191,36)' : 'rgb(239,68,68)' },
         ].map((m, i) => (
           <motion.div key={m.label} animate={{ borderColor: m.good ? 'rgba(0,229,186,0.2)' : 'rgba(239,68,68,0.2)' }} transition={{ duration: 0.5 }} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{m.icon}</div>
@@ -337,7 +337,7 @@ function ChatModerationTab() {
       {/* Pinned Message */}
       {pinned && (
         <div className="p-3 rounded-xl flex items-center gap-2" style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.2)' }}>
-          <span className="text-[10px] font-bold" style={{ color: 'rgb(251,191,36)' }}>📌 Pinned</span>
+          <span className="text-[10px] font-bold" style={{ color: 'rgb(251,191,36)' }}>?? Pinned</span>
           <span className="text-white text-xs flex-1">{pinned.msg}</span>
           <button onClick={() => pinMsg(pinned.id)} className="text-gray-500 hover:text-white text-[10px]">Unpin</button>
         </div>
@@ -350,13 +350,13 @@ function ChatModerationTab() {
             <div key={msg.id} className="flex items-start gap-2 group hover:bg-white/[0.02] rounded-lg px-1.5 py-1 transition-colors">
               <span className="text-[10px] text-gray-600 flex-shrink-0 mt-0.5">{msg.time}</span>
               <div className="flex-1 min-w-0">
-                <span className="text-[10px] font-bold" style={{ color: msg.color }}>{msg.isMod ? '🛡️ ' : ''}{msg.user}</span>
+                <span className="text-[10px] font-bold" style={{ color: msg.color }}>{msg.isMod ? '?? ' : ''}{msg.user}</span>
                 <span className="text-gray-400 text-[10px]">: </span>
                 <span className="text-white text-[10px] leading-relaxed">{msg.msg}</span>
               </div>
               <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
-                <button onClick={() => pinMsg(msg.id)} className="text-[9px] text-gray-500 hover:text-yellow-400 transition-colors">📌</button>
-                <button onClick={() => deleteMsg(msg.id)} className="text-[9px] text-gray-500 hover:text-red-400 transition-colors">✕</button>
+                <button onClick={() => pinMsg(msg.id)} className="text-[9px] text-gray-500 hover:text-yellow-400 transition-colors">??</button>
+                <button onClick={() => deleteMsg(msg.id)} className="text-[9px] text-gray-500 hover:text-red-400 transition-colors">Delete</button>
               </div>
             </div>
           ))}
@@ -393,7 +393,7 @@ function ScheduleTab() {
               <p className="text-white text-sm font-bold truncate">{s.title}</p>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="text-gray-500 text-xs">{s.time}</span>
-                <span className="text-gray-600 text-[10px]">·</span>
+                <span className="text-gray-600 text-[10px]"></span>
                 <span className="text-gray-500 text-xs">{s.estimated}</span>
                 <span className="text-[9px] px-1.5 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}>{s.category}</span>
               </div>
@@ -431,10 +431,9 @@ function VODsTab() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-white text-xs font-bold truncate">{vod.title}</p>
-              <p className="text-gray-500 text-[10px]">{vod.date} · {vod.views} views</p>
+              <p className="text-gray-500 text-[10px]">{vod.date}  {vod.views} views</p>
               <div className="flex items-center gap-2 mt-1">
-                {vod.autoSave
-                  ? <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}>💾 Auto-saved</span>
+                {vod.autoSave ? <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.15)' }}>?? Auto-saved</span>
                   : <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(107,114,128)', border: '1px solid rgba(255,255,255,0.08)' }}>Not saved</span>
                 }
               </div>
@@ -454,7 +453,7 @@ function VODsTab() {
 
 function RevenueTab() {
   const total = DONATIONS.reduce((s, d) => {
-    const num = parseFloat(d.amount.replace('€ ', '').replace('/mo', ''));
+    const num = parseFloat(d.amount.replace('EUR ', '').replace('/mo', ''));
     return s + num;
   }, 0);
 
@@ -463,10 +462,10 @@ function RevenueTab() {
       {/* Revenue Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Today\'s Revenue', value: `€ ${total.toFixed(2)}`, icon: '💶', color: 'rgb(251,191,36)' },
-          { label: 'This Month', value: '€ 2,840', icon: '📅', color: 'rgb(0,229,186)' },
-          { label: 'Super Chats', value: '€ 150', icon: '💬', color: 'rgb(251,191,36)' },
-          { label: 'Subscriptions', value: '€ 11.98', icon: '🔔', color: 'rgb(196,132,252)' },
+          { label: 'Today\'s Revenue', value: `EUR ${total.toFixed(2)}`, icon: '??', color: 'rgb(251,191,36)' },
+          { label: 'This Month', value: 'EUR 2,840', icon: '??', color: 'rgb(0,229,186)' },
+          { label: 'Super Chats', value: 'EUR 150', icon: '??', color: 'rgb(251,191,36)' },
+          { label: 'Subscriptions', value: 'EUR 11.98', icon: '??', color: 'rgb(196,132,252)' },
         ].map(r => (
           <div key={r.label} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-xl mb-1">{r.icon}</div>
@@ -505,9 +504,9 @@ function RevenueTab() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-white text-sm font-bold">Next Payout (Stripe Connect)</p>
-            <p className="text-gray-400 text-xs mt-0.5">€ 2,840.00 · Due Mar 31, 2026</p>
+            <p className="text-gray-400 text-xs mt-0.5">EUR 2,840.00  Due Mar 31, 2026</p>
           </div>
-          <span className="text-[10px] font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>Stripe ✓</span>
+          <span className="text-[10px] font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>Stripe Connected</span>
         </div>
       </div>
     </div>
@@ -515,12 +514,12 @@ function RevenueTab() {
 }
 
 const TABS: { id: LiveTab; label: string; icon: string }[] = [
-  { id: 'overview', label: 'Overview', icon: '📊' },
-  { id: 'health', label: 'Stream Health', icon: '📶' },
-  { id: 'chat', label: 'Chat Mod', icon: '💬' },
-  { id: 'schedule', label: 'Schedule', icon: '📅' },
-  { id: 'vods', label: 'VODs', icon: '🎬' },
-  { id: 'revenue', label: 'Revenue', icon: '💶' },
+  { id: 'overview', label: 'Overview', icon: '??' },
+  { id: 'health', label: 'Stream Health', icon: '??' },
+  { id: 'chat', label: 'Chat Mod', icon: '??' },
+  { id: 'schedule', label: 'Schedule', icon: '??' },
+  { id: 'vods', label: 'VODs', icon: '??' },
+  { id: 'revenue', label: 'Revenue', icon: '??' },
 ];
 
 export default function LiveDashboardPage() {
@@ -549,7 +548,7 @@ export default function LiveDashboardPage() {
             </div>
             <div>
               <h1 className="text-white font-black text-2xl">Live Dashboard</h1>
-              <p className="text-gray-500 text-xs">Stream Management · ZStream Live</p>
+              <p className="text-gray-500 text-xs">Stream Management  ZStream Live</p>
             </div>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
@@ -559,7 +558,7 @@ export default function LiveDashboardPage() {
               Go Live
             </motion.button>
             <Link href="/live">
-              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Browse Live</button>
+              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Browse Live</button>
             </Link>
           </div>
         </motion.div>
@@ -606,7 +605,7 @@ export default function LiveDashboardPage() {
                 <div className="space-y-4">
                   <div>
                     <label className="text-gray-400 text-xs block mb-1.5">Stream Title <span className="text-red-400">*</span></label>
-                    <input value={streamTitle} onChange={e => setStreamTitle(e.target.value)} placeholder="What are you streaming today?" className="w-full bg-transparent border rounded-xl px-3 py-2.5 text-white text-sm outline-none" style={{ borderColor: streamTitle ? 'rgba(239,68,68,0.4)' : 'rgba(255,255,255,0.12)' }} />
+                    <input value={streamTitle} onChange={e => setStreamTitle(e.target.value)} placeholder="What are you streaming today ? " className="w-full bg-transparent border rounded-xl px-3 py-2.5 text-white text-sm outline-none" style={{ borderColor: streamTitle ? 'rgba(239,68,68,0.4)' : 'rgba(255,255,255,0.12)' }} />
                   </div>
                   <div>
                     <label className="text-gray-400 text-xs block mb-1.5">Category</label>
@@ -638,10 +637,10 @@ export default function LiveDashboardPage() {
                 <div className="space-y-3">
                   <div className="p-4 rounded-2xl space-y-2" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
                     {[
-                      { label: 'Title', value: streamTitle || '—' },
-                      { label: 'Category', value: streamCategory || '—' },
-                      { label: 'Quality', value: '1080p60 · Auto' },
-                      { label: 'Carbon Offset', value: '🌿 Auto (Ecologi)' },
+                      { label: 'Title', value: streamTitle || '-' },
+                      { label: 'Category', value: streamCategory || '-' },
+                      { label: 'Quality', value: '1080p60  Auto' },
+                      { label: 'Carbon Offset', value: '?? Auto (Ecologi)' },
                     ].map(r => (
                       <div key={r.label} className="flex justify-between text-xs">
                         <span className="text-gray-500">{r.label}</span>
@@ -653,9 +652,8 @@ export default function LiveDashboardPage() {
               )}
 
               <div className="flex gap-3 mt-6">
-                {wizardStep > 1 && <button onClick={() => setWizardStep(s => (s - 1) as 1 | 2 | 3)} className="flex-1 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.1)' }}>← Back</button>}
-                {wizardStep < 3
-                  ? <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setWizardStep(s => (s + 1) as 1 | 2 | 3)} disabled={wizardStep === 1 && !streamTitle.trim()} className="flex-1 py-2.5 rounded-xl text-xs font-bold disabled:opacity-40" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Continue →</motion.button>
+                {wizardStep > 1 && <button onClick={() => setWizardStep((s) => (Math.max(1, s - 1) as 1 | 2 | 3))} className="flex-1 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.1)' }}>Back</button>}
+                {wizardStep < 3 ? <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setWizardStep((s) => (Math.min(3, s + 1) as 1 | 2 | 3))} disabled={wizardStep === 1 && !streamTitle.trim()} className="flex-1 py-2.5 rounded-xl text-xs font-bold disabled:opacity-40" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Continue</motion.button>
                   : <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={handleGoLiveClose} className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-xs font-black" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>
                       <motion.div className="w-2 h-2 rounded-full bg-white" animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1, repeat: Infinity }} />
                       Start Streaming
@@ -669,5 +667,6 @@ export default function LiveDashboardPage() {
     </main>
   );
 }
+
 
 

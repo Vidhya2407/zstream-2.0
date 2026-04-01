@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -297,8 +297,8 @@ export default function SecurityPage() {
       });
 
       const result = (await response.json().catch(() => null)) as
-        | { error?: string; success?: boolean }
-        | null;
+ | { error?: string; success?: boolean }
+ | null;
 
       if (!response.ok || !result?.success) {
         setPwError(getPasswordErrorMessage(result?.error ?? t('security.passwordUpdateFailed')));
@@ -700,3 +700,5 @@ export default function SecurityPage() {
     </AuthShell>
   );
 }
+
+

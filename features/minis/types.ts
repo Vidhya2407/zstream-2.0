@@ -8,3 +8,5 @@ export interface MiniInteractions {
   saved: boolean;
   shared: boolean;
 }
+
+

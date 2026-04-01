@@ -23,3 +23,5 @@ export const carbonModel = {
   globalAverageGridIntensity: 475,
   renewableSavingsFactor: 0.45,
 } as const;
+
+

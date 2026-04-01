@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import LegalDocument from '@/components/legal/LegalDocument';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | ZSTREAM',
+  title: 'Privacy Policy',
   description: 'Privacy policy for the ZSTREAM beta application.',
 };
 
@@ -131,3 +131,7 @@ export default function PrivacyPolicyPage() {
     />
   );
 }
+
+
+
+

@@ -22,3 +22,5 @@ export default function MusicTabBar({ isLight, language, tab, tabs, onTabChange 
     </div>
   );
 }
+
+

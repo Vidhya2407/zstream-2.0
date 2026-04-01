@@ -24,3 +24,5 @@ export function calculateStreamingCarbon(durationMinutes: number, metadata: Carb
 export function calculateCarbonSaving(carbonProduced: number): number {
   return parseFloat((carbonProduced * carbonModel.renewableSavingsFactor).toFixed(2));
 }
+
+

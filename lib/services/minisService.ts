@@ -58,3 +58,5 @@ export async function resolveMinisPageContent(language: string | null | undefine
 }
 
 export const getMinisPageContent = getMinisPageFallbackContent;
+
+

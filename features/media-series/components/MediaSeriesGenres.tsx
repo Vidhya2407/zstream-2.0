@@ -30,3 +30,5 @@ export default function MediaSeriesGenres({ activeGenre, isLight, setActiveGenre
   );
 }
 
+
+

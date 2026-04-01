@@ -21,3 +21,5 @@ export default function MediaSeriesTabs({ isLight, setSubCategory, tab }: MediaS
   );
 }
 
+
+

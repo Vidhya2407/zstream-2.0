@@ -65,3 +65,5 @@ export default function MoviesResults({ activeGenre, filtered, isGerman, isLight
     </AnimatePresence>
   );
 }
+
+

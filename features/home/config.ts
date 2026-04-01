@@ -27,3 +27,5 @@ export const HOME_FEATURE_DISPLAY: HomeFeatureDisplay[] = [
     iconColor: 'rgb(196, 132, 252)',
   },
 ];
+
+

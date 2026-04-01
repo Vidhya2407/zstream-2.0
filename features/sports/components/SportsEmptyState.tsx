@@ -11,3 +11,5 @@ export default function SportsEmptyState({ icon, message }: SportsEmptyStateProp
     </div>
   );
 }
+
+

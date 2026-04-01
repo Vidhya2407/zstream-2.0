@@ -1,4 +1,4 @@
-export type ZTubeTab = 'forYou' | 'trending' | 'new' | 'subscriptions' | 'creators';
+﻿export type ZTubeTab = 'forYou' | 'trending' | 'new' | 'subscriptions' | 'creators';
 export type ContentType = 'all' | 'videos' | 'music' | 'podcasts';
 
 export interface ZVideo {
@@ -38,3 +38,5 @@ export interface ZTubeTypeFilter {
   label: string;
   icon: string;
 }
+
+

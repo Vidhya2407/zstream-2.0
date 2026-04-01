@@ -27,3 +27,5 @@ export default function MusicHeader({ isLight, pageTextPrimary, pageTextSecondar
     </motion.div>
   );
 }
+
+

@@ -60,3 +60,5 @@ export async function resolveGamingPageContent(language: string | null | undefin
 }
 
 export const getGamingPageContent = getGamingPageFallbackContent;
+
+

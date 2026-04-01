@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import { useSearchParams } from 'next/navigation';
 import MarketplaceBackground from './components/MarketplaceBackground';
 import MarketplaceCategoryFilter from './components/MarketplaceCategoryFilter';
@@ -37,3 +37,5 @@ export default function MarketplacePage() {
     </main>
   );
 }
+
+

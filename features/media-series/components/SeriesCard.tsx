@@ -98,3 +98,5 @@ export default function SeriesCard({ delay = 0, isLight, isWatchlisted, onToggle
   );
 }
 
+
+

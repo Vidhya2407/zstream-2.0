@@ -1,4 +1,4 @@
-const CACHE_NAME = 'zstream-v1';
+const CACHE_NAME = 'zstream-v2';
 const STATIC_ASSETS = ['/', '/music', '/live', '/minis', '/offline.html'];
 
 self.addEventListener('install', (e) => {
@@ -21,6 +21,34 @@ self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
+
+  const isApiRequest = url.pathname.startsWith('/api/');
+  const isNextAsset = url.pathname.startsWith('/_next/');
+  const isNavigation = e.request.mode === 'navigate';
+
+  if (isApiRequest || isNavigation) {
+    e.respondWith(
+      fetch(e.request)
+        .then((response) => response)
+        .catch(() => caches.match(e.request).then((cached) => cached || caches.match('/offline.html')))
+    );
+    return;
+  }
+
+  if (isNextAsset) {
+    e.respondWith(
+      fetch(e.request)
+        .then((response) => {
+          if (!response || response.status !== 200 || response.type !== 'basic') return response;
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
   e.respondWith(
     caches.match(e.request).then((cached) => {
       if (cached) return cached;

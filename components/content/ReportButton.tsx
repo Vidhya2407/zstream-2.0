@@ -1,9 +1,9 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const REPORT_REASONS = [
-  { id: 'illegal', label: 'Illegal content (NetzDG §1)', desc: 'Content that violates German law' },
+  { id: 'illegal', label: 'Illegal content (NetzDG 1)', desc: 'Content that violates German law' },
   { id: 'hate', label: 'Hate speech / Incitement', desc: 'Content promoting hatred or violence' },
   { id: 'misinformation', label: 'Misinformation / Fake news', desc: 'Demonstrably false information' },
   { id: 'copyright', label: 'Copyright infringement', desc: 'Unauthorised use of copyrighted material' },
@@ -121,7 +121,7 @@ export default function ReportButton({ contentId = 'unknown', contentTitle = 'th
                   </motion.button>
 
                   <p className="text-gray-600 text-[10px] text-center mt-3">
-                    Reports processed under <strong className="text-gray-500">NetzDG §3</strong> and EU <strong className="text-gray-500">DSA Article 16</strong> within 24–48h.
+                    Reports processed under <strong className="text-gray-500">NetzDG 3</strong> and EU <strong className="text-gray-500">DSA Article 16</strong> within 24-48h.
                   </p>
                 </>
               )}
@@ -132,3 +132,4 @@ export default function ReportButton({ contentId = 'unknown', contentTitle = 'th
     </>
   );
 }
+

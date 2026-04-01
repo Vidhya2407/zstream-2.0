@@ -28,3 +28,5 @@ export function getCarbonGrade(score: number) {
   if (score < 0.5) return { grade: 'B', color: 'rgb(96,165,250)' };
   return { grade: 'C', color: 'rgb(251,191,36)' };
 }
+
+

@@ -1,1 +1,3 @@
-export type GamingFeatureStatus = 'idle' | 'loading' | 'ready' | 'error';
+﻿export type GamingFeatureStatus = 'idle' | 'loading' | 'ready' | 'error';
+
+

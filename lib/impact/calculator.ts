@@ -1,4 +1,4 @@
-// Environmental Impact Calculation Engine  
+﻿// Environmental Impact Calculation Engine  
   
 export interface StreamMetrics {  
   durationMinutes: number;  
@@ -81,3 +81,4 @@ export function formatImpact(value: number, unit: 'co2' | 'water' | 'ewaste'): s
   if (unit === 'ewaste') return value.toFixed(4) + ' g';  
   return value.toString();  
 }
+

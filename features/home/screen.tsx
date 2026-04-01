@@ -19,19 +19,20 @@ export default function HomeScreen() {
       <HeroCarousel items={content.heroItems} />
       <HomeStatsStrip stats={copy.stats} />
 
-      <div className="py-6">
-        <div className="mx-auto max-w-[1600px]">
-          <GenreFilterBar selected={selectedGenre} onChange={setSelectedGenre} />
+      <div className="app-stack pb-10 md:pb-14">
+        <div className="py-4 md:py-6">
+          <div className="app-container">
+            <GenreFilterBar selected={selectedGenre} onChange={setSelectedGenre} />
+          </div>
         </div>
-      </div>
 
-      {isLoading && (
-        <div className="mx-auto max-w-[1600px] px-6 pb-2 text-xs lg:px-12" style={{ color: 'var(--app-muted-color)' }}>
+        {isLoading && (
+        <div className="app-container pb-2 text-xs" style={{ color: 'var(--app-muted-color)' }}>
           {t('common.loading')}
         </div>
       )}
 
-      <div className="space-y-10 pb-12">
+      <div className="space-y-12 md:space-y-14">
         <ContentRow badge={t('home.hot')} items={content.trendingItems} selectedGenre={selectedGenre} title={t('home.trending')} />
         <ContentRow badge={t('home.resume')} items={content.continueWatchingItems} selectedGenre={selectedGenre} subtitle={t('home.pickUpWhereYouLeftOff')} title={t('home.continueWatching')} />
         <ContentRow badge={t('home.new')} items={content.newReleaseItems} selectedGenre={selectedGenre} subtitle={t('home.freshContent')} title={t('home.newReleases')} />
@@ -42,6 +43,9 @@ export default function HomeScreen() {
       <HomeCuratedSection badge={t('home.curated')} highlight={t('home.forYou')} items={content.featuredGridItems} title={t('home.topPicks')} viewAllLabel={t('home.viewAll')} />
       <HomeCommitmentBanner body={t('home.commitmentText')} buttonLabel={t('home.learnMore')} highlight={t('home.carbonNeutral')} imageUrl={contentImages.climate[1].url} isLight={isLight} label={t('home.commitment')} titlePrefix={t('home.everyStream')} />
       <HomeCtaSection badge={t('home.getStarted')} body={t('home.movement')} highlight={t('home.emitNothing')} primaryLabel={t('home.startFree')} secondaryLabel={t('home.pricing')} titlePrefix={t('home.streamEverything')} />
+      </div>
     </main>
   );
 }
+
+

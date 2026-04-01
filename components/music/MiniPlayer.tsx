@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -383,3 +383,5 @@ export default function MiniPlayer() {
     </>
   );
 }
+
+

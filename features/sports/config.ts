@@ -33,3 +33,5 @@ export const SPORTS_STATIC_COPY = {
     de: 'Suchen...',
   },
 } as const;
+
+

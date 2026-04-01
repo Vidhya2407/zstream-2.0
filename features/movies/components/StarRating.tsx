@@ -31,3 +31,5 @@ export default function StarRating({ onChange, size = 'sm', value }: StarRatingP
     </div>
   );
 }
+
+

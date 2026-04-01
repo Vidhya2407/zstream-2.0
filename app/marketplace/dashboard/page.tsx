@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -55,12 +55,12 @@ interface Review {
 }
 
 const PURCHASES: Purchase[] = [
-  { id: 1, name: 'Verified Carbon Credit × 5', category: 'carbon', price: '€ 12.50', date: 'Mar 16, 2026', status: 'completed', imageIdx: 0, quantity: 5, co2Offset: 5 },
+  { id: 1, name: 'Verified Carbon Credit x 5', category: 'carbon', price: 'EUR 12.50', date: 'Mar 16, 2026', status: 'completed', imageIdx: 0, quantity: 5, co2Offset: 5 },
   { id: 2, name: 'Ocean Cleanup NFT #482', category: 'nft', price: '0.12 ETH', date: 'Mar 14, 2026', status: 'completed', imageIdx: 1, quantity: 1, co2Saved: 0.8 } as unknown as Purchase,
-  { id: 3, name: 'ZStream Eco Hoodie (M)', category: 'merch', price: '€ 49.00', date: 'Mar 12, 2026', status: 'shipped', imageIdx: 0, quantity: 1 },
-  { id: 4, name: 'Carbon Credit Bundle × 20', category: 'carbon', price: '€ 48.00', date: 'Mar 8, 2026', status: 'completed', imageIdx: 1, quantity: 20, co2Offset: 20 },
+  { id: 3, name: 'ZStream Eco Hoodie (M)', category: 'merch', price: 'EUR 49.00', date: 'Mar 12, 2026', status: 'shipped', imageIdx: 0, quantity: 1 },
+  { id: 4, name: 'Carbon Credit Bundle x 20', category: 'carbon', price: 'EUR 48.00', date: 'Mar 8, 2026', status: 'completed', imageIdx: 1, quantity: 20, co2Offset: 20 },
   { id: 5, name: 'Forest Guardian NFT #117', category: 'nft', price: '0.08 ETH', date: 'Mar 5, 2026', status: 'completed', imageIdx: 0, quantity: 1 },
-  { id: 6, name: 'Bamboo Water Bottle', category: 'merch', price: '€ 24.00', date: 'Feb 28, 2026', status: 'completed', imageIdx: 1, quantity: 2 },
+  { id: 6, name: 'Bamboo Water Bottle', category: 'merch', price: 'EUR 24.00', date: 'Feb 28, 2026', status: 'completed', imageIdx: 1, quantity: 2 },
 ];
 
 const NFTS: NFT[] = [
@@ -71,39 +71,39 @@ const NFTS: NFT[] = [
 ];
 
 const PRODUCTS: Product[] = [
-  { id: 1, name: 'ZStream Verified Carbon Credit', category: 'carbon', price: '€ 2.50/unit', stock: 'unlimited', status: 'live', sold: 1482, revenue: '€ 3,705', imageIdx: 0 },
-  { id: 2, name: 'Eco Hoodie (Organic Cotton)', category: 'merch', price: '€ 49.00', stock: 48, status: 'live', sold: 152, revenue: '€ 7,448', imageIdx: 0 },
+  { id: 1, name: 'ZStream Verified Carbon Credit', category: 'carbon', price: 'EUR 2.50/unit', stock: 'unlimited', status: 'live', sold: 1482, revenue: 'EUR 3,705', imageIdx: 0 },
+  { id: 2, name: 'Eco Hoodie (Organic Cotton)', category: 'merch', price: 'EUR 49.00', stock: 48, status: 'live', sold: 152, revenue: 'EUR 7,448', imageIdx: 0 },
   { id: 3, name: 'Solar Sunrise NFT Drop', category: 'nft', price: '0.18 ETH', stock: 'unlimited', status: 'live', sold: 91, revenue: '16.38 ETH', imageIdx: 1 },
-  { id: 4, name: 'ZStream Bamboo Bottle', category: 'merch', price: '€ 24.00', stock: 0, status: 'sold_out', sold: 200, revenue: '€ 4,800', imageIdx: 1 },
-  { id: 5, name: 'Green Bundle NFT', category: 'nft', price: '0.05 ETH', stock: 'unlimited', status: 'draft', sold: 0, revenue: '—', imageIdx: 0 },
+  { id: 4, name: 'ZStream Bamboo Bottle', category: 'merch', price: 'EUR 24.00', stock: 0, status: 'sold_out', sold: 200, revenue: 'EUR 4,800', imageIdx: 1 },
+  { id: 5, name: 'Green Bundle NFT', category: 'nft', price: '0.05 ETH', stock: 'unlimited', status: 'draft', sold: 0, revenue: '-', imageIdx: 0 },
 ];
 
 const REVIEWS: Review[] = [
   { id: 1, product: 'Eco Hoodie', reviewer: 'EcoWarrior99', avatarIdx: 0, rating: 5, comment: 'Best quality eco merch I\'ve ever bought! Worth every cent.', date: 'Mar 15, 2026' },
-  { id: 2, product: 'Carbon Credits', reviewer: 'GreenStreamer', avatarIdx: 1, rating: 5, comment: 'TÜV certified offsets — transparent and trustworthy.', date: 'Mar 12, 2026' },
+  { id: 2, product: 'Carbon Credits', reviewer: 'GreenStreamer', avatarIdx: 1, rating: 5, comment: 'TUV certified offsets - transparent and trustworthy.', date: 'Mar 12, 2026' },
   { id: 3, product: 'Solar Sunrise NFT', reviewer: 'ClimateHero', avatarIdx: 2, rating: 4, comment: 'Gorgeous artwork. Wish there were more in the collection!', date: 'Mar 10, 2026' },
   { id: 4, product: 'Bamboo Bottle', reviewer: 'NatureLover', avatarIdx: 3, rating: 5, comment: 'Zero waste packaging. Exactly what I expected.', date: 'Mar 8, 2026' },
 ];
 
 const PAYOUT_HISTORY = [
-  { date: 'Feb 28, 2026', amount: '€ 5,420.00', status: 'paid', method: 'Stripe Connect' },
-  { date: 'Jan 31, 2026', amount: '€ 3,890.50', status: 'paid', method: 'Stripe Connect' },
-  { date: 'Dec 31, 2025', amount: '€ 6,142.00', status: 'paid', method: 'Stripe Connect' },
+  { date: 'Feb 28, 2026', amount: 'EUR 5,420.00', status: 'paid', method: 'Stripe Connect' },
+  { date: 'Jan 31, 2026', amount: 'EUR 3,890.50', status: 'paid', method: 'Stripe Connect' },
+  { date: 'Dec 31, 2025', amount: 'EUR 6,142.00', status: 'paid', method: 'Stripe Connect' },
 ];
 
 const TABS: { id: DashTab; label: string; icon: string; mode: ViewMode | 'both' }[] = [
   { id: 'overview', label: 'Overview', icon: '📊', mode: 'both' },
-  { id: 'purchases', label: 'My Purchases', icon: '🛍️', mode: 'buyer' },
-  { id: 'nft', label: 'NFT Wallet', icon: '🖼️', mode: 'buyer' },
-  { id: 'seller', label: 'Products', icon: '📦', mode: 'seller' },
-  { id: 'sales', label: 'Sales & Reviews', icon: '⭐', mode: 'seller' },
+  { id: 'purchases', label: 'My Purchases', icon: '🛍', mode: 'buyer' },
+  { id: 'nft', label: 'NFT Wallet', icon: 'NFT', mode: 'buyer' },
+  { id: 'seller', label: 'Products', icon: 'Box', mode: 'seller' },
+  { id: 'sales', label: 'Sales & Reviews', icon: 'P', mode: 'seller' },
   { id: 'payouts', label: 'Payouts', icon: '💶', mode: 'seller' },
 ];
 
 const catConfig = {
   carbon: { label: 'Carbon Credit', color: 'rgb(0,229,186)', bg: 'rgba(0,229,186,0.08)', border: 'rgba(0,229,186,0.2)', icon: '🌿' },
-  nft: { label: 'NFT', color: 'rgb(196,132,252)', bg: 'rgba(196,132,252,0.08)', border: 'rgba(196,132,252,0.2)', icon: '🖼️' },
-  merch: { label: 'Merch', color: 'rgb(251,191,36)', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)', icon: '👕' },
+  nft: { label: 'NFT', color: 'rgb(196,132,252)', bg: 'rgba(196,132,252,0.08)', border: 'rgba(196,132,252,0.2)', icon: 'NFT' },
+  merch: { label: 'Merch', color: 'rgb(251,191,36)', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)', icon: 'Merch' },
 };
 
 const rarityConfig = {
@@ -126,8 +126,8 @@ const purchaseStatusConfig = {
 };
 
 function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode) => void }) {
-  const totalCarbonCredits = PURCHASES.filter(p => p.category === 'carbon').reduce((s, p) => s + (p.co2Offset ?? 0), 0);
-  const totalRevenue = '€ 21,157.50';
+  const totalCarbonCredits = PURCHASES.filter((p) => p.category === 'carbon').reduce((s, p) => s + (p.co2Offset || 0), 0);
+  const totalRevenue = 'EUR 21,157.50';
 
   return (
     <div className="space-y-5">
@@ -135,7 +135,7 @@ function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode)
       <div className="flex gap-2 p-1 rounded-xl w-fit" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
         {(['buyer', 'seller'] as const).map(m => (
           <button key={m} onClick={() => setMode(m)} className="px-5 py-2 rounded-lg text-xs font-bold transition-all capitalize" style={mode === m ? { background: 'rgba(0,229,186,0.15)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' } : { color: 'rgb(107,114,128)' }}>
-            {m === 'buyer' ? '🛍️ Buyer' : '🏪 Seller'}
+            {m === 'buyer' ? '🛍 Buyer' : '🏪 Seller'}
           </button>
         ))}
       </div>
@@ -145,9 +145,9 @@ function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode)
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: 'Carbon Credits', value: `${totalCarbonCredits} t`, icon: '🌿', color: 'rgb(0,229,186)' },
-              { label: 'NFTs Owned', value: NFTS.length, icon: '🖼️', color: 'rgb(196,132,252)' },
-              { label: 'Total Spent', value: '€ 133.50', icon: '💶', color: 'rgb(251,191,36)' },
-              { label: 'Orders', value: PURCHASES.length, icon: '📦', color: 'rgb(96,165,250)' },
+              { label: 'NFTs Owned', value: NFTS.length, icon: 'NFT', color: 'rgb(196,132,252)' },
+              { label: 'Total Spent', value: 'EUR 133.50', icon: '💶', color: 'rgb(251,191,36)' },
+              { label: 'Orders', value: PURCHASES.length, icon: 'Box', color: 'rgb(96,165,250)' },
             ].map((s, i) => (
               <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
                 <div className="text-2xl mb-1">{s.icon}</div>
@@ -165,7 +165,7 @@ function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode)
             <div className="flex items-center gap-4">
               <div>
                 <p className="font-black text-4xl" style={{ color: 'rgb(0,229,186)' }}>{totalCarbonCredits}</p>
-                <p className="text-gray-400 text-xs mt-0.5">Tonnes CO₂ offset</p>
+                <p className="text-gray-400 text-xs mt-0.5">Tonnes CO2 offset</p>
               </div>
               <div className="flex-1">
                 <div className="h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
@@ -216,9 +216,9 @@ function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode)
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { label: 'Total Revenue', value: totalRevenue, icon: '💶', color: 'rgb(251,191,36)' },
-              { label: 'Active Products', value: PRODUCTS.filter(p => p.status === 'live').length, icon: '📦', color: 'rgb(0,229,186)' },
-              { label: 'Total Units Sold', value: PRODUCTS.reduce((s, p) => s + p.sold, 0).toLocaleString(), icon: '🛍️', color: 'rgb(96,165,250)' },
-              { label: 'Avg. Rating', value: '4.8 ⭐', icon: '⭐', color: 'rgb(251,191,36)' },
+              { label: 'Active Products', value: PRODUCTS.filter(p => p.status === 'live').length, icon: 'Box', color: 'rgb(0,229,186)' },
+              { label: 'Total Units Sold', value: PRODUCTS.reduce((s, p) => s + p.sold, 0).toLocaleString(), icon: '🛍', color: 'rgb(96,165,250)' },
+              { label: 'Avg. Rating', value: '4.8 P', icon: 'P', color: 'rgb(251,191,36)' },
             ].map((s, i) => (
               <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.07 }} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
                 <div className="text-2xl mb-1">{s.icon}</div>
@@ -239,7 +239,7 @@ function OverviewTab({ mode, setMode }: { mode: ViewMode; setMode: (m: ViewMode)
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-white text-[10px] font-semibold truncate">{p.name}</p>
-                      <p className="text-gray-500 text-[9px]">{p.sold} sold · {p.revenue}</p>
+                      <p className="text-gray-500 text-[9px]">{p.sold} sold  {p.revenue}</p>
                     </div>
                     <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0" style={{ background: statusConfig.live.bg, color: statusConfig.live.color }}>Live</span>
                   </div>
@@ -303,7 +303,7 @@ function PurchasesTab() {
                 <div className="flex items-center gap-2 mt-0.5 flex-wrap">
                   <span className="text-[9px] px-1.5 py-0.5 rounded-full font-bold" style={{ background: cc.bg, color: cc.color, border: `1px solid ${cc.border}` }}>{cc.icon} {cc.label}</span>
                   <span className="text-gray-500 text-[9px]">{p.date}</span>
-                  {p.co2Offset && <span className="text-[9px] font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 {p.co2Offset}t CO₂</span>}
+                  {p.co2Offset && <span className="text-[9px] font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 {p.co2Offset}t CO2</span>}
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
@@ -340,7 +340,7 @@ function NFTTab() {
                 <p className="absolute bottom-2 left-2 right-2 text-white font-bold text-xs truncate">{nft.name}</p>
               </div>
               <div className="p-3" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                <p className="text-gray-500 text-[9px] mb-1">{nft.collection} · {nft.tokenId}</p>
+                <p className="text-gray-500 text-[9px] mb-1">{nft.collection}  {nft.tokenId}</p>
                 <div className="flex items-center justify-between">
                   <span className="font-black text-xs text-white">{nft.value}</span>
                   <span className="text-[9px] font-bold" style={{ color: 'rgb(0,229,186)' }}>🌿 {nft.co2Saved}t</span>
@@ -393,7 +393,7 @@ function SellerProductsTab() {
                   </td>
                   <td className="px-4 py-3"><span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ background: cc.bg, color: cc.color }}>{cc.icon} {cc.label}</span></td>
                   <td className="px-4 py-3 text-white font-medium">{p.price}</td>
-                  <td className="px-4 py-3 text-gray-400">{p.stock === 'unlimited' ? '∞' : p.stock === 0 ? <span className="text-red-400">0</span> : p.stock}</td>
+                  <td className="px-4 py-3 text-gray-400">{p.stock === 'unlimited' ? 'Unlimited' : p.stock === 0 ? <span className="text-red-400">0</span> : p.stock}</td>
                   <td className="px-4 py-3 text-white">{p.sold.toLocaleString()}</td>
                   <td className="px-4 py-3 font-bold" style={{ color: 'rgb(0,229,186)' }}>{p.revenue}</td>
                   <td className="px-4 py-3"><span className="text-[9px] font-bold px-2 py-1 rounded-full" style={{ background: sc.bg, color: sc.color, border: `1px solid ${sc.border}` }}>{sc.label}</span></td>
@@ -419,7 +419,7 @@ function SellerProductsTab() {
               <button onClick={() => setShowAddModal(false)} className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors" aria-label="Close">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
-              <h2 className="text-white font-black text-lg mb-5">📦 List New Product</h2>
+              <h2 className="text-white font-black text-lg mb-5">List New Product</h2>
               <div className="space-y-3">
                 <div>
                   <label className="text-gray-400 text-xs block mb-1.5">Product Name <span className="text-red-400">*</span></label>
@@ -441,7 +441,7 @@ function SellerProductsTab() {
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="text-gray-400 text-xs block mb-1.5">Price <span className="text-red-400">*</span></label>
-                    <input placeholder="€ 0.00" className="w-full bg-transparent border rounded-xl px-3 py-2 text-white text-sm outline-none" style={{ borderColor: 'rgba(255,255,255,0.12)' }} />
+                    <input placeholder="EUR 0.00" className="w-full bg-transparent border rounded-xl px-3 py-2 text-white text-sm outline-none" style={{ borderColor: 'rgba(255,255,255,0.12)' }} />
                   </div>
                   <div>
                     <label className="text-gray-400 text-xs block mb-1.5">Stock</label>
@@ -480,8 +480,8 @@ function SalesTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {[
-          { label: 'Units Sold', value: PRODUCTS.reduce((s, p) => s + p.sold, 0).toLocaleString(), icon: '📦', color: 'rgb(96,165,250)' },
-          { label: 'Avg. Rating', value: '4.8 / 5', icon: '⭐', color: 'rgb(251,191,36)' },
+          { label: 'Units Sold', value: PRODUCTS.reduce((s, p) => s + p.sold, 0).toLocaleString(), icon: 'Box', color: 'rgb(96,165,250)' },
+          { label: 'Avg. Rating', value: '4.8 / 5', icon: 'P', color: 'rgb(251,191,36)' },
         ].map(s => (
           <div key={s.label} className="p-4 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
             <div className="text-2xl mb-1">{s.icon}</div>
@@ -504,7 +504,7 @@ function SalesTab() {
                   <span className="text-white text-xs font-semibold">{r.reviewer}</span>
                   <span className="text-yellow-400 text-[10px]">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
                 </div>
-                <p className="text-gray-500 text-[9px]">{r.product} · {r.date}</p>
+                <p className="text-gray-500 text-[9px]">{r.product}  {r.date}</p>
               </div>
             </div>
             <p className="text-gray-300 text-xs leading-relaxed">{r.comment}</p>
@@ -522,13 +522,13 @@ function PayoutsTab() {
         <div className="flex items-center gap-2 mb-3">
           <span className="text-xl">💶</span>
           <h3 className="text-white font-bold text-sm">Stripe Connect</h3>
-          <span className="text-[9px] font-bold px-2 py-0.5 rounded-full ml-auto" style={{ background: 'rgba(0,229,186,0.15)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' }}>✓ Connected</span>
+          <span className="text-[9px] font-bold px-2 py-0.5 rounded-full ml-auto" style={{ background: 'rgba(0,229,186,0.15)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' }}>Connected</span>
         </div>
         <div className="grid grid-cols-3 gap-4">
           {[
-            { label: 'Next Payout', value: '€ 1,940.00', sub: 'Mar 31, 2026' },
-            { label: 'This Month', value: '€ 5,242.50', sub: '+18% vs last month' },
-            { label: 'Lifetime', value: '€ 21,157.50', sub: 'All time earnings' },
+            { label: 'Next Payout', value: 'EUR 1,940.00', sub: 'Mar 31, 2026' },
+            { label: 'This Month', value: 'EUR 5,242.50', sub: '+18% vs last month' },
+            { label: 'Lifetime', value: 'EUR 21,157.50', sub: 'All time earnings' },
           ].map(s => (
             <div key={s.label} className="text-center">
               <p className="font-black text-lg text-white">{s.value}</p>
@@ -561,9 +561,9 @@ function PayoutsTab() {
             <motion.div key={p.date} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }} className="flex items-center justify-between p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
               <div>
                 <p className="text-white text-xs font-semibold">{p.amount}</p>
-                <p className="text-gray-500 text-[9px]">{p.date} · {p.method}</p>
+                <p className="text-gray-500 text-[9px]">{p.date}  {p.method}</p>
               </div>
-              <span className="text-[9px] font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>✓ {p.status}</span>
+              <span className="text-[9px] font-bold px-2 py-1 rounded-full" style={{ background: 'rgba(0,229,186,0.1)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.2)' }}>{p.status}</span>
             </motion.div>
           ))}
         </div>
@@ -593,19 +593,19 @@ export default function MarketplaceDashboardPage() {
             </div>
             <div>
               <h1 className="text-white font-black text-2xl">Marketplace Dashboard</h1>
-              <p className="text-gray-500 text-xs">Carbon Credits · NFTs · Eco Merch</p>
+              <p className="text-gray-500 text-xs">Carbon Credits  NFTs  Eco Merch</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex gap-2 p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
               {(['buyer', 'seller'] as const).map(m => (
                 <button key={m} onClick={() => { setViewMode(m); setActiveTab('overview'); }} className="px-4 py-1.5 rounded-lg text-xs font-bold capitalize transition-all" style={viewMode === m ? { background: 'rgba(0,229,186,0.15)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.3)' } : { color: 'rgb(107,114,128)' }}>
-                  {m === 'buyer' ? '🛍️ Buyer' : '🏪 Seller'}
+                  {m === 'buyer' ? '🛍 Buyer' : '🏪 Seller'}
                 </button>
               ))}
             </div>
             <Link href="/marketplace">
-              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>← Marketplace</button>
+              <button className="px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Marketplace</button>
             </Link>
           </div>
         </motion.div>

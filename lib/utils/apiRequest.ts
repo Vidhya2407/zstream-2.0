@@ -1,4 +1,4 @@
-import type { NextRequest } from 'next/server';
+﻿import type { NextRequest } from 'next/server';
 import { normalizeCatalogLanguage, type CatalogLanguage } from '../services/catalogService';
 
 export const getRequestLanguage = (request: NextRequest): CatalogLanguage => {
@@ -19,3 +19,5 @@ export const getRequestNumber = (request: NextRequest, key: string, fallback = 0
 export const getRequestString = (request: NextRequest, key: string, fallback = ''): string => {
   return request.nextUrl.searchParams.get(key) ?? fallback;
 };
+
+

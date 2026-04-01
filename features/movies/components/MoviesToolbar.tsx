@@ -44,3 +44,5 @@ export default function MoviesToolbar({ activeGenre, genres, isGerman, isLight, 
     </>
   );
 }
+
+

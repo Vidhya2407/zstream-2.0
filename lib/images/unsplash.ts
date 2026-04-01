@@ -1,4 +1,4 @@
-export interface UnsplashImage {
+﻿export interface UnsplashImage {
   url: string;
   credit: string;
   photographer: string;
@@ -108,7 +108,7 @@ export const contentImages = {
     {
       url: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
       credit: 'Sustainability',
-      photographer: 'Karsten Würth',
+      photographer: 'Karsten Wrth',
       photographerUrl: 'https://unsplash.com/@karsten_wuerth'
     }
   ],
@@ -234,3 +234,4 @@ export function getRandomImage(category: keyof typeof contentImages): UnsplashIm
 export function getImageAttribution(image: UnsplashImage): string {
   return `Photo by ${image.photographer} on Unsplash`;
 }
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useImpactStore } from '../../lib/stores/impactStore';
@@ -11,10 +11,10 @@ export default function ImpactDashboard() {
   const treesEquivalent = (totalCO2Saved / 21).toFixed(1);
 
   const stats = [
-    { icon: '🌍', label: 'Total CO₂ Saved', value: totalCO2Saved.toFixed(2) + ' kg', color: 'eco-green', comparison: 'vs industry avg' },
+    { icon: '🌍', label: 'Total CO2 Saved', value: totalCO2Saved.toFixed(2) + ' kg', color: 'eco-green', comparison: 'vs industry avg' },
     { icon: '💧', label: 'Water Saved', value: totalWaterSaved.toFixed(1) + ' L', color: 'cyan-neon', comparison: 'data center cooling' },
-    { icon: '♻️', label: 'E-Waste Avoided', value: totalEwasteSaved.toFixed(2) + ' g', color: 'electric-blue', comparison: 'hardware lifecycle' },
-    { icon: '🌲', label: 'Trees Equivalent', value: treesEquivalent + ' trees', color: 'eco-green', comparison: 'annual CO₂ absorption' }
+    { icon: 'â™»', label: 'E-Waste Avoided', value: totalEwasteSaved.toFixed(2) + ' g', color: 'electric-blue', comparison: 'hardware lifecycle' },
+    { icon: '🌲', label: 'Trees Equivalent', value: treesEquivalent + ' trees', color: 'eco-green', comparison: 'annual CO2 absorption' }
   ];
 
   return (
@@ -91,13 +91,13 @@ export default function ImpactDashboard() {
         <div className="mt-8 glass p-6 rounded-2xl">
           <h3 className="text-xl font-bold mb-4 text-eco-green">{isGerman ? 'Methodik-Transparenz' : 'Methodology Transparency'}</h3>
           <div className="text-sm text-gray-400 space-y-2">
-            <p>• CO₂ calculations based on industry average of 55-90g per GB streamed</p>
-            <p>• Water usage derived from data center cooling requirements</p>
-            <p>• E-waste impact calculated from extended hardware lifecycle</p>
-            <p>• All metrics compared against traditional streaming platforms</p>
+            <p>- CO2 calculations based on industry average of 55-90g per GB streamed</p>
+            <p>- Water usage derived from data center cooling requirements</p>
+            <p>- E-waste impact calculated from extended hardware lifecycle</p>
+            <p>- All metrics compared against traditional streaming platforms</p>
           </div>
           <a href="/methodology" className="inline-block mt-4 text-cyan-neon hover:text-eco-green transition-colors">
-            View Full Methodology →
+            View Full Methodology â†’
           </a>
         </div>
       </motion.div>
@@ -118,3 +118,5 @@ export default function ImpactDashboard() {
     </div>
   );
 }
+
+

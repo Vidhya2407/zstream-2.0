@@ -62,3 +62,5 @@ export const fetchMinisBrowser = (lang?: string, signal?: AbortSignal) =>
   fetchBrowserJson<MinisApiResponse>(apiRoutes.minis, { lang }, signal);
 export const fetchWatchBrowser = (id: string, signal?: AbortSignal) =>
   fetchBrowserJson<WatchApiResponse>(apiRoutes.watch(id), undefined, signal);
+
+

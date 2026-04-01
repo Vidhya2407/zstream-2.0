@@ -26,21 +26,21 @@ function FeatureIcon({ iconKey }: { iconKey: HomeFeatureIconKey }): ReactNode {
 
 export default function HomeFeatureSection({ badge, title, highlight, description, features, display }: HomeFeatureSectionProps) {
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden py-[var(--page-section-space)]">
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0, 229, 186, 0.05), transparent 60%)' }} />
-      <div className="relative z-10 mx-auto max-w-[1600px] px-8 lg:px-12">
-        <motion.div className="mb-14 text-center" initial={{ opacity: 0, y: 20 }} viewport={{ once: true }} whileInView={{ opacity: 1, y: 0 }}>
+      <div className="relative z-10 app-container">
+        <motion.div className="mb-16 md:mb-20 text-center" initial={{ opacity: 0, y: 20 }} viewport={{ once: true }} whileInView={{ opacity: 1, y: 0 }}>
           <span className="mb-4 inline-block rounded-full px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em]" style={{ background: 'rgba(0, 229, 186, 0.08)', border: '1px solid rgba(0, 229, 186, 0.2)', color: 'rgb(0, 229, 186)' }}>
             {badge}
           </span>
-          <h2 className="text-4xl font-black tracking-tight" style={{ color: 'var(--app-title-color)' }}>
+          <h2 className="text-3xl font-black tracking-tight sm:text-4xl" style={{ color: 'var(--app-title-color)' }}>
             {title}{' '}
             <span className="bg-gradient-to-r from-eco-green-bright to-cyan-neon bg-clip-text text-transparent">{highlight}</span>
           </h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed" style={{ color: 'var(--app-body-color)' }}>{description}</p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:gap-10 md:grid-cols-3">
           {features.map((feature, index) => {
             const card = display[index];
             if (!card) return null;
@@ -61,3 +61,5 @@ export default function HomeFeatureSection({ badge, title, highlight, descriptio
     </section>
   );
 }
+
+

@@ -17,3 +17,5 @@ export default function GenreFilterBar({ selected, onChange }: GenreFilterBarPro
 
   return <FilterChips activeId={selected} activeLayoutId="genre-pill" fadeRight items={items} onChange={onChange} />;
 }
+
+

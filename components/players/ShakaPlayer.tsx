@@ -2,6 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hls from 'hls.js';
+import { useSettingsStore } from '../../lib/stores/settingsStore';
+import { useThemeStore } from '../../lib/stores/themeStore';
 
 export interface DRMConfig {
   widevine?: string;
@@ -9,14 +11,25 @@ export interface DRMConfig {
   fairplay?: string;
 }
 
+type QualityValue = 'auto' | '1080' | '720' | '480' | '360';
+
 export interface ShakaPlayerProps {
   src: string;
   drm?: DRMConfig;
   isPremium?: boolean;
+  showQualitySelector?: boolean;
+  onQualityChange?: (quality: { label: string; resolution: number }) => void;
   onTimeUpdate?: (currentTime: number, duration: number) => void;
   onPlay?: () => void;
   onPause?: () => void;
   onEnded?: () => void;
+}
+
+interface ShakaVariantTrack {
+  id?: number;
+  active?: boolean;
+  height?: number;
+  bandwidth?: number;
 }
 
 interface ShakaPlayerInstance {
@@ -24,6 +37,8 @@ interface ShakaPlayerInstance {
   load(url: string): Promise<void>;
   destroy(): Promise<void>;
   addEventListener(event: string, handler: (e: unknown) => void): void;
+  getVariantTracks?: () => ShakaVariantTrack[];
+  selectVariantTrack?: (track: ShakaVariantTrack, clearBuffer?: boolean) => void;
 }
 
 interface ShakaStatic {
@@ -36,6 +51,16 @@ interface ShakaStatic {
 
 const SHAKA_CDN =
   'https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.compiled.min.js';
+
+const QUALITY_OPTIONS: { value: QualityValue; label: string; resolution: number }[] = [
+  { value: 'auto', label: 'Auto', resolution: 720 },
+  { value: '1080', label: '1080p', resolution: 1080 },
+  { value: '720', label: '720p', resolution: 720 },
+  { value: '480', label: '480p', resolution: 480 },
+  { value: '360', label: '360p', resolution: 360 },
+];
+
+const MANUAL_QUALITY_OPTIONS = QUALITY_OPTIONS.filter((option) => option.value !== 'auto');
 
 function getWindowShaka(): ShakaStatic | undefined {
   return (window as unknown as Record<string, unknown>)['shaka'] as ShakaStatic | undefined;
@@ -67,10 +92,50 @@ const DRM_LABELS = [
   { name: 'FairPlay', logo: 'F', color: 'rgb(147, 51, 234)', supported: true },
 ];
 
+function getQualityDetails(value: QualityValue) {
+  return QUALITY_OPTIONS.find((option) => option.value === value) ?? QUALITY_OPTIONS[0];
+}
+
+function pickClosestHeight<T extends { height?: number }>(tracks: T[], targetHeight: number) {
+  return [...tracks]
+    .filter((track) => typeof track.height === 'number' && Number(track.height) > 0)
+    .sort((a, b) => Math.abs(Number(a.height) - targetHeight) - Math.abs(Number(b.height) - targetHeight))[0];
+}
+
+function mapHeightToQualityValue(height?: number): QualityValue | null {
+  if (!height || height <= 0) return null;
+  const match = [...MANUAL_QUALITY_OPTIONS].sort(
+    (a, b) => Math.abs(a.resolution - height) - Math.abs(b.resolution - height),
+  )[0];
+  return match ? match.value : null;
+}
+
+function getAvailableQualityValues(heights: number[]): QualityValue[] {
+  const values = new Set<QualityValue>(['auto']);
+  heights.forEach((height) => {
+    const mapped = mapHeightToQualityValue(height);
+    if (mapped) values.add(mapped);
+  });
+  return QUALITY_OPTIONS.map((option) => option.value).filter((value) => values.has(value));
+}
+
+function applySelectedQuality(
+  value: QualityValue,
+  setSelectedQuality: React.Dispatch<React.SetStateAction<QualityValue>>,
+  setPreferredVideoQuality: (quality: QualityValue) => void,
+  onQualityChange?: (quality: { label: string; resolution: number }) => void,
+) {
+  setSelectedQuality(value);
+  setPreferredVideoQuality(value);
+  onQualityChange?.(getQualityDetails(value));
+}
+
 export default function ShakaPlayer({
   src,
   drm,
   isPremium,
+  showQualitySelector = false,
+  onQualityChange,
   onTimeUpdate,
   onPlay,
   onPause,
@@ -79,16 +144,94 @@ export default function ShakaPlayer({
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const shakaRef = React.useRef<ShakaPlayerInstance | null>(null);
   const hlsRef = React.useRef<Hls | null>(null);
+  const { theme } = useThemeStore();
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [playerMode, setPlayerMode] = React.useState<'shaka' | 'hls' | 'native' | null>(null);
   const [drmActive, setDrmActive] = React.useState(false);
   const [playerError, setPlayerError] = React.useState<string | null>(null);
   const [showDrmInfo, setShowDrmInfo] = React.useState(false);
+  const [availableQualities, setAvailableQualities] = React.useState<QualityValue[]>(['auto', '1080', '720', '480', '360']);
+  const [appliedQuality, setAppliedQuality] = React.useState<QualityValue>('auto');
+  const preferredVideoQuality = useSettingsStore((state) => state.preferredVideoQuality);
+  const setPreferredVideoQuality = useSettingsStore((state) => state.setPreferredVideoQuality);
+  const [selectedQuality, setSelectedQuality] = React.useState<QualityValue>(preferredVideoQuality);
+  const isLight = theme === 'light';
+  const selectedQualityRef = React.useRef<QualityValue>(preferredVideoQuality);
+  const playerModeRef = React.useRef<'shaka' | 'hls' | 'native' | null>(null);
+  const onQualityChangeRef = React.useRef(onQualityChange);
+
+  React.useEffect(() => {
+    selectedQualityRef.current = selectedQuality;
+  }, [selectedQuality]);
+
+  React.useEffect(() => {
+    playerModeRef.current = playerMode;
+  }, [playerMode]);
+
+  React.useEffect(() => {
+    onQualityChangeRef.current = onQualityChange;
+  }, [onQualityChange]);
+
+  React.useEffect(() => {
+    setSelectedQuality(preferredVideoQuality);
+    setAppliedQuality(preferredVideoQuality);
+    onQualityChange?.(getQualityDetails(preferredVideoQuality));
+  }, [src, preferredVideoQuality, onQualityChange]);
+
+  const applyQualityPreference = React.useCallback(
+    (value: QualityValue) => {
+      const quality = getQualityDetails(value);
+      onQualityChangeRef.current?.(quality);
+
+      if (playerModeRef.current === 'hls' && hlsRef.current) {
+        if (value === 'auto') {
+          hlsRef.current.currentLevel = -1;
+          hlsRef.current.nextLevel = -1;
+          hlsRef.current.loadLevel = -1;
+          setAppliedQuality('auto');
+          return;
+        }
+
+        const matchingLevel = pickClosestHeight(hlsRef.current.levels, quality.resolution);
+        if (matchingLevel) {
+          const levelIndex = hlsRef.current.levels.findIndex((level) => level === matchingLevel);
+          if (levelIndex >= 0) {
+            hlsRef.current.currentLevel = levelIndex;
+            hlsRef.current.nextLevel = levelIndex;
+            hlsRef.current.loadLevel = levelIndex;
+            setAppliedQuality(mapHeightToQualityValue(matchingLevel.height) ?? value);
+          }
+        }
+        return;
+      }
+
+      if (playerModeRef.current === 'shaka' && shakaRef.current?.getVariantTracks && shakaRef.current.selectVariantTrack) {
+        if (value === 'auto') {
+          shakaRef.current.configure({ abr: { enabled: true } });
+          setAppliedQuality('auto');
+          return;
+        }
+
+        const tracks = shakaRef.current
+          .getVariantTracks()
+          .filter((track) => typeof track.height === 'number' && Number(track.height) > 0);
+        const matchingTrack = pickClosestHeight(tracks, quality.resolution);
+        if (matchingTrack) {
+          shakaRef.current.configure({ abr: { enabled: false } });
+          shakaRef.current.selectVariantTrack(matchingTrack, true);
+          setAppliedQuality(mapHeightToQualityValue(matchingTrack.height) ?? value);
+        }
+      }
+    },
+    [],
+  );
 
   React.useEffect(() => {
     if (!videoRef.current) return;
     const video = videoRef.current;
+    const isHlsSource = src.includes('.m3u8');
+    const isDashSource = src.includes('.mpd');
 
     const cleanup = () => {
       shakaRef.current?.destroy().catch(() => null);
@@ -108,7 +251,7 @@ export default function ShakaPlayer({
         shakaRef.current = player;
 
         const config: Record<string, unknown> = {};
-        const hasDRM = drm && (drm.widevine || drm.playready);
+        const hasDRM = isDashSource && drm && (drm.widevine || drm.playready);
         if (hasDRM) {
           config['drm'] = {
             servers: {
@@ -117,23 +260,44 @@ export default function ShakaPlayer({
             },
           };
           setDrmActive(true);
+        } else {
+          setDrmActive(false);
         }
         player.configure(config);
 
         player.addEventListener('error', () => {
           console.warn('[ShakaPlayer] DRM error, stream may not have DRM');
         });
+        player.addEventListener('adaptation', () => {
+          const activeTrack = player.getVariantTracks?.().find((track) => track.active);
+          setAppliedQuality(mapHeightToQualityValue(activeTrack?.height) ?? 'auto');
+        });
+        player.addEventListener('variantchanged', () => {
+          const activeTrack = player.getVariantTracks?.().find((track) => track.active);
+          setAppliedQuality(mapHeightToQualityValue(activeTrack?.height) ?? 'auto');
+        });
 
         await player.load(src);
+        const variantTracks = player.getVariantTracks?.() ?? [];
+        setAvailableQualities(
+          getAvailableQualityValues(
+            variantTracks
+              .map((track) => Number(track.height))
+              .filter((height) => Number.isFinite(height) && height > 0),
+          ),
+        );
+        const activeTrack = variantTracks.find((track) => track.active);
+        setAppliedQuality(mapHeightToQualityValue(activeTrack?.height) ?? 'auto');
         setPlayerMode('shaka');
         setIsLoading(false);
+        requestAnimationFrame(() => applyQualityPreference(selectedQualityRef.current));
       } catch {
         initHLS();
       }
     };
 
     const initHLS = () => {
-      if (src.endsWith('.mpd')) {
+      if (isDashSource) {
         video.src = src;
         setPlayerMode('native');
         setIsLoading(false);
@@ -145,26 +309,50 @@ export default function ShakaPlayer({
         hls.loadSource(src);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          setAvailableQualities(
+            getAvailableQualityValues(
+              hls.levels
+                .map((level) => Number(level.height))
+                .filter((height) => Number.isFinite(height) && height > 0),
+            ),
+          );
           setPlayerMode('hls');
           setIsLoading(false);
+          applyQualityPreference(selectedQualityRef.current);
+        });
+        hls.on(Hls.Events.LEVEL_SWITCHED, (_, data) => {
+          const level = hls.levels[data.level];
+          setAppliedQuality(mapHeightToQualityValue(level?.height) ?? 'auto');
         });
         hls.on(Hls.Events.ERROR, (_, data) => {
           if (data.fatal) setPlayerError('Stream unavailable');
         });
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = src;
+        setAvailableQualities(['auto']);
         setPlayerMode('native');
         setIsLoading(false);
       } else {
         video.src = src;
+        setAvailableQualities(['auto']);
         setPlayerMode('native');
         setIsLoading(false);
       }
     };
 
-    initShaka();
+    setPlayerError(null);
+    setIsLoading(true);
+    if (isHlsSource) {
+      initHLS();
+    } else {
+      initShaka();
+    }
     return cleanup;
-  }, [src, drm]);
+  }, [src, drm, applyQualityPreference]);
+
+  React.useEffect(() => {
+    applyQualityPreference(selectedQuality);
+  }, [selectedQuality, applyQualityPreference]);
 
   React.useEffect(() => {
     const video = videoRef.current;
@@ -184,6 +372,9 @@ export default function ShakaPlayer({
       video.removeEventListener('ended', onEndedEv);
     };
   }, [onTimeUpdate, onPlay, onPause, onEnded]);
+
+  const selectedQualityDetails = getQualityDetails(selectedQuality);
+  const appliedQualityDetails = getQualityDetails(appliedQuality);
 
   return (
     <div
@@ -211,8 +402,8 @@ export default function ShakaPlayer({
             />
           </div>
           <div className="text-center">
-            <p className="text-white text-xs font-semibold mb-1">Initialising player…</p>
-            <p className="text-gray-500 text-[10px]">Shaka Player · Widevine · PlayReady · FairPlay</p>
+            <p className="text-white text-xs font-semibold mb-1">Initialising player...</p>
+            <p className="text-gray-500 text-[10px]">Shaka Player | Widevine | PlayReady | FairPlay</p>
           </div>
         </div>
       )}
@@ -253,9 +444,9 @@ export default function ShakaPlayer({
                 onClick={() => setShowDrmInfo((v) => !v)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
                 style={{
-                  background: 'rgba(10,15,24,0.85)',
-                  border: '1px solid rgba(0,229,186,0.35)',
-                  color: 'rgb(0,229,186)',
+                  background: isLight ? 'rgba(255,255,255,0.88)' : 'rgba(10,15,24,0.85)',
+                  border: isLight ? '1px solid rgba(15,23,42,0.12)' : '1px solid rgba(0,229,186,0.35)',
+                  color: isLight ? '#0f172a' : 'rgb(0,229,186)',
                   backdropFilter: 'blur(12px)',
                 }}
                 whileHover={{ scale: 1.04 }}
@@ -270,15 +461,15 @@ export default function ShakaPlayer({
                 <motion.div
                   className="absolute top-10 left-0 rounded-xl p-4 min-w-[220px]"
                   style={{
-                    background: 'rgba(10,15,24,0.95)',
-                    border: '1px solid rgba(255,255,255,0.08)',
+                    background: isLight ? 'rgba(255,255,255,0.96)' : 'rgba(10,15,24,0.95)',
+                    border: isLight ? '1px solid rgba(15,23,42,0.12)' : '1px solid rgba(255,255,255,0.08)',
                     backdropFilter: 'blur(20px)',
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+                    boxShadow: isLight ? '0 20px 60px rgba(15,23,42,0.18)' : '0 20px 60px rgba(0,0,0,0.5)',
                   }}
                   initial={{ opacity: 0, y: -6, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                 >
-                  <p className="text-white text-xs font-bold mb-3">DRM Encryption Active</p>
+                  <p className="text-xs font-bold mb-3" style={{ color: isLight ? '#0f172a' : '#ffffff' }}>DRM Encryption Active</p>
                   {DRM_LABELS.map((label) => (
                     <div key={label.name} className="flex items-center gap-2.5 mb-2">
                       <div
@@ -287,11 +478,11 @@ export default function ShakaPlayer({
                       >
                         {label.logo}
                       </div>
-                      <span className="text-gray-300 text-[11px]">{label.name}</span>
+                      <span className="text-[11px]" style={{ color: isLight ? '#334155' : '#d1d5db' }}>{label.name}</span>
                       <div className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: 'rgb(0,229,186)' }} />
                     </div>
                   ))}
-                  <p className="text-gray-600 text-[10px] mt-3 leading-relaxed">
+                  <p className="text-[10px] mt-3 leading-relaxed" style={{ color: isLight ? '#64748b' : '#6b7280' }}>
                     Content encrypted with multi-DRM. License verified per session.
                   </p>
                 </motion.div>
@@ -299,7 +490,38 @@ export default function ShakaPlayer({
             </div>
           )}
 
-          {isPremium && (
+          {showQualitySelector && (
+            <div className="absolute top-4 right-4 z-10 flex items-center gap-2 rounded-full px-2 py-2" style={{ background: isLight ? 'rgba(255,255,255,0.9)' : 'rgba(10,15,24,0.78)', border: isLight ? '1px solid rgba(15,23,42,0.12)' : '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)', boxShadow: isLight ? '0 16px 40px rgba(15,23,42,0.14)' : 'none' }}>
+              <span className="pl-1 text-[10px] font-bold uppercase tracking-[0.18em]" style={{ color: isLight ? '#334155' : 'rgba(255,255,255,0.65)' }}>Quality</span>
+              <div className="flex items-center gap-1">
+                {QUALITY_OPTIONS.map((option) => (
+                  (() => {
+                    const isAvailable = availableQualities.includes(option.value);
+                    return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    disabled={!isAvailable}
+                    onClick={() => applySelectedQuality(option.value, setSelectedQuality, setPreferredVideoQuality, onQualityChange)}
+                    className="rounded-full px-2.5 py-1 text-[10px] font-semibold transition-colors"
+                    style={{
+                      background: selectedQuality === option.value ? 'rgba(0,229,186,0.18)' : 'transparent',
+                      border: selectedQuality === option.value ? '1px solid rgba(0,229,186,0.4)' : '1px solid transparent',
+                      color: !isAvailable ? (isLight ? '#94a3b8' : 'rgba(255,255,255,0.28)') : selectedQuality === option.value ? 'rgb(0,229,186)' : isLight ? '#475569' : 'rgba(255,255,255,0.72)',
+                      opacity: isAvailable ? 1 : 0.55,
+                      cursor: isAvailable ? 'pointer' : 'not-allowed',
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                    );
+                  })()
+                ))}
+              </div>
+            </div>
+          )}
+
+          {isPremium && !showQualitySelector && (
             <div
               className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
               style={{
@@ -314,14 +536,29 @@ export default function ShakaPlayer({
             </div>
           )}
 
-          {playerMode && playerMode !== 'shaka' && (
+          {isPremium && showQualitySelector && (
             <div
-              className="absolute bottom-16 right-4 z-10 px-2 py-1 rounded text-[9px] text-gray-600"
-              style={{ background: 'rgba(0,0,0,0.5)' }}
+              className="absolute bottom-16 left-4 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider"
+              style={{
+                background: 'linear-gradient(135deg, rgba(147,51,234,0.85), rgba(79,70,229,0.85))',
+                backdropFilter: 'blur(8px)',
+              }}
             >
-              {playerMode === 'hls' ? 'HLS.js' : 'Native'} · Fallback mode
+              <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              <span className="text-white">Premium</span>
             </div>
           )}
+
+          <div
+            className="absolute bottom-16 right-4 z-10 px-2.5 py-1 rounded text-[9px]"
+            style={{ background: isLight ? 'rgba(255,255,255,0.88)' : 'rgba(0,0,0,0.5)', color: isLight ? '#475569' : 'rgba(255,255,255,0.72)', border: isLight ? '1px solid rgba(15,23,42,0.12)' : 'none' }}
+          >
+            {playerMode && playerMode !== 'shaka'
+              ? `${playerMode === 'hls' ? 'HLS.js' : 'Native'} | Selected ${selectedQualityDetails.label} | Applied ${appliedQualityDetails.label}`
+              : `Adaptive stream | Selected ${selectedQualityDetails.label} | Applied ${appliedQualityDetails.label}`}
+          </div>
         </>
       )}
     </div>

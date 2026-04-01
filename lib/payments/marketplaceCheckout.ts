@@ -1,4 +1,4 @@
-export interface MarketplaceCheckoutProduct {
+﻿export interface MarketplaceCheckoutProduct {
   id: string;
   name: string;
   description: string;
@@ -68,3 +68,5 @@ export const marketplaceCheckoutCatalog: Record<string, MarketplaceCheckoutProdu
 export function getMarketplaceCheckoutProduct(productId: string) {
   return marketplaceCheckoutCatalog[productId] ?? null;
 }
+
+

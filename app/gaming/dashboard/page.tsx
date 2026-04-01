@@ -1,4 +1,4 @@
-'use client';
+ï»¿'use client';
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -24,7 +24,7 @@ function CarbonSessionCounter() {
   return (
     <div className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold" style={{ background: 'rgba(0,200,80,0.08)', border: '1px solid rgba(0,200,80,0.2)', color: 'rgb(0,200,80)' }}>
       <span className="text-base">CO2</span>
-      <span>Session: {String(mins).padStart(2, '0')}:{String(secs).padStart(2, '0')} · <strong>{grams}g</strong> CO2</span>
+      <span>Session: {String(mins).padStart(2, '0')}:{String(secs).padStart(2, '0')} Â· <strong>{grams}g</strong> CO2</span>
     </div>
   );
 }
@@ -123,7 +123,7 @@ function RecentTab({ games }: { games: CloudGame[] }) {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-white text-sm font-bold truncate">{game.title}</p>
-            <p className="text-gray-500 text-xs">{game.genre} · Last played: {game.lastPlayed}</p>
+            <p className="text-gray-500 text-xs">{game.genre} Â· Last played: {game.lastPlayed}</p>
             <div className="flex items-center gap-3 mt-1.5">
               <div className="flex-1 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }}>
                 <div className="h-full rounded-full" style={{ background: 'rgb(0,200,80)', width: `${game.progress}%` }} />
@@ -174,7 +174,7 @@ function AchievementsTab({ achievements }: { achievements: Achievement[] }) {
                   <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 capitalize" style={{ background: rc.bg, color: rc.color, border: `1px solid ${rc.border}` }}>{ach.rarity}</span>
                 </div>
                 <p className="text-gray-400 text-[10px] leading-snug">{ach.desc}</p>
-                <p className="text-gray-600 text-[9px] mt-1">{ach.game} · {ach.unlockedAt}</p>
+                <p className="text-gray-600 text-[9px] mt-1">{ach.game} Â· {ach.unlockedAt}</p>
               </div>
               <div className="flex-shrink-0 text-center">
                 <div className="font-black text-sm" style={{ color: rc.color }}>+{ach.points}</div>
@@ -283,7 +283,7 @@ function SaveStatesTab({ saveStates }: { saveStates: SaveState[] }) {
             <div className="flex-1 min-w-0">
               <p className="text-white text-xs font-bold truncate">{sv.game}</p>
               <p className="text-gray-400 text-[10px] truncate">{sv.location}</p>
-              <p className="text-gray-600 text-[9px] mt-0.5">Saved {sv.savedAt} · {(sv.sizeKB / 1024).toFixed(2)} MB</p>
+              <p className="text-gray-600 text-[9px] mt-0.5">Saved {sv.savedAt} Â· {(sv.sizeKB / 1024).toFixed(2)} MB</p>
             </div>
             <div className="flex gap-2 flex-shrink-0">
               <Link href={getWatchHref(getGamingWatchId(sv.id))} className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all" style={{ background: 'rgba(0,200,80,0.12)', color: 'rgb(0,200,80)', border: '1px solid rgba(0,200,80,0.25)' }}>Load</Link>
@@ -320,7 +320,7 @@ export default function GamingDashboardPage() {
             </div>
             <div>
               <h1 className="text-white font-black text-2xl">Gaming Dashboard</h1>
-              <p className="text-gray-500 text-xs">Cloud Gaming · ZStream Play</p>
+              <p className="text-gray-500 text-xs">Cloud Gaming Â· ZStream Play</p>
             </div>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
@@ -375,8 +375,8 @@ export default function GamingDashboardPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
               <h2 className="text-white font-black text-lg mb-1">{launchGame.title}</h2>
-              <p className="text-gray-400 text-xs mb-1">{launchGame.genre} · * {launchGame.rating}</p>
-              <p className="text-xs font-bold mb-4" style={{ color: 'rgb(0,200,80)' }}>{launchGame.carbonGPerHr}g CO2/hr · Cloud Streaming</p>
+              <p className="text-gray-400 text-xs mb-1">{launchGame.genre} Â· * {launchGame.rating}</p>
+              <p className="text-xs font-bold mb-4" style={{ color: 'rgb(0,200,80)' }}>{launchGame.carbonGPerHr}g CO2/hr Â· Cloud Streaming</p>
               <div className="flex gap-3">
                 <button onClick={() => setLaunchGame(null)} className="flex-1 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.1)' }}>Cancel</button>
                 <Link href={getWatchHref(getGamingWatchId(launchGame.id))} className="flex-1"><motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setLaunchGame(null)} className="w-full py-2.5 rounded-xl text-xs font-black" style={{ background: 'linear-gradient(135deg, rgb(0,200,80), rgb(0,229,186))', color: 'white' }}>
@@ -390,3 +390,6 @@ export default function GamingDashboardPage() {
     </main>
   );
 }
+
+
+

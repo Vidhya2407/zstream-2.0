@@ -1,4 +1,4 @@
-import type { LocalizedText, SupportedLanguage } from '../types/content';
+﻿import type { LocalizedText, SupportedLanguage } from '../types/content';
 
 export type Language = SupportedLanguage;
 
@@ -73,3 +73,5 @@ export function trMovieDescription(movie: Movie, language: Language) {
 export function trDuration(duration: string, language: Language) {
   return language === 'de' ? duration.replace('h', ' Std').replace('m', ' Min') : duration;
 }
+
+

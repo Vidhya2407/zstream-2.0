@@ -23,3 +23,5 @@ export default function SportsHeader({ isGerman, isLight }: SportsHeaderProps) {
     </motion.div>
   );
 }
+
+

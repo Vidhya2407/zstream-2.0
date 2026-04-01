@@ -1,4 +1,4 @@
-import { contentImages } from '../images/unsplash';
+﻿import { contentImages } from '../images/unsplash';
 import { type BaseCatalogContent, type PlayableContent, toPlayableContent } from '../types/content';
 
 export interface CastMember {
@@ -55,7 +55,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "Planet: A New Hope takes viewers on an extraordinary journey across six continents, documenting the scientists, activists, and ordinary people driving the global sustainability revolution. From solar farms of the Sahara to rewilded forests of Central Europe, this series reveals how human ingenuity and natural resilience can work together. Filmed with unprecedented access to climate labs and pristine ecosystems, every episode delivers both profound beauty and urgent hope. Winner of four International Documentary Awards 2024.",
     genre: 'Documentary',
     year: 2024,
-    duration: '6 episodes · 48 min each',
+    duration: '6 episodes | 48 min each',
     durationMinutes: 48,
     rating: '9.4',
     ageRating: 'PG',
@@ -84,7 +84,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "The Eco Championship brings together the world's top 64 esports teams to compete in a tournament that redefines competitive gaming. Every match is powered by 100% renewable energy, and the live carbon dashboard displayed during broadcasts has inspired millions of viewers to adopt sustainable gaming habits. Featuring exclusive backstage access, player interviews, and stunning production values, this is esports at its most electrifying - and most responsible. All proceeds fund reforestation projects across three continents.",
     genre: 'Gaming',
     year: 2024,
-    duration: 'Live · 3h 20m',
+    duration: 'Live | 3h 20m',
     durationMinutes: 200,
     rating: '8.9',
     ageRating: 'E',
@@ -94,7 +94,7 @@ export const watchCatalog: WatchContent[] = [
     backdropUrl: contentImages.gaming[1].url,
     tags: ['#eSports', '#Live', '#GreenGaming', '#Tournament'],
     cast: [
-      { name: 'Alex "Volt" Reyes', role: 'Pro Player · Team Solaris', avatarUrl: contentImages.creators[3].url },
+      { name: 'Alex "Volt" Reyes', role: 'Pro Player | Team Solaris', avatarUrl: contentImages.creators[3].url },
       { name: 'Kira Tanaka', role: 'Host', avatarUrl: contentImages.creators[1].url },
       { name: 'Jordan Silva', role: 'Analyst', avatarUrl: contentImages.creators[2].url },
     ],
@@ -112,7 +112,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "Green Beats returns for its most ambitious season yet, uniting 200 artists across six stages in a 72-hour celebration of music and sustainability. From indie folk to electronic, every performance testifies to art's power to drive change. Season 3 introduces the Carbon Pledge - artists commit to measurable environmental actions - and viewers track the festival's real-time impact through ZSTREAM's built-in carbon dashboard. Winner of the 2024 Sustainable Events Award. Exclusive 4K Dolby Atmos streaming only on ZSTREAM.",
     genre: 'Music',
     year: 2024,
-    duration: '8 hours · 3 headline sets',
+    duration: '8 hours | 3 headline sets',
     durationMinutes: 480,
     rating: '9.1',
     ageRating: 'E',
@@ -140,7 +140,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "Ocean Warriors embeds cameras on the vessels of four frontline conservation organisations - Sea Shepherd, Oceana, the Ocean Cleanup, and a new startup using AI-powered drones. Over 10 episodes we witness the physical and emotional toll of protecting the world's largest ecosystem. Filmed in 8K across the Atlantic, Pacific, and Indian Oceans, Ocean Warriors is an unflinching look at both the crisis and the extraordinary humans fighting back. Exclusive ZSTREAM Premium content - ad-free, offline-capable.",
     genre: 'Nature',
     year: 2024,
-    duration: '10 episodes · 44 min each',
+    duration: '10 episodes | 44 min each',
     durationMinutes: 44,
     rating: '9.6',
     ageRating: 'PG',
@@ -168,7 +168,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "In the not-so-distant future, a remote expedition team discovers a forest in Patagonia where plants communicate via quantum entanglement, animals have evolved symbiotic neural links, and the ecosystem seems to possess collective intelligence. Quantum Forest blends hard science with breathtaking speculative fiction across 8 episodes. Praised by physicists and ecologists alike, it's the rare sci-fi series that makes you believe the natural world's marvels may already exceed our imaginations. ZSTREAM Premium exclusive - full 8-episode season.",
     genre: 'Sci-Fi',
     year: 2024,
-    duration: '8 episodes · 55 min each',
+    duration: '8 episodes | 55 min each',
     durationMinutes: 55,
     rating: '8.8',
     ageRating: 'PG-13',
@@ -224,7 +224,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "Future Cities is a six-part docufiction series combining expert-led analysis with stunning CGI recreations of six global cities transformed by 2075. Featuring input from leading urban planners, climate scientists, and architects, each episode explores a different city - from a solar-powered Singapore to a fully rewilded London. Groundbreaking visual effects and rigorous scientific grounding make Future Cities the most credible - and inspiring - vision of tomorrow ever committed to screen. Three-time BAFTA nominee.",
     genre: 'Sci-Fi',
     year: 2024,
-    duration: '6 episodes · 50 min each',
+    duration: '6 episodes | 50 min each',
     durationMinutes: 50,
     rating: '8.6',
     ageRating: 'E',
@@ -252,7 +252,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: "The EcoTech Summit is where the future is built. Featuring keynotes from leading CEOs, breakthrough product announcements, and unfiltered panel debates on the hardest problems in sustainability, this annual event draws the brightest minds in green technology. ZSTREAM brings you gavel-to-gavel coverage with multi-stream access to all 12 stages, on-demand replays, and exclusive backstage interviews. Never miss a breakthrough. Includes full Q&A sessions and downloadable slide decks.",
     genre: 'Tech',
     year: 2024,
-    duration: 'Live · 8h coverage',
+    duration: 'Live | 8h coverage',
     durationMinutes: 480,
     rating: '8.7',
     ageRating: 'E',
@@ -280,7 +280,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: 'Eco Warriors Online Demo Session is a beta-ready gameplay showcase used across the app to power launch buttons, play cards, and gaming handoff flows. It simulates a cloud gaming session with a stable fallback stream, gaming-themed metadata, and the same carbon tracking used across the rest of ZSTREAM.',
     genre: 'Gaming',
     year: 2026,
-    duration: 'Demo session · 32 min',
+    duration: 'Demo session | 32 min',
     durationMinutes: 32,
     rating: '9.0',
     ageRating: 'E',
@@ -307,7 +307,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: 'Solar Clash Tournament Demo gives the gaming, esports, and dashboard surfaces a real playback endpoint during beta. It behaves like a tournament replay, complete with cloud-play styling, competitive metadata, and low-friction streaming fallback support.',
     genre: 'eSports',
     year: 2026,
-    duration: 'Tournament replay · 54 min',
+    duration: 'Tournament replay | 54 min',
     durationMinutes: 54,
     rating: '8.8',
     ageRating: '12',
@@ -334,7 +334,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: 'Zero Emission Racing Demo powers the lighter-weight gaming actions in the app, including browse pages, resume states, and recommendation cards. It is a polished beta playback target with reusable gaming metadata and stable fallback streaming.',
     genre: 'Racing',
     year: 2026,
-    duration: 'Gameplay session · 18 min',
+    duration: 'Gameplay session | 18 min',
     durationMinutes: 18,
     rating: '8.6',
     ageRating: 'E',
@@ -361,7 +361,7 @@ export const watchCatalog: WatchContent[] = [
     longDescription: 'Minis Creator Loop is a shared short-form playback target that makes the Minis, remix, and creator-driven actions in the app operational during beta. It gives those surfaces a consistent playback destination with creator metadata and short-form styling.',
     genre: 'Shorts',
     year: 2026,
-    duration: 'Mini loop · 4 min',
+    duration: 'Mini loop | 4 min',
     durationMinutes: 4,
     rating: '8.4',
     ageRating: 'E',
@@ -432,4 +432,6 @@ export function getRelatedContent(ids: string[]): WatchContent[] {
     .map((id) => watchCatalogIndex.get(id))
     .filter(Boolean) as WatchContent[];
 }
+
+
 

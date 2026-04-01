@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { ESPORTS_EVENTS, REMIX_CLIPS, TOP_CREATORS, TOURNAMENT_BRACKET, CloudGame } from '../../../lib/data/gamingCatalog';
 import Image from 'next/image';
@@ -116,3 +116,5 @@ export function GamingRemixSection({ border, pageTextPrimary, pageTextSecondary,
     </motion.div>
   );
 }
+
+

@@ -53,3 +53,5 @@ export const useAppTranslations = () => {
 
   return { language: resolvedLanguage, isGerman, messages, t, hydrated };
 };
+
+

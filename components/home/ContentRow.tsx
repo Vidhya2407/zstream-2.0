@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -36,6 +36,17 @@ const typeConfig: Record<ContentItem['type'], { accent: string; label: string }>
   gaming: { accent: 'rgba(0, 200, 80, 0.85)', label: 'Gaming' }
 };
 
+function buildBadgeSurface(accent: string, isLight: boolean) {
+  return {
+    background: isLight ? 'rgba(255, 255, 255, 0.82)' : 'rgba(8, 12, 22, 0.76)',
+    border: `1px solid ${isLight ? `${accent.replace('0.85', '0.32')}` : `${accent.replace('0.85', '0.52')}`}`,
+    color: isLight ? '#0f172a' : '#f8fafc',
+    boxShadow: isLight ? '0 10px 24px rgba(15, 23, 42, 0.12)' : '0 14px 28px rgba(0, 0, 0, 0.28)',
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)',
+  } as const;
+}
+
 function getCarbonGrade(score: number) {
   if (score < 0.1) return { grade: 'A+', color: 'rgb(0, 229, 186)' };
   if (score < 0.3) return { grade: 'A', color: 'rgb(0, 217, 255)' };
@@ -66,6 +77,7 @@ export function ContentCard({ item, index }: { item: ContentItem; index: number 
   const { theme } = useThemeStore();
   const { language } = useLanguageStore();
   const isLight = theme === 'light';
+  const badgeSurface = buildBadgeSurface(cfg.accent, isLight);
   const typeLabel = language === 'de'
     ? { Music: 'Musik', Video: 'Video', Minis: 'Kurzvideos', Live: 'Live', Gaming: 'Gaming' }[cfg.label] ?? cfg.label
     : cfg.label;
@@ -98,28 +110,44 @@ export function ContentCard({ item, index }: { item: ContentItem; index: number 
               sizes="220px"
               className="object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,22,35,0.95)] via-[rgba(15,22,35,0.2)] to-transparent" style={isLight ? {
-              background: 'linear-gradient(to top, rgba(240,244,247,0.88), rgba(240,244,247,0.18), transparent)'
-            } : undefined} />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: isLight
+                  ? 'linear-gradient(to top, rgba(244,247,251,0.92) 0%, rgba(244,247,251,0.3) 38%, rgba(15,23,42,0.16) 100%)'
+                  : 'linear-gradient(to top, rgba(10,15,24,0.9) 0%, rgba(10,15,24,0.24) 42%, rgba(10,15,24,0.34) 100%)',
+              }}
+            />
+            <div
+              className="absolute inset-x-0 top-0 h-16"
+              style={{
+                background: isLight
+                  ? 'linear-gradient(to bottom, rgba(15,23,42,0.18), rgba(15,23,42,0))'
+                  : 'linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0))',
+              }}
+            />
 
             <div
-              className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider text-white"
-              style={{
-                background: cfg.accent.replace('0.85', '0.2'),
-                border: `1px solid ${cfg.accent.replace('0.85', '0.4')}`
-              }}
+              className="absolute left-2.5 top-2.5 px-2.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-[0.14em]"
+              style={badgeSurface}
             >
               {typeLabel}
             </div>
 
             {isLive && (
               <motion.div
-                className="absolute top-2 right-2 px-2 py-0.5 rounded-full text-[9px] font-bold text-white flex items-center gap-1"
-                style={{ background: 'rgba(239, 68, 68, 0.85)' }}
+                className="absolute right-2.5 top-2.5 px-2.5 py-1 rounded-full text-[9px] font-bold text-white flex items-center gap-1.5"
+                style={{
+                  background: 'rgba(220, 38, 38, 0.92)',
+                  border: '1px solid rgba(254, 202, 202, 0.28)',
+                  boxShadow: '0 12px 24px rgba(127, 29, 29, 0.28)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                }}
                 animate={{ opacity: [1, 0.7, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <span className="w-1 h-1 rounded-full bg-white inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full bg-white inline-block" />
                 LIVE
               </motion.div>
             )}
@@ -188,7 +216,7 @@ export default function ContentRow({ title, subtitle, items, badge, selectedGenr
 
   return (
     <section className="relative">
-      <div className="flex items-end justify-between mb-5 px-6 lg:px-12 max-w-[1600px] mx-auto">
+      <div className="app-container mb-5 flex items-end justify-between gap-4">
         <div>
           {badge && (
             <span
@@ -254,13 +282,8 @@ export default function ContentRow({ title, subtitle, items, badge, selectedGenr
 
         <div
           ref={scrollRef}
-          className="flex gap-3 overflow-x-auto pb-2"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            paddingLeft: '1.5rem',
-            paddingRight: '1.5rem'
-          }}
+          className="app-scroll-gutter flex gap-3 overflow-x-auto pb-2"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {filtered.map((item, i) => (
             <ContentCard key={item.id} item={item} index={i} />
@@ -270,3 +293,4 @@ export default function ContentRow({ title, subtitle, items, badge, selectedGenr
     </section>
   );
 }
+

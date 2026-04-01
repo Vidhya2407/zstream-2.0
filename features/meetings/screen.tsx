@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -40,6 +40,7 @@ export default function MeetingsPage() {
     t,
     tab,
     tabs,
+    translate,
     typeCards,
     virtualCO2,
     webinars,
@@ -57,7 +58,7 @@ export default function MeetingsPage() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-12 py-12 space-y-8">
         <MeetingsHeader joinLabel={t.meetings.joinWithCode} onJoinClick={() => setShowJoin(true)} pageTextPrimary={pageTextPrimary} pageTextSecondary={pageTextSecondary} subtitle={t.meetings.subtitle} title={t.meetings.title} />
-        <MeetingsTabBar activeTab={tab} onTabChange={setSubCategory} tabs={tabs} translate={(key) => key.split('.').pop() ?? key} />
+        <MeetingsTabBar activeTab={tab} onTabChange={setSubCategory} tabs={tabs} translate={translate} />
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
@@ -119,8 +120,3 @@ export default function MeetingsPage() {
     </main>
   );
 }
-
-
-
-
-

@@ -20,3 +20,5 @@ export default function SportsFixturesGrid({ fixtures, isGerman, isLight }: Spor
     </div>
   );
 }
+
+

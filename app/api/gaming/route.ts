@@ -14,3 +14,5 @@ export async function GET(request: NextRequest) {
     return apiError('Unable to load gaming content', 500, { language });
   }
 }
+
+

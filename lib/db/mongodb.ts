@@ -5,6 +5,7 @@ interface MongoCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose | null> | null;
   lastFailureAt: number | null;
+  lastLoggedFailureAt: number | null;
 }
 
 declare global {
@@ -12,7 +13,7 @@ declare global {
 }
 
 const MONGODB_URI = appEnv.mongoUri;
-const mongooseCache: MongoCache = global.__mongooseCache__ ?? { conn: null, promise: null, lastFailureAt: null };
+const mongooseCache: MongoCache = global.__mongooseCache__ ?? { conn: null, promise: null, lastFailureAt: null, lastLoggedFailureAt: null };
 
 global.__mongooseCache__ = mongooseCache;
 
@@ -36,6 +37,20 @@ export function resetMongoConnectionCache() {
 }
 
 const MONGO_RETRY_COOLDOWN_MS = 15000;
+
+function logMongoFailure(error: unknown) {
+  if (!mongooseCache.lastFailureAt) {
+    console.error('MongoDB Connection Error:', error);
+    mongooseCache.lastLoggedFailureAt = Date.now();
+    return;
+  }
+
+  const timeSinceLastLog = mongooseCache.lastLoggedFailureAt ? Date.now() - mongooseCache.lastLoggedFailureAt : Number.POSITIVE_INFINITY;
+  if (timeSinceLastLog >= MONGO_RETRY_COOLDOWN_MS) {
+    console.error('MongoDB Connection Error:', error);
+    mongooseCache.lastLoggedFailureAt = Date.now();
+  }
+}
 
 export async function isDatabaseAvailable() {
   const connection = await dbConnect();
@@ -62,10 +77,11 @@ async function dbConnect() {
 
     mongooseCache.promise = mongoose.connect(MONGODB_URI, options).then((connection) => {
       mongooseCache.lastFailureAt = null;
+      mongooseCache.lastLoggedFailureAt = null;
       return connection;
     }).catch((error) => {
       mongooseCache.lastFailureAt = Date.now();
-      console.error('MongoDB Connection Error:', error);
+      logMongoFailure(error);
       return null;
     });
   }
@@ -82,3 +98,6 @@ async function dbConnect() {
 }
 
 export default dbConnect;
+
+
+

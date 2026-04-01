@@ -43,3 +43,5 @@ export default function SegmentedToggle({ activeId, background, border, inactive
     </div>
   );
 }
+
+

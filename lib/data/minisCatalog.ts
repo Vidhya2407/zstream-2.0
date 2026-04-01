@@ -1,4 +1,4 @@
-import type { LocalizedStringArray, LocalizedText } from '../types/content';
+﻿import type { LocalizedStringArray, LocalizedText } from '../types/content';
 
 export interface MiniCatalogItem {
   id: number;
@@ -85,3 +85,5 @@ export const minis: readonly MiniCatalogItem[] = [
     music: { en: 'Planet Harmony - Earth Guardians', de: 'Planetare Harmonie - Earth Guardians' }
   }
 ] as const;
+
+

@@ -1,4 +1,4 @@
-import type { MarketplaceItem } from './types';
+﻿import type { MarketplaceItem } from './types';
 
 export const marketplaceCategories = ['All', 'Merch', 'Credits', 'NFT', 'Plan'] as const;
 
@@ -79,4 +79,6 @@ export const marketplaceItems: MarketplaceItem[] = [
 export function translateMarketplace(value: string, isGerman: boolean) {
   return isGerman ? (MARKET_TRANSLATIONS[value] ?? value) : value;
 }
+
+
 

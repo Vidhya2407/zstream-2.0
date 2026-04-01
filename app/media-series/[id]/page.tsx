@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -95,7 +95,7 @@ export default function MediaSeriesDetailPage() {
                   </button>
                 </Link>
                 <p className="mt-4 text-sm font-semibold text-white">Continue with {nextEpisode.title}</p>
-                <p className="mt-1 text-xs text-gray-300">Season-ready stream · {series.isPremium ? 'Premium' : 'Free'} access</p>
+                <p className="mt-1 text-xs text-gray-300">Season-ready stream | {series.isPremium ? 'Premium' : 'Free'} access</p>
               </div>
             </div>
 
@@ -105,13 +105,13 @@ export default function MediaSeriesDetailPage() {
                   <h1 className="text-3xl font-black leading-tight md:text-4xl" style={{ color: theme.text }}>{series.title}</h1>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs" style={{ color: theme.muted }}>
                     <span>{series.year}</span>
-                    <span>·</span>
+                    <span>|</span>
                     <span>{series.genre}</span>
-                    <span>·</span>
+                    <span>|</span>
                     <span>{series.seasons} season{series.seasons > 1 ? 's' : ''}</span>
-                    <span>·</span>
+                    <span>|</span>
                     <span>{series.episodes.length} episodes</span>
-                    <span>·</span>
+                    <span>|</span>
                     <span>{series.language}</span>
                   </div>
                   <div className="mt-3 flex items-center gap-2">
@@ -153,7 +153,7 @@ export default function MediaSeriesDetailPage() {
                   <div className="rounded-[26px] p-6" style={{ background: theme.raised, border: `1px solid ${theme.border}`, boxShadow: theme.isLight ? '0 20px 60px rgba(15,23,42,0.08)' : 'none' }}>
                     <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: theme.soft }}>Next episode</p>
                     <p className="mt-3 text-lg font-black" style={{ color: theme.text }}>{nextEpisode.title}</p>
-                    <p className="mt-2 text-sm" style={{ color: theme.body }}>{nextEpisode.duration} · Episode {nextEpisode.num}</p>
+                    <p className="mt-2 text-sm" style={{ color: theme.body }}>{nextEpisode.duration} | Episode {nextEpisode.num}</p>
                   </div>
                   <div className="rounded-[26px] p-6" style={{ background: 'rgba(0,229,186,0.05)', border: '1px solid rgba(0,229,186,0.15)' }}>
                     <p className="text-xs font-bold uppercase tracking-[0.22em]" style={{ color: theme.soft }}>Carbon impact</p>
@@ -192,7 +192,7 @@ export default function MediaSeriesDetailPage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-semibold" style={{ color: theme.text }}>{item.title}</p>
-                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.genre} · * {item.rating}</p>
+                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.genre} | * {item.rating}</p>
                       </div>
                     </div>
                   </Link>
@@ -210,3 +210,5 @@ export default function MediaSeriesDetailPage() {
     </main>
   );
 }
+
+

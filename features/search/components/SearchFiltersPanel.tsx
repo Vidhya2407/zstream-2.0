@@ -58,3 +58,5 @@ export default function SearchFiltersPanel(props: SearchFiltersPanelProps) {
     </div>
   );
 }
+
+

@@ -1,10 +1,13 @@
-﻿'use client';
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useNavigationStore, subCategories } from '../../lib/stores/navigationStore';
 import { useThemeStore } from '../../lib/stores/themeStore';
 import { useAppTranslations } from '../../lib/utils/translations';
+import { getMainCategoryFromPath } from '../../lib/config/navigation';
+import { HEADER_HEIGHT } from '../../lib/config/header';
 
 const SUBCATEGORY_KEYS: Record<string, string> = {
   'Trending Songs': 'subnav.trendingSongs',
@@ -58,13 +61,15 @@ const SUBCATEGORY_KEYS: Record<string, string> = {
 };
 
 export default function SubHeader() {
-  const { activeMainCategory, activeSubCategory, setSubCategory } = useNavigationStore();
+  const pathname = usePathname();
+  const { activeSubCategory, setSubCategory } = useNavigationStore();
   const { theme } = useThemeStore();
   const { t } = useAppTranslations();
   const scrollContainerRef = React.useRef<HTMLDivElement>(null);
   const isLight = theme === 'light';
+  const currentMainCategory = getMainCategoryFromPath(pathname);
 
-  const currentSubCategories = subCategories[activeMainCategory];
+  const currentSubCategories = subCategories[currentMainCategory];
   const headerBg = isLight ? 'rgba(240, 244, 247, 0.94)' : 'rgba(10, 15, 24, 0.94)';
   const activePillBg = isLight ? 'rgba(0, 234, 175, 0.1)' : 'rgba(0, 229, 186, 0.08)';
   const activePillBorder = isLight ? '1px solid rgba(0, 234, 175, 0.3)' : '1px solid rgba(0, 229, 186, 0.2)';
@@ -89,12 +94,13 @@ export default function SubHeader() {
 
   return (
     <motion.div
-      className="fixed top-[82px] left-0 right-0 z-40"
+      className="fixed left-0 right-0 z-40"
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -60, opacity: 0 }}
       transition={{ type: 'spring', damping: 30, stiffness: 300, delay: 0.15 }}
       style={{
+        top: `${HEADER_HEIGHT}px`,
         backgroundColor: headerBg,
         backdropFilter: 'blur(24px)',
         WebkitBackdropFilter: 'blur(24px)',

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Theme-aware color utilities for light/dark mode
  * Use these for consistent color application across pages
  */
@@ -45,3 +45,5 @@ export const getTextColor = (isLight: boolean, colorType: 'heading' | 'body' | '
     }
   }
 };
+
+

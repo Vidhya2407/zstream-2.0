@@ -20,3 +20,5 @@ export default function GamingHeader({ pageTextPrimary, pageTextSecondary, pageT
     </motion.div>
   );
 }
+
+

@@ -21,3 +21,5 @@ export const useNavigationStore = create<NavigationState>((set) => ({
     }),
   setSubCategory: (subCategory) => set({ activeSubCategory: subCategory }),
 }));
+
+

@@ -1,4 +1,4 @@
-export function getMovieWatchId(movieId: string): string {
+﻿export function getMovieWatchId(movieId: string): string {
   const map: Record<string, string> = {
     m1: '1',
     m2: '5',
@@ -96,3 +96,5 @@ export function getSearchResultHref(result: { id?: string | number; type?: strin
 export function getWatchHref(id: string): string {
   return `/watch/${id}`;
 }
+
+

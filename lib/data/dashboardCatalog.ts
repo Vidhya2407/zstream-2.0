@@ -1,4 +1,4 @@
-import { contentImages } from '../images/unsplash';
+﻿import { contentImages } from '../images/unsplash';
 import type { LocalizedText, SupportedLanguage } from '../types/content';
 
 export interface DashboardContinueItem {
@@ -83,3 +83,5 @@ export const getWatchHistory = (language: SupportedLanguage) => LOCALIZED_WATCH_
 
 export const CONTINUE_WATCHING = getContinueWatching('en');
 export const WATCH_HISTORY = getWatchHistory('en');
+
+

@@ -1,13 +1,13 @@
-﻿import React from 'react';
+import React from 'react';
 import { toast } from 'sonner';
 import { useThemeStore } from '../../../lib/stores/themeStore';
 import { useNavigationStore } from '../../../lib/stores/navigationStore';
-import { useInstantTranslations } from '../../../lib/utils/translations';
-import { IN_PERSON_CO2_KG_PER_HOUR, MEETING_TABS, MEETING_TYPE_CARDS, RECORDINGS, WEBINARS } from '../config';
+import { useAppTranslations } from '../../../lib/utils/translations';
+import { IN_PERSON_CO2_KG_PER_HOUR, MEETING_TABS, RECORDINGS, WEBINARS } from '../config';
 import type { MeetingTab } from '../types';
 
 export function useMeetingsScreen() {
-  const t = useInstantTranslations();
+  const { messages: t, t: translate } = useAppTranslations();
   const { activeSubCategory, setSubCategory } = useNavigationStore();
   const { theme } = useThemeStore();
   const tab = (activeSubCategory as MeetingTab) || 'schedule';
@@ -34,15 +34,58 @@ export function useMeetingsScreen() {
   }, []);
 
   const startMeeting = React.useCallback(() => {
-    toast.success('ZSTREAM: Room Ready', { description: 'Starting your carbon-neutral meeting room...' });
-  }, []);
+    toast.success(translate('meetings.toast.roomReadyTitle', 'ZSTREAM: Room Ready'), {
+      description: translate('meetings.toast.roomReadyDescription', 'Starting your carbon-neutral meeting room...'),
+    });
+  }, [translate]);
 
   const submitJoin = React.useCallback(() => {
     if (joinCode.length <= 8) return;
-    toast.info('ZSTREAM: Connecting to Secure WebRTC', { description: `Joining meeting ${joinCode} with zero-emission routing...` });
-  }, [joinCode]);
+    toast.info(translate('meetings.toast.connectingTitle', 'ZSTREAM: Connecting to Secure WebRTC'), {
+      description: translate('meetings.toast.connectingDescription', 'Joining meeting {code} with zero-emission routing...').replace('{code}', joinCode),
+    });
+  }, [joinCode, translate]);
 
   const isLight = theme === 'light';
+
+  const typeCards = React.useMemo(
+    () => [
+      {
+        accentColor: 'rgba(0,229,186,0.08)',
+        border: 'rgba(0,229,186,0.2)',
+        capacity: translate('meetings.cards.webinar.capacity', '10,000 attendees'),
+        co2: translate('meetings.cards.webinar.co2', '0 kg CO2'),
+        description: translate('meetings.cards.webinar.description', 'Host large-scale climate education sessions with up to 10,000 attendees.'),
+        iconLabel: 'CW',
+        iconText: translate('meetings.cards.webinar.title', 'Climate Webinar'),
+        textColor: 'rgb(0,229,186)',
+        title: translate('meetings.cards.webinar.title', 'Climate Webinar'),
+      },
+      {
+        accentColor: 'rgba(0,128,255,0.08)',
+        border: 'rgba(0,128,255,0.18)',
+        capacity: translate('meetings.cards.team.capacity', '250 participants'),
+        co2: translate('meetings.cards.team.co2', '0.002 kg CO2'),
+        description: translate('meetings.cards.team.description', 'Eco-optimized video calls with real-time carbon tracking per participant.'),
+        iconLabel: 'TM',
+        iconText: translate('meetings.cards.team.title', 'Team Meeting'),
+        textColor: 'rgb(96,165,250)',
+        title: translate('meetings.cards.team.title', 'Team Meeting'),
+      },
+      {
+        accentColor: 'rgba(147,51,234,0.08)',
+        border: 'rgba(147,51,234,0.18)',
+        capacity: translate('meetings.cards.conference.capacity', '1,000 attendees'),
+        co2: translate('meetings.cards.conference.co2', '0.01 kg CO2'),
+        description: translate('meetings.cards.conference.description', 'Full-featured virtual conferences with sustainability impact reports.'),
+        iconLabel: 'GC',
+        iconText: translate('meetings.cards.conference.title', 'Green Conference'),
+        textColor: 'rgb(196,132,252)',
+        title: translate('meetings.cards.conference.title', 'Green Conference'),
+      },
+    ],
+    [translate]
+  );
 
   return {
     bgGradient: isLight ? 'linear-gradient(135deg, #f0f4f7 0%, #eef1f5 55%, #f0f4f7 100%)' : 'linear-gradient(135deg, #0A0F18 0%, #0A0F1F 55%, #0A0F18 100%)',
@@ -71,12 +114,10 @@ export function useMeetingsScreen() {
     t,
     tab,
     tabs: MEETING_TABS,
-    typeCards: MEETING_TYPE_CARDS,
+    translate,
+    typeCards,
     virtualCO2,
     webinars: WEBINARS,
     generateCode,
   };
 }
-
-
-

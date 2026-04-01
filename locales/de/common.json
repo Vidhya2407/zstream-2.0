@@ -83,7 +83,7 @@
     },
     "meetings": {
       "title": "Gruene Meetings",
-      "subtitle": "WebRTC-Videoraeume · CO2-Einsparung gegenueber Praesenz · Null Emissionen",
+      "subtitle": "WebRTC-Videoraeume ? CO2-Einsparung gegenueber Praesenz ? Null Emissionen",
       "joinWithCode": "Mit Code beitreten",
       "joinARoom": "Einem Raum beitreten",
       "secureConnection": "Oeko-sichere WebRTC-Verbindung",
@@ -459,7 +459,7 @@
       "gaming": "Gaming",
       "music": "Musik",
       "videos": "Videos",
-      "live": "Live-Streams",
+      "live": "Live",
       "sports": "Sport",
       "shorts": "Kurzvideos",
       "marketplace": "Marktplatz",
@@ -610,7 +610,3 @@
     }
   }
 }
-
-
-
-

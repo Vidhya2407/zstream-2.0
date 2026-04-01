@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+ï»¿import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
@@ -25,7 +25,7 @@ export default function MediaSeriesHero({ featured, isLight }: MediaSeriesHeroPr
           <SeriesCarbonBadge score={featured.carbonScore} />
         </div>
         <h2 className="mb-1 text-3xl font-black" style={{ color: isLight ? '#1d1d1f' : 'white' }}>{featured.title}</h2>
-        <p className="mb-1 text-sm" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{featured.seasons} seasons · {featured.episodes} episodes · {featured.rating} rating</p>
+        <p className="mb-1 text-sm" style={{ color: isLight ? '#6b7280' : '#9ca3af' }}>{featured.seasons} seasons Â· {featured.episodes} episodes Â· {featured.rating} rating</p>
         <p className="mb-4 line-clamp-2 text-xs leading-relaxed" style={{ color: isLight ? '#4b5563' : '#d1d5db' }}>{featured.description}</p>
         <div className="flex flex-wrap items-center gap-3">
           <Link href={playHref}>
@@ -46,3 +46,6 @@ export default function MediaSeriesHero({ featured, isLight }: MediaSeriesHeroPr
     </motion.div>
   );
 }
+
+
+

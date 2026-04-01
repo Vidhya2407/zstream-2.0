@@ -24,3 +24,5 @@ export function apiError(message: string, status = 500, meta: ApiResponseMeta = 
 
   return NextResponse.json(body, { status });
 }
+
+

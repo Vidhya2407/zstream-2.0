@@ -33,3 +33,5 @@ export const MEETING_TABS: MeetingTabOption[] = [
   { id: 'recordings', labelKey: 'tabs.recordings' },
   { id: 'webinars', labelKey: 'tabs.webinars' },
 ];
+
+

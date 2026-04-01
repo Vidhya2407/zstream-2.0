@@ -48,3 +48,5 @@ export default function SportsHighlightCard({ isGerman, isWatchlisted, item, onT
     </motion.div>
   );
 }
+
+

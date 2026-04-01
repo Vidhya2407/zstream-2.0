@@ -15,3 +15,5 @@ export default function CarbonBadge({ score }: CarbonBadgeProps) {
     </span>
   );
 }
+
+

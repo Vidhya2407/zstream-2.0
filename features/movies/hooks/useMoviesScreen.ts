@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { GENRES, MOVIES, SORT_OPTIONS, trGenre, trMovieTitle } from '../../../lib/data/moviesCatalog';
 import { useLanguageStore } from '../../../lib/stores/languageStore';
 import { useNavigationStore } from '../../../lib/stores/navigationStore';
@@ -74,3 +74,5 @@ export function useMoviesScreen() {
     watchlist,
   };
 }
+
+

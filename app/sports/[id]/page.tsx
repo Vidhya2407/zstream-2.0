@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -54,8 +54,8 @@ function usePageTheme() {
 
 export default function SportDetailPage() {
   const params = useParams();
-  const id = Array.isArray(params.id) ? params.id[0] : (params.id ?? 'h1');
-  const content = SPORT_CONTENT[id] ?? SPORT_CONTENT.h1;
+  const id = Array.isArray(params.id) ? params.id[0] : (params.id || 'h1');
+  const content = SPORT_CONTENT[id] || SPORT_CONTENT.h1;
   const playHref = getWatchHref(getSportsWatchId(content.id));
   const related = content.related.map((rid) => SPORT_CONTENT[rid]).filter(Boolean);
   const theme = usePageTheme();
@@ -100,13 +100,13 @@ export default function SportDetailPage() {
                   <h1 className="text-3xl font-black leading-tight md:text-4xl" style={{ color: theme.text }}>{content.title}</h1>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs" style={{ color: theme.muted }}>
                     {content.teams ? <span>{content.teams}</span> : null}
-                    {content.teams ? <span>·</span> : null}
+                    {content.teams ? <span>•</span> : null}
                     {content.venue ? <span>{content.venue}</span> : null}
-                    {content.venue ? <span>·</span> : null}
+                    {content.venue ? <span>•</span> : null}
                     <span>{content.date}</span>
-                    <span>·</span>
+                    <span>•</span>
                     <span>{content.duration}</span>
-                    <span>·</span>
+                    <span>•</span>
                     <span>{content.views} views</span>
                   </div>
                   <div className="mt-3 flex items-center gap-2">
@@ -135,7 +135,7 @@ export default function SportDetailPage() {
                   <div className="mt-6 grid gap-3 sm:grid-cols-2">
                     <div className="rounded-2xl p-4" style={{ background: theme.raised, border: `1px solid ${theme.border}` }}>
                       <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: theme.soft }}>Venue</p>
-                      <p className="mt-2 text-sm font-semibold" style={{ color: theme.text }}>{content.venue ?? 'Global feed'}</p>
+                      <p className="mt-2 text-sm font-semibold" style={{ color: theme.text }}>{content.venue || 'Global feed'}</p>
                     </div>
                     <div className="rounded-2xl p-4" style={{ background: theme.raised, border: `1px solid ${theme.border}` }}>
                       <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: theme.soft }}>Format</p>
@@ -183,7 +183,7 @@ export default function SportDetailPage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="line-clamp-2 text-sm font-semibold" style={{ color: theme.text }}>{item.title}</p>
-                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.sport} · {item.type}</p>
+                        <p className="mt-1 text-[11px]" style={{ color: theme.muted }}>{item.sport} • {item.type}</p>
                       </div>
                     </div>
                   </Link>
@@ -201,3 +201,4 @@ export default function SportDetailPage() {
     </main>
   );
 }
+

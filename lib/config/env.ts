@@ -1,4 +1,4 @@
-const sanitizeEnvValue = (value: string | undefined) => value?.trim();
+﻿const sanitizeEnvValue = (value: string | undefined) => value?.trim();
 
 const isPlaceholderSecret = (value: string | undefined) => !value || value.includes('replace_with');
 const parsePositiveInt = (value: string | undefined, fallback: number) => {
@@ -28,3 +28,5 @@ export function assertProductionAuthEnv() {
     throw new Error('AUTH_SECRET must be configured with a non-placeholder value in production.');
   }
 }
+
+

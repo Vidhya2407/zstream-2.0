@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import LegalDocument from '@/components/legal/LegalDocument';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | ZSTREAM',
+  title: 'Terms of Service',
   description: 'Terms of service for the ZSTREAM beta application.',
 };
 
@@ -115,3 +115,7 @@ export default function TermsOfServicePage() {
     />
   );
 }
+
+
+
+

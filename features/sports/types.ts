@@ -32,3 +32,5 @@ export interface SportsViewModel {
   setSportFilter: (value: string) => void;
   setShowWatchlistOnly: (value: boolean | ((current: boolean) => boolean)) => void;
 }
+
+

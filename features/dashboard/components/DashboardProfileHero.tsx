@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface DashboardProfileHeroProps {
@@ -23,3 +23,5 @@ export default function DashboardProfileHero({ isLight = false, labels, quickSta
     </motion.div>
   );
 }
+
+

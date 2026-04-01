@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { getMeetingWebinarWatchId, getWatchHref } from '@/lib/navigation/playbackRoutes';
+import { useAppTranslations } from '@/lib/utils/translations';
 
 interface WebinarsGridProps {
   items: Array<{ date: string; icon: string; id: number; registered: number; speaker: string; time: string; title: string }>;
@@ -12,6 +13,8 @@ interface WebinarsGridProps {
 }
 
 export default function WebinarsGrid({ items, pageTextPrimary, pageTextSecondary, surfaceBg, surfaceBorder }: WebinarsGridProps) {
+  const { t } = useAppTranslations();
+
   return (
     <div className="grid md:grid-cols-2 gap-4">
       {items.map((webinar) => (
@@ -26,11 +29,11 @@ export default function WebinarsGrid({ items, pageTextPrimary, pageTextSecondary
             <p className="text-xs font-bold text-eco-green mb-4">{webinar.speaker}</p>
             <div className="flex items-center gap-4 text-[11px]" style={{ color: pageTextSecondary }}>
               <span>{webinar.time}</span>
-              <span>{webinar.registered} registered</span>
+              <span>{webinar.registered} {t('meetings.webinars.registered', 'registered')}</span>
             </div>
           </div>
           <Link className="w-full h-12 rounded-xl border border-eco-green/30 text-eco-green font-bold text-xs hover:bg-eco-green/10 transition-all inline-flex items-center justify-center" href={getWatchHref(getMeetingWebinarWatchId(webinar.id))}>
-            Register Now
+            {t('meetings.webinars.registerNow', 'Register Now')}
           </Link>
         </div>
       ))}

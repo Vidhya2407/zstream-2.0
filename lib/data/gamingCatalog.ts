@@ -1,4 +1,4 @@
-import type { LocalizedText, SupportedLanguage } from '../types/content';
+﻿import type { LocalizedText, SupportedLanguage } from '../types/content';
 
 export type GamingTab = 'live-streams' | 'tournaments' | 'top-creators' | 'esports' | 'new-games' | 'remix-clips';
 export type DashTab = 'library' | 'recent' | 'achievements' | 'friends' | 'saves';
@@ -213,3 +213,5 @@ export const DASH_TABS: { id: DashTab; label: string; icon: string }[] = [
   { id: 'friends', label: 'Friends', icon: 'users' },
   { id: 'saves', label: 'Save States', icon: 'save' },
 ];
+
+

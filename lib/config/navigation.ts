@@ -1,20 +1,45 @@
 ﻿export type MainCategory =
-  | 'home'
-  | 'music'
-  | 'minis'
-  | 'movies'
-  | 'mediaseries'
-  | 'sports'
-  | 'gaming'
-  | 'live'
-  | 'meetings'
-  | 'ztube'
-  | 'marketplace';
+ | 'home'
+ | 'music'
+ | 'minis'
+ | 'movies'
+ | 'mediaseries'
+ | 'sports'
+ | 'gaming'
+ | 'live'
+ | 'meetings'
+ | 'ztube'
+ | 'marketplace';
 
 export interface SubCategory {
   id: string;
   label: string;
   href?: string;
+}
+
+const categoryRoutePrefixes: Array<{ category: MainCategory; prefix: string }> = [
+  { category: 'music', prefix: '/music' },
+  { category: 'minis', prefix: '/minis' },
+  { category: 'movies', prefix: '/movies' },
+  { category: 'mediaseries', prefix: '/media-series' },
+  { category: 'sports', prefix: '/sports' },
+  { category: 'gaming', prefix: '/gaming' },
+  { category: 'live', prefix: '/live' },
+  { category: 'meetings', prefix: '/meetings' },
+  { category: 'ztube', prefix: '/ztube' },
+  { category: 'marketplace', prefix: '/marketplace' },
+];
+
+export function getMainCategoryFromPath(pathname: string | null | undefined): MainCategory {
+  if (!pathname || pathname === '/') {
+    return 'home';
+  }
+
+  const matchedCategory = categoryRoutePrefixes.find(
+    ({ prefix }) => pathname === prefix || pathname.startsWith(`${prefix}/`) || pathname.startsWith(`${prefix}?`)
+  );
+
+  return matchedCategory?.category ?? 'home';
 }
 
 export const subCategories: Record<MainCategory, SubCategory[]> = {
@@ -99,3 +124,6 @@ export const subCategories: Record<MainCategory, SubCategory[]> = {
     { id: 'subscriptions', label: 'Subscriptions', href: '/marketplace?tab=subs' },
   ],
 };
+
+
+

@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,6 +15,7 @@
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report",
     "check:env": "node scripts/check-env.cjs",
+    "check:encoding": "node scripts/check-mojibake.cjs",
     "seed:content": "node scripts/seed-content.cjs",
     "verify:staging": "npm run check:env && npm run lint && npm run build",
     "staging:up": "docker compose -f docker-compose.staging.yml up --build",

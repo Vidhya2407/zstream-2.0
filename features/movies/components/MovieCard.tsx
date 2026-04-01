@@ -60,3 +60,5 @@ export default function MovieCard({ delay = 0, isWatchlisted, movie, onToggleWat
   );
 }
 
+
+

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useHydrated } from '@/hooks/useHydrated';
@@ -65,3 +65,5 @@ export default function NFTShelf() {
     </div>
   );
 }
+
+

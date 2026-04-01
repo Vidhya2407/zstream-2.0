@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -18,7 +18,7 @@ export default function ImmersiveHero() {
       {/* Deep space background image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1800&q=80"
+          src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a | w=1800&q=80"
           alt=""
           fill
           className="object-cover opacity-[0.12]"
@@ -247,7 +247,7 @@ export default function ImmersiveHero() {
                   {carbonSaved.toFixed(2)} kg
                 </motion.div>
                 <p className="text-sm text-gray-400 mt-2">
-                  CO₂ prevented this minute
+                  CO2 prevented this minute
                 </p>
               </div>
 
@@ -318,7 +318,7 @@ export default function ImmersiveHero() {
               <div className="mt-6 pt-6 border-t border-white/5">
                 <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
                   <div className="w-2 h-2 rounded-full bg-eco-green animate-pulse" />
-                  <span>Live tracking • Updated every second</span>
+                  <span>Live tracking - Updated every second</span>
                 </div>
               </div>
             </motion.div>
@@ -352,3 +352,5 @@ export default function ImmersiveHero() {
     </section>
   );
 }
+
+

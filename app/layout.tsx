@@ -23,7 +23,10 @@ const inter = Inter({
 const initDocumentStateScript = `(function(){try{var raw=window.localStorage.getItem('language-store');var lang='en';if(raw){var parsed=JSON.parse(raw);if(parsed&&parsed.state&&parsed.state.language==='de'){lang='de';}}document.documentElement.lang=lang;}catch(e){}})();`;
 
 export const metadata: Metadata = {
-  title: 'ZSTREAM ??? Zero Carbon Streaming Platform',
+  title: {
+    default: 'ZSTREAM',
+    template: '%s | ZSTREAM',
+  },
   description: 'AI-powered carbon-neutral streaming platform. Watch unlimited music, videos, shorts, sports and gaming while saving the planet.',
   manifest: '/manifest.json',
   appleWebApp: {
@@ -50,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: initDocumentStateScript }} />
         <link rel="manifest" href="/manifest.json" />
       </head>
-      <body className={`${inter.variable} bg-dark-base antialiased`}>
+      <body className={`${inter.className} ${inter.variable} bg-dark-base font-sans antialiased`}>
         <AuthProvider>
           <Toaster position="top-right" richColors closeButton />
           <ClientInit />
@@ -69,3 +72,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
+

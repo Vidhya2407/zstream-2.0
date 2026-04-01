@@ -23,3 +23,5 @@ export default function SearchInput({ focused, inputRef, isLight, onBlur, onChan
     </div>
   );
 }
+
+

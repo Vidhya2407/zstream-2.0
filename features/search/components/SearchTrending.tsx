@@ -15,3 +15,5 @@ export default function SearchTrending({ isLight, onSelect, title, trending }: S
     </div>
   );
 }
+
+

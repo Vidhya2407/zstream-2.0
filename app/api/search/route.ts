@@ -49,3 +49,5 @@ export async function GET(request: NextRequest) {
     return apiError('Unable to load search results', 500, { language });
   }
 }
+
+

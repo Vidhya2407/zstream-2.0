@@ -62,3 +62,5 @@ export const useMusicStore = create<MusicState>((set, get) => ({
   toggleRepeat: () => set((s) => ({ isRepeating: !s.isRepeating })),
   toggleLyrics: () => set((s) => ({ showLyrics: !s.showLyrics })),
 }));
+
+
