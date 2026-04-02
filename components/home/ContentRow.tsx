@@ -67,7 +67,7 @@ function CarbonScoreBadge({ score }: { score: number }) {
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-8m0 0c-2-2-4-4-4-6a4 4 0 018 0c0 2-2 4-4 6z" />
       </svg>
       <span className="text-[9px] font-bold" style={{ color }}>
-        {score.toFixed(2)}g | {grade}
+        Impact {grade}
       </span>
     </div>
   );

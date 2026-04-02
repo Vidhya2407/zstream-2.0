@@ -44,8 +44,8 @@ export default function MediaSeriesHero({ featured, isLight }: MediaSeriesHeroPr
         </div>
       </div>
       <div className="absolute right-5 top-5 rounded-xl px-3 py-2 text-right" style={{ background: isLight ? 'rgba(255,255,255,0.82)' : 'rgba(0,0,0,0.55)', backdropFilter: 'blur(10px)', border: isLight ? '1px solid rgba(15,23,42,0.1)' : '1px solid rgba(0,229,186,0.18)', boxShadow: isLight ? '0 10px 26px rgba(15,23,42,0.08)' : 'none' }}>
-        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>Carbon per episode | estimated</p>
-        <p className="text-sm font-black" style={{ color: 'rgb(0,229,186)' }}>{(featured.carbonScore * 1000).toFixed(0)}mg CO2</p>
+        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>Series impact grade</p>
+        <p className="text-sm font-black" style={{ color: 'rgb(0,229,186)' }}>{featured.carbonScore < 0.06 ? 'A+' : featured.carbonScore < 0.08 ? 'A' : 'B'}</p>
       </div>
     </motion.div>
   );

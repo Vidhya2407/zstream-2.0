@@ -3,6 +3,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import ZstreamShieldPanel from '../../../../components/shield/ZstreamShieldPanel';
 
 type ContentType = 'video' | 'music' | 'podcast' | 'mini';
 type Visibility = 'public' | 'unlisted' | 'private' | 'scheduled';
@@ -210,6 +211,18 @@ function ZTubeUploadInner() {
               🌿 Carbon offset automatically applied to this upload.
             </p>
           )}
+          <div className="mb-6 text-left">
+            <ZstreamShieldPanel
+              mode="creator"
+              compact
+              title="ZSTREAM Shield prepared this upload"
+              subtitle="Fingerprinting, watermarking, proof-ready registration, and review monitoring are now attached as a creator-facing protection layer."
+              metrics={[
+                { label: 'Fingerprint', value: 'Queued' },
+                { label: 'Proof record', value: 'Ready' },
+              ]}
+            />
+          </div>
           <div className="flex items-center justify-center gap-3 flex-wrap">
             <Link href="/ztube/studio">
               <button className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>
@@ -526,6 +539,19 @@ function ZTubeUploadInner() {
                 </div>
               </div>
 
+              <ZstreamShieldPanel
+                mode="creator"
+                compact
+                title="ZSTREAM Shield settings"
+                subtitle="These protection steps can be prepared automatically for viewer trust and creator protection after publish."
+                metrics={[
+                  { label: 'Fingerprinting', value: 'Prepared' },
+                  { label: 'Watermark', value: 'Enabled' },
+                  { label: 'Proof record', value: 'Queued' },
+                  { label: 'AI screening', value: 'Monitored' },
+                ]}
+              />
+
               <div className="flex justify-between">
                 <button onClick={() => setStep(2)} className="px-5 py-2.5 rounded-xl text-xs font-bold transition-all" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgb(156,163,175)', border: '1px solid rgba(255,255,255,0.08)' }}>Back</button>
                 <motion.button whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={() => setStep(4)} className="px-6 py-2.5 rounded-xl text-xs font-bold" style={{ background: 'rgba(239,68,68,0.85)', color: 'white' }}>Review</motion.button>
@@ -552,6 +578,17 @@ function ZTubeUploadInner() {
                   <div><p className="text-gray-500 mb-0.5">Subtitles</p><p className="text-white font-medium">{subtitleName || 'None'}</p></div>
                 </div>
               </div>
+
+              <ZstreamShieldPanel
+                mode="summary"
+                compact
+                title="Protection summary"
+                subtitle="User-facing trust signals that can be attached when this upload goes live."
+                metrics={[
+                  { label: 'Shield status', value: 'Ready on publish' },
+                  { label: 'Viewer report path', value: 'Enabled' },
+                ]}
+              />
 
               {/* GEMA Notice for Music */}
               {contentType === 'music' && (

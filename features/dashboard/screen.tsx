@@ -7,6 +7,7 @@ import SubscriptionTierPanel from '../../components/dashboard/SubscriptionTierPa
 import DashboardImpactBanner from './components/DashboardImpactBanner';
 import DashboardProfileHero from './components/DashboardProfileHero';
 import DashboardWatchSections from './components/DashboardWatchSections';
+import ZstreamShieldPanel from '../../components/shield/ZstreamShieldPanel';
 import { useDashboardScreen } from './hooks/useDashboardScreen';
 import { useHydrated } from '@/hooks/useHydrated';
 import { useThemeStore } from '@/lib/stores/themeStore';
@@ -47,13 +48,23 @@ export default function DashboardPage() {
           {loadError && <p className="text-xs text-red-400">{loadError}</p>}
         </div>
         <DashboardProfileHero isLight={isLight} labels={labels} quickStats={quickStats} />
-        <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-          <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.1 }}><CarbonTimelineChart /></motion.div>
-          <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.15 }}><CarbonCreditPanel /></motion.div>
-        </div>
+        <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.1 }}><CarbonTimelineChart /></motion.div>
         <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.2 }}><SubscriptionTierPanel /></motion.div>
         <DashboardWatchSections continueWatching={continueWatching} historyTab={historyTab} isLight={isLight} labels={labels} setHistoryTab={setHistoryTab} watchHistory={watchHistory} />
-        <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.3 }}><NFTShelf /></motion.div>
+        <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 16 }} style={sectionGlass} transition={{ delay: 0.34 }}>
+          <ZstreamShieldPanel
+            mode="summary"
+            light={isLight}
+            title={language === 'de' ? 'ZSTREAM Shield Uebersicht' : 'ZSTREAM Shield Summary'}
+            subtitle={language === 'de'
+              ? 'Oeffentliche Trust-Signale fuer geschuetzte Inhalte und creator-sichere Nachweise.'
+              : 'Public trust signals for protected content and creator-safe proof records.'}
+            metrics={[
+              { label: language === 'de' ? 'Status' : 'Status', value: language === 'de' ? 'Shield aktiv' : 'Shield active' },
+              { label: language === 'de' ? 'Reports' : 'Reports', value: language === 'de' ? 'In-App aktiv' : 'In-app enabled' },
+            ]}
+          />
+        </motion.div>
         <DashboardImpactBanner isLight={isLight} labels={labels} />
       </div>
     </main>

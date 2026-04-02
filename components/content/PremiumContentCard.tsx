@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { contentImages } from '../../lib/images/unsplash';
 import { useLanguageStore } from '../../lib/stores/languageStore';
 import { useThemeStore } from '../../lib/stores/themeStore';
-import EstimatedFootprintBadge from '../../components/impact/EstimatedFootprintBadge';
 
 interface ContentCardProps {
   title: string;
@@ -15,16 +14,8 @@ interface ContentCardProps {
   href: string;
   type: 'music' | 'video' | 'minis' | 'live' | 'gaming';
   index: number;
-  carbonScore?: number;
   estimateDuration?: string;
   genre?: string;
-}
-
-function getCarbonGrade(score: number) {
-  if (score < 0.1) return { grade: 'A+', color: 'rgb(0, 229, 186)' };
-  if (score < 0.3) return { grade: 'A', color: 'rgb(0, 217, 255)' };
-  if (score < 0.5) return { grade: 'B', color: 'rgb(96, 165, 250)' };
-  return { grade: 'C', color: 'rgb(251, 191, 36)' };
 }
 
 const typeConfig = {
@@ -91,7 +82,7 @@ function buildBadgeSurface(accentBorder: string, isLight: boolean) {
   } as const;
 }
 
-export default function PremiumContentCard({ title, subtitle, image, href, type, index, carbonScore, estimateDuration, genre }: ContentCardProps) {
+export default function PremiumContentCard({ title, subtitle, image, href, type, index, estimateDuration, genre }: ContentCardProps) {
   const config = typeConfig[type];
   const { language } = useLanguageStore();
   const { theme } = useThemeStore();
@@ -196,48 +187,26 @@ export default function PremiumContentCard({ title, subtitle, image, href, type,
             </h3>
             <p className="text-xs mb-3" style={{ color: isLight ? 'rgb(71, 85, 105)' : 'rgb(148, 163, 184)' }}>{subtitle}</p>
 
-            {estimateDuration && (
-              <div className="mb-3">
-                <EstimatedFootprintBadge durationLabel={estimateDuration} isGerman={language === 'de'} isLight={isLight} />
-              </div>
-            )}
-
-            {carbonScore !== undefined ? (() => {
-              const { grade, color } = getCarbonGrade(carbonScore);
-              return (
-                <div className="flex items-center justify-between">
-                  <div
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full"
-                    style={{ background: `${color}18`, border: `1px solid ${color}35` }}
-                  >
-                    <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke={color} strokeWidth={2.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-8m0 0c-2-2-4-4-4-6a4 4 0 018 0c0 2-2 4-4 6z" />
-                    </svg>
-                    <span className="text-[10px] font-bold" style={{ color }}>
-                      {carbonScore.toFixed(2)}g CO2
-                    </span>
-                    <span
-                      className="text-[9px] font-black px-1 rounded"
-                      style={{ background: `${color}25`, color }}
-                    >
-                      {grade}
-                    </span>
-                  </div>
-                  {genre && (
-                    <span className="text-[10px] font-medium" style={{ color: isLight ? 'rgb(100, 116, 139)' : 'rgb(148, 163, 184)' }}>{genre}</span>
-                  )}
+            <div className="flex items-center justify-between">
+              {genre ? (
+                <span className="text-[10px] font-medium" style={{ color: isLight ? 'rgb(100, 116, 139)' : 'rgb(148, 163, 184)' }}>
+                  {genre}
+                </span>
+              ) : (
+                <div className="flex items-center gap-1.5">
+                  <div className="w-1 h-1 rounded-full bg-eco-green" />
+                  <span className="text-[10px] text-eco-green/60 font-medium">{neutralLabel}</span>
                 </div>
-              );
-            })() : (
-              <div className="flex items-center gap-1.5">
-                <div className="w-1 h-1 rounded-full bg-eco-green" />
-                <span className="text-[10px] text-eco-green/60 font-medium">{neutralLabel}</span>
-              </div>
-            )}
+              )}
+              {estimateDuration ? (
+                <span className="text-[10px] font-medium" style={{ color: isLight ? 'rgb(100, 116, 139)' : 'rgb(148, 163, 184)' }}>
+                  {estimateDuration}
+                </span>
+              ) : null}
+            </div>
           </div>
         </motion.div>
       </Link>
     </motion.div>
   );
 }
-

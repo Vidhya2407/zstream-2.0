@@ -11,7 +11,7 @@ export default function CarbonBadge({ score }: CarbonBadgeProps) {
 
   return (
     <span className="flex items-center gap-1 text-[9px] font-black px-2 py-0.5 rounded-full" style={{ background: grade.bg, color: grade.color, border: `1px solid ${grade.border}` }}>
-      {grade.label} | {(score * 1000).toFixed(0)}mg
+      Impact grade {grade.label}
     </span>
   );
 }

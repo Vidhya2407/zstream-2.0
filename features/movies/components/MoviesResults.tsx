@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
 import { trDuration, trGenre, trMovieTitle, type Movie } from '../../../lib/data/moviesCatalog';
 import type { SupportedLanguage } from '../../../lib/types/content';
-import EstimatedFootprintBadge from '../../../components/impact/EstimatedFootprintBadge';
 import CarbonBadge from './CarbonBadge';
 import MovieCard from './MovieCard';
 

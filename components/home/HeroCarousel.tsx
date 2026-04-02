@@ -194,7 +194,7 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
                   </motion.span>
                 )}
 
-                {/* Carbon Score badge */}
+                {/* Content impact grade badge */}
                 <span
                   className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full flex items-center gap-1"
                   style={{ background: grade.bg, color: grade.color, border: `1px solid ${grade.color}40` }}
@@ -202,7 +202,7 @@ export default function HeroCarousel({ items }: HeroCarouselProps) {
                   <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-8m0 0c-2-2-4-4-4-6a4 4 0 018 0c0 2-2 4-4 6z" />
                   </svg>
-                  {current.carbonScore.toFixed(2)}g CO2  {grade.grade}
+                  Impact grade {grade.grade}
                 </span>
 
                 <span className="text-[11px] text-gray-400">{current.year}</span>
