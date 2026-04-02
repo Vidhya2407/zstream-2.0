@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { drmDevices, interfaceLanguages, playbackQualities, themeOptions } from '../../features/settings/config';
 import { SettingSection, ToggleSetting } from '../../features/settings/components/SettingPrimitives';
@@ -218,6 +219,26 @@ export default function SettingsPage() {
                 {!device.current ? <button className="text-xs font-semibold text-red-400 transition-colors hover:text-red-300" onClick={() => removeDevice(device.id)}>{t('settings.remove')}</button> : null}
               </motion.div>
             ))}
+          </div>
+        </SettingSection>
+
+        <SettingSection title='Account Protection'>
+          <div className="rounded-2xl p-4" style={{ background: isLight ? 'rgba(0,229,186,0.08)' : 'rgba(0,229,186,0.05)', border: '1px solid rgba(0,229,186,0.12)' }}>
+            <p className="text-sm font-semibold" style={{ color: heading }}>Security, trusted devices, downloads, and privacy rights now live in one place.</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {['2FA enabled', '2 trusted devices', 'Protected downloads', 'EU data storage'].map((item) => (
+                <span key={item} className="rounded-full px-2.5 py-1 text-[11px] font-bold" style={{ background: isLight ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.06)', border: `1px solid ${panelBorder}`, color: muted }}>
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div className="mt-4">
+              <Link href="/settings/security">
+                <motion.button className="rounded-xl px-4 py-2.5 text-sm font-bold" style={{ background: 'rgba(0,229,186,0.12)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.25)' }} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+                  Open security center
+                </motion.button>
+              </Link>
+            </div>
           </div>
         </SettingSection>
 

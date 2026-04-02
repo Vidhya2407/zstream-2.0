@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AuthShell } from '../../../components/auth/AuthShell';
 import {
@@ -53,7 +54,7 @@ function SectionCard({ title, icon, children }: { title: string; icon: string; c
         className="mb-5 flex items-center gap-2 border-b pb-3 text-sm font-black uppercase tracking-widest"
         style={{ borderBottom: `1px solid ${theme.panelBorder}`, color: theme.title }}
       >
-        <span aria-hidden="true">{icon}</span>
+        {icon ? <span aria-hidden="true">{icon}</span> : null}
         {title}
       </h2>
       <div className="space-y-4">{children}</div>
@@ -150,6 +151,153 @@ function SuccessBanner({ message }: { message: string }) {
   );
 }
 
+function Pill({
+  children,
+  active = false,
+}: {
+  children: React.ReactNode;
+  active?: boolean;
+}) {
+  const theme = useSecurityTheme();
+
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold"
+      style={{
+        background: active ? 'rgba(0,229,186,0.12)' : theme.softBg,
+        border: `1px solid ${active ? 'rgba(0,229,186,0.22)' : theme.panelBorder}`,
+        color: active ? theme.successText : theme.body,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function StatusListCard({
+  title,
+  icon,
+  rows,
+  footer,
+  accent = 'rgb(0,229,186)',
+}: {
+  title: string;
+  icon: string;
+  rows: Array<{ label: string; value: string; good?: boolean }>;
+  footer?: React.ReactNode;
+  accent?: string;
+}) {
+  const theme = useSecurityTheme();
+
+  return (
+    <motion.section
+      animate={{ opacity: 1, y: 0 }}
+      className="rounded-[1.75rem] p-6"
+      initial={{ opacity: 0, y: 16 }}
+      style={{
+        background: theme.panelBg,
+        border: `1px solid ${theme.panelBorder}`,
+        boxShadow: theme.isLight ? '0 16px 40px rgba(15,23,42,0.08)' : 'none',
+      }}
+    >
+      <h2 className="mb-4 flex items-center gap-2 text-sm font-black" style={{ color: theme.title }}>
+        <span aria-hidden="true">{icon}</span>
+        {title}
+      </h2>
+      <div className="space-y-1">
+        {rows.map((row) => (
+          <div
+            key={row.label}
+            className="flex items-center justify-between gap-4 border-b py-3 text-sm"
+            style={{ borderBottom: `1px solid ${theme.panelBorder}` }}
+          >
+            <div className="flex min-w-0 items-center gap-3">
+              <span
+                className="inline-block h-3 w-3 rounded-full"
+                style={{ background: row.good ? accent : 'rgb(59,130,246)', boxShadow: row.good ? `0 0 14px ${accent}` : 'none' }}
+              />
+              <span style={{ color: theme.title }}>{row.label}</span>
+            </div>
+            <span className="text-right text-sm" style={{ color: theme.body }}>{row.value}</span>
+          </div>
+        ))}
+      </div>
+      {footer ? <div className="mt-5">{footer}</div> : null}
+    </motion.section>
+  );
+}
+
+function DeviceCard({
+  name,
+  detail,
+  current,
+  actionLabel,
+}: {
+  name: string;
+  detail: string;
+  current?: boolean;
+  actionLabel?: string;
+}) {
+  const theme = useSecurityTheme();
+
+  return (
+    <div className="flex items-center justify-between gap-4 border-b py-4" style={{ borderBottom: `1px solid ${theme.panelBorder}` }}>
+      <div className="flex min-w-0 items-center gap-4">
+        <div
+          className="flex h-12 w-12 items-center justify-center rounded-2xl text-xl"
+          style={{ background: theme.softBg, border: `1px solid ${theme.panelBorder}` }}
+        >
+          DV
+        </div>
+        <div className="min-w-0">
+          <p className="truncate text-sm font-bold" style={{ color: theme.title }}>{name}</p>
+          <p className="text-sm" style={{ color: theme.body }}>{detail}</p>
+        </div>
+      </div>
+      {current ? (
+        <span className="rounded-full px-4 py-1.5 text-sm font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: theme.successText, border: '1px solid rgba(0,229,186,0.2)' }}>
+          Current
+        </span>
+      ) : (
+        <button className="rounded-xl px-4 py-2 text-sm font-bold" style={{ background: theme.softBg, border: `1px solid ${theme.panelBorder}`, color: theme.body }} type="button">
+          {actionLabel ?? 'Remove'}
+        </button>
+      )}
+    </div>
+  );
+}
+
+function DownloadCard({
+  title,
+  detail,
+}: {
+  title: string;
+  detail: string;
+}) {
+  const theme = useSecurityTheme();
+  return (
+    <div className="border-b py-4" style={{ borderBottom: `1px solid ${theme.panelBorder}` }}>
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-black" style={{ background: theme.softBg, border: `1px solid ${theme.panelBorder}`, color: theme.title }}>
+            DL
+          </div>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-bold" style={{ color: theme.title }}>{title}</p>
+            <p className="text-sm" style={{ color: theme.body }}>{detail}</p>
+          </div>
+        </div>
+        <span className="rounded-full px-4 py-1.5 text-sm font-bold" style={{ background: 'rgba(0,229,186,0.1)', color: theme.successText, border: '1px solid rgba(0,229,186,0.2)' }}>
+          Ready
+        </span>
+      </div>
+      <div className="mt-3 h-1 rounded-full" style={{ background: theme.softBg }}>
+        <div className="h-full rounded-full" style={{ width: '82%', background: 'linear-gradient(90deg, rgb(0,229,186), rgb(0,217,255))' }} />
+      </div>
+    </div>
+  );
+}
+
 export default function SecurityPage() {
   const { t } = useAppTranslations();
   const theme = useSecurityTheme();
@@ -170,6 +318,7 @@ export default function SecurityPage() {
   const [pwLoading, setPwLoading] = React.useState(false);
   const [pwSuccess, setPwSuccess] = React.useState(false);
   const [pwError, setPwError] = React.useState('');
+  const [dataExporting, setDataExporting] = React.useState(false);
 
   const resendLabel = smsCooldown > 0
     ? t('security.resendIn', 'Resend in {seconds}s').replace('{seconds}', String(smsCooldown))
@@ -247,6 +396,29 @@ export default function SecurityPage() {
     setCopiedAll(false);
     setDownloaded(false);
     window.setTimeout(() => setBackupStage('ready'), 1000);
+  };
+
+  const handleExport = () => {
+    setDataExporting(true);
+    window.setTimeout(() => {
+      const data = {
+        exportDate: new Date().toISOString(),
+        request: 'DSAR account export',
+        accountProtection: {
+          trustedDevices: 2,
+          downloadsProtected: true,
+          region: 'Frankfurt, Germany',
+        },
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'zstream-account-export.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      setDataExporting(false);
+    }, 900);
   };
 
   const handleDownloadCodes = () => {
@@ -335,7 +507,136 @@ export default function SecurityPage() {
           </p>
         </div>
 
-        <SectionCard icon="TOTP" title={t('security.setupAuthenticator', 'Authenticator App (TOTP)')}>
+        <motion.section
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-[1.75rem] p-6"
+          initial={{ opacity: 0, y: 16 }}
+          style={{
+            background: theme.panelBg,
+            border: `1px solid ${theme.panelBorder}`,
+            boxShadow: theme.isLight ? '0 18px 44px rgba(15,23,42,0.08)' : 'none',
+          }}
+        >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: theme.successText }}>
+                Security Center
+              </p>
+              <p className="mt-2 max-w-2xl text-sm leading-6" style={{ color: theme.body }}>
+                Review your sign-in protection, trusted devices, protected downloads, and privacy rights in one place.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Pill active>Subscription active</Pill>
+              <Pill active>Content protected</Pill>
+            </div>
+          </div>
+        </motion.section>
+
+        <StatusListCard
+          footer={
+            <p className="text-sm" style={{ color: theme.body }}>
+              Use the tools below to update two-factor authentication, backup codes, or your password.
+            </p>
+          }
+          icon=""
+          rows={[
+            { label: 'Password security', value: 'Strong | Last changed 30 days ago', good: true },
+            { label: 'Two-factor authentication', value: 'Enabled (Authenticator app)', good: true },
+            { label: 'Active sessions', value: '2 devices', good: true },
+            { label: 'Login history', value: 'Essen, DE | 2 hours ago' },
+          ]}
+          title="Your account protection"
+        />
+
+        <motion.section
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-[1.75rem] p-6"
+          initial={{ opacity: 0, y: 16 }}
+          style={{
+            background: theme.panelBg,
+            border: `1px solid ${theme.panelBorder}`,
+            boxShadow: theme.isLight ? '0 16px 40px rgba(15,23,42,0.08)' : 'none',
+          }}
+        >
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-black" style={{ color: theme.title }}>
+            Your trusted devices
+          </h2>
+          <DeviceCard current detail="Essen, Germany | Active now" name="MacBook Pro | Chrome" />
+          <DeviceCard actionLabel={t('settings.remove')} detail="Essen, Germany | Last used 1 day ago" name="iPhone 15 | ZStream App" />
+          <div className="mt-4 rounded-2xl p-4 text-sm leading-7" style={{ background: 'rgba(0,128,255,0.08)', border: '1px solid rgba(0,128,255,0.2)', color: theme.body }}>
+            Your content can play on up to 4 devices simultaneously with Premium. Your account is currently using 2.
+          </div>
+        </motion.section>
+
+        <motion.section
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-[1.75rem] p-6"
+          initial={{ opacity: 0, y: 16 }}
+          style={{
+            background: theme.panelBg,
+            border: `1px solid ${theme.panelBorder}`,
+            boxShadow: theme.isLight ? '0 16px 40px rgba(15,23,42,0.08)' : 'none',
+          }}
+        >
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-black" style={{ color: theme.title }}>
+            Your downloads
+          </h2>
+          <DownloadCard detail="HD 1080p | Downloaded Apr 1 | Expires Apr 15" title="Naatu Naatu (Official)" />
+          <DownloadCard detail="HD 1080p | Downloaded Mar 28 | Expires Apr 11" title="ZStream Original S01E03" />
+          <div className="mt-4 rounded-2xl p-4 text-sm leading-7" style={{ background: theme.softBg, border: `1px solid ${theme.panelBorder}`, color: theme.body }}>
+            Downloads are protected and can only play on this device. They expire after 14 days.
+          </div>
+        </motion.section>
+
+        <motion.section
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-[1.75rem] p-6"
+          initial={{ opacity: 0, y: 16 }}
+          style={{
+            background: theme.panelBg,
+            border: `1px solid ${theme.panelBorder}`,
+            boxShadow: theme.isLight ? '0 16px 40px rgba(15,23,42,0.08)' : 'none',
+          }}
+        >
+          <h2 className="mb-4 flex items-center gap-2 text-sm font-black" style={{ color: theme.title }}>
+            Content protection
+          </h2>
+          <div className="space-y-4">
+            <div className="rounded-2xl p-4 text-sm leading-7" style={{ background: 'rgba(0,229,186,0.08)', border: '1px solid rgba(0,229,186,0.2)', color: theme.successText }}>
+              Every video you stream or download is uniquely protected with your account ID. This helps us investigate unauthorized sharing and protect the creators you love.
+            </div>
+            <div className="rounded-2xl p-4" style={{ background: theme.softBg, border: `1px solid ${theme.panelBorder}` }}>
+              <p className="text-sm" style={{ color: theme.body }}>Your protection ID for this session</p>
+              <p className="mt-2 font-mono text-lg" style={{ color: theme.title }}>ZS-A1B2C3D4 | Expires in 14 min</p>
+            </div>
+            <Link href="/privacy-policy">
+              <ActionButton variant="secondary">Read our privacy policy</ActionButton>
+            </Link>
+          </div>
+        </motion.section>
+
+        <StatusListCard
+          footer={
+            <div className="mt-1 flex flex-wrap gap-3">
+              <ActionButton onClick={handleExport} variant="secondary">
+                {dataExporting ? t('settings.preparing') : 'Request my data (DSAR)'}
+              </ActionButton>
+              <button className="rounded-2xl px-5 py-3 text-sm font-bold" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.25)', color: 'rgb(239,68,68)' }} type="button">
+                Delete my account
+              </button>
+            </div>
+          }
+          icon="⚖️"
+          rows={[
+            { label: 'Your data is stored in the EU', value: 'Frankfurt, Germany', good: true },
+            { label: 'Download your data', value: 'Available within 30 days', good: true },
+            { label: 'Delete your account', value: 'Processed within 72 hours', good: true },
+          ]}
+          title="Your rights (GDPR / DSGVO)"
+        />
+
+        <SectionCard icon="" title={t('security.setupAuthenticator', 'Authenticator App (TOTP)')}>
           <AnimatePresence mode="wait">
             {totpStage === 'idle' ? (
               <motion.div key="totp-idle" animate={{ opacity: 1 }} exit={{ opacity: 0 }} initial={{ opacity: 0 }}>
@@ -478,7 +779,7 @@ export default function SecurityPage() {
           </AnimatePresence>
         </SectionCard>
 
-        <SectionCard icon="SMS" title={t('security.smsFallback')}>
+        <SectionCard icon="" title={t('security.smsFallback')}>
           <p className="text-sm" style={{ color: theme.body }}>
             {t('security.smsFallbackDesc')}
           </p>
@@ -581,7 +882,7 @@ export default function SecurityPage() {
           ) : null}
         </SectionCard>
 
-        <SectionCard icon="CODE" title={t('security.backupCodes')}>
+        <SectionCard icon="" title={t('security.backupCodes')}>
           <p className="text-sm" style={{ color: theme.body }}>
             {t('security.backupCodesDesc')}
           </p>
@@ -631,7 +932,7 @@ export default function SecurityPage() {
           ) : null}
         </SectionCard>
 
-        <SectionCard icon="PASS" title={t('security.changePassword')}>
+        <SectionCard icon="" title={t('security.changePassword')}>
           <AnimatePresence>
             {pwSuccess ? (
               <motion.div
@@ -700,5 +1001,3 @@ export default function SecurityPage() {
     </AuthShell>
   );
 }
-
-

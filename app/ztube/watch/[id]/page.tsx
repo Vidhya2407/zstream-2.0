@@ -7,6 +7,8 @@ import { useParams } from 'next/navigation';
 import ShakaPlayer from '../../../../components/players/ShakaPlayer';
 import CarbonPlaybackTracker from '../../../../components/watch/CarbonPlaybackTracker';
 import ImpactForecastCard from '../../../../components/watch/ImpactForecastCard';
+import ZstreamShieldPanel from '../../../../components/shield/ZstreamShieldPanel';
+import PlaybackProtectionCard from '../../../../components/shield/PlaybackProtectionCard';
 import { contentImages } from '../../../../lib/images/unsplash';
 
 interface ZComment {
@@ -217,6 +219,27 @@ export default function ZTubeWatchPage() {
               />
             </div>
 
+            <div className="mt-4">
+              <PlaybackProtectionCard
+                compact
+                sessionExpiresIn="In 14 min"
+                sessionId={`ZS-ZT${String(video.id).padStart(2, '0')}-${currentResolution}P`}
+              />
+            </div>
+
+            <div className="mt-4">
+              <ZstreamShieldPanel
+                mode="summary"
+                compact
+                title="ZSTREAM Shield for this upload"
+                subtitle="High-level creator-safe protection signals for this playback."
+                metrics={[
+                  { label: 'Protection', value: 'Shield active' },
+                  { label: 'Proof status', value: 'Ready to anchor' },
+                ]}
+              />
+            </div>
+
             {/* Title + Actions */}
             <div className="mt-4">
               <h1 className="text-white font-black text-xl leading-snug mb-3">{video.title}</h1>
@@ -230,6 +253,9 @@ export default function ZTubeWatchPage() {
                   </span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(0,229,186,0.08)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.18)' }}>
                     Playback {currentResolution}p
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgb(0,229,186)', border: '1px solid rgba(0,229,186,0.18)' }}>
+                    Shield active
                   </span>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -270,6 +296,9 @@ export default function ZTubeWatchPage() {
                 <p className="text-gray-500 text-xs">{video.subscribers} subscribers</p>
                 <p className="text-[10px] mt-1" style={{ color: 'rgb(0,229,186)' }}>
                   Waste figures on this page now update with the selected playback quality.
+                </p>
+                <p className="text-[10px] mt-1 text-gray-500">
+                  ZSTREAM Shield can fingerprint, watermark, and timestamp this upload for creator protection.
                 </p>
               </div>
               <motion.button
@@ -435,6 +464,18 @@ export default function ZTubeWatchPage() {
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
                 Verified by TÜV SÜD  Bureau Veritas
               </p>
+            </div>
+
+            <div className="mt-4">
+              <ZstreamShieldPanel
+                mode="summary"
+                title="Creator protection snapshot"
+                subtitle="A user-safe summary of the protection layers attached to creator content on ZTube."
+                metrics={[
+                  { label: 'Report path', value: 'Viewer reports enabled' },
+                  { label: 'Creator support', value: 'Studio visibility' },
+                ]}
+              />
             </div>
           </div>
         </div>

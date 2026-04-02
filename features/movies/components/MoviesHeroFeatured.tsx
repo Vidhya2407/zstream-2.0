@@ -40,9 +40,9 @@ export default function MoviesHeroFeatured({ isWatchlisted, movie, onToggle }: M
         </div>
       </div>
       <div className="absolute top-5 right-5 px-3 py-2 rounded-xl text-right" style={{ background: isLight ? 'rgba(255,255,255,0.82)' : 'rgba(0,0,0,0.6)', backdropFilter: 'blur(10px)', border: isLight ? '1px solid rgba(15,23,42,0.1)' : '1px solid rgba(0,229,186,0.2)' }}>
-        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>{isGerman ? 'CO2 pro Wiedergabe' : 'Carbon per watch'}</p>
-        <p className="font-black text-sm" style={{ color: 'rgb(0,229,186)' }}>{(movie.carbonScore * 1000).toFixed(0)}mg CO2</p>
-        <p className="text-[8px]" style={{ color: isLight ? '#475569' : '#6b7280' }}>{isGerman ? 'Klasse' : 'Grade'} {movie.carbonScore < 0.04 ? 'A+' : 'A'}</p>
+        <p className="text-[9px]" style={{ color: isLight ? '#64748b' : '#9ca3af' }}>{isGerman ? 'Titel-Impact-Schaetzung' : 'Title impact estimate'}</p>
+        <p className="font-black text-sm" style={{ color: 'rgb(0,229,186)' }}>{movie.carbonScore < 0.04 ? 'Impact grade A+' : 'Impact grade A'}</p>
+        <p className="text-[8px]" style={{ color: isLight ? '#475569' : '#6b7280' }}>{isGerman ? 'Vor Playback, keine Live-Sitzung' : 'Before playback, not a live session value'}</p>
       </div>
     </motion.div>
   );

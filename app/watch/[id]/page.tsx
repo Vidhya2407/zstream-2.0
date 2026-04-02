@@ -10,6 +10,8 @@ import ImpactForecastCard from '../../../components/watch/ImpactForecastCard';
 import RelatedContentSidebar from '../../../components/watch/RelatedContentSidebar';
 import CommentsTab from '../../../components/watch/CommentsTab';
 import DownloadPanel from '../../../components/watch/DownloadPanel';
+import ZstreamShieldPanel from '../../../components/shield/ZstreamShieldPanel';
+import PlaybackProtectionCard from '../../../components/shield/PlaybackProtectionCard';
 import { useApiResource } from '../../../hooks/useApiResource';
 import type { WatchApiResponse } from '../../../lib/api/contracts';
 import { fetchWatchBrowser } from '../../../lib/api/browserClient';
@@ -195,6 +197,32 @@ export default function WatchPage() {
               />
             </div>
 
+            <div className="mt-5">
+              <PlaybackProtectionCard
+                compact
+                isGerman={isGerman}
+                isLight={isLight}
+                sessionExpiresIn={isGerman ? 'In 14 Min' : 'In 14 min'}
+                sessionId={`ZS-${String(id).padStart(2, '0')}${currentResolution}P-AX4`}
+              />
+            </div>
+
+            <div className="mt-5">
+              <ZstreamShieldPanel
+                light={isLight}
+                mode="summary"
+                compact
+                title={isGerman ? 'ZSTREAM Shield Schutzstatus' : 'ZSTREAM Shield Protection Status'}
+                subtitle={isGerman
+                  ? 'High-level Schutzsignale fuer dieses Playback.'
+                  : 'High-level protection signals for this playback.'}
+                metrics={[
+                  { label: isGerman ? 'Status' : 'Status', value: isGerman ? 'Shield aktiv' : 'Shield active' },
+                  { label: isGerman ? 'Proof' : 'Proof', value: isGerman ? 'Blockchain bereit' : 'Blockchain ready' },
+                ]}
+              />
+            </div>
+
             <motion.div className="mt-5" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
               <div className="flex items-start gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
@@ -210,6 +238,9 @@ export default function WatchPage() {
                     <span className="flex items-center gap-1 text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: grade.bg, color: grade.color, border: `1px solid ${grade.color}35` }}>
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 20v-8m0 0c-2-2-4-4-4-6a4 4 0 018 0c0 2-2 4-4 6z" /></svg>
                       {content.carbonScore.toFixed(2)}g CO2 | {grade.grade}
+                    </span>
+                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: isLight ? 'rgba(15,23,42,0.04)' : 'rgba(255,255,255,0.05)', border: isLight ? '1px solid rgba(15,23,42,0.08)' : '1px solid rgba(255,255,255,0.1)', color: isLight ? '#0f766e' : 'rgb(0,229,186)' }}>
+                      {isGerman ? 'Shield aktiv' : 'Shield active'}
                     </span>
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded border" style={{ borderColor: isLight ? 'rgba(15,23,42,0.12)' : 'rgba(255,255,255,0.12)', color: muted }}>{content.ageRating}</span>
                     {supportsQualitySelection && (
@@ -270,8 +301,10 @@ export default function WatchPage() {
                 <h4 className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: title }}>{isGerman ? 'Kurzinfo' : 'Quick Info'}</h4>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>{isGerman ? 'Carbon Score' : 'Carbon Score'}</span><span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: grade.bg, color: grade.color }}>{content.carbonScore.toFixed(2)}g CO2 | {grade.grade}</span></div>
+                  <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>{isGerman ? 'Schutzstatus' : 'Protection'}</span><span className="text-[11px] font-bold" style={{ color: 'rgb(0,229,186)' }}>{isGerman ? 'Shield aktiv' : 'Shield active'}</span></div>
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>DRM</span><span className="text-xs font-medium" style={{ color: title }}>Widevine | PlayReady | FairPlay</span></div>
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>Codec</span><span className="text-xs font-medium" style={{ color: title }}>H.265 / H.264</span></div>
+                  <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>{isGerman ? 'Proof' : 'Proof'}</span><span className="text-[11px] font-bold" style={{ color: title }}>{isGerman ? 'Blockchain bereit' : 'Blockchain ready'}</span></div>
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>{isGerman ? 'Aktuelle Qualitaet' : 'Current Quality'}</span><span className="text-xs font-medium" style={{ color: title }}>{supportsQualitySelection ? `${currentResolution}p ${isGerman ? 'waehlbar' : 'selectable'}` : (isGerman ? 'Adaptiv' : 'Adaptive')}</span></div>
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>Offline</span><span className="text-[11px] font-bold" style={{ color: 'rgb(0,229,186)' }}>{isGerman ? 'Verfuegbar' : 'Available'}</span></div>
                   <div className="flex items-center justify-between"><span className="text-[11px]" style={{ color: muted }}>{isGerman ? 'Energiequelle' : 'Energy Source'}</span><span className="text-[11px] font-bold" style={{ color: 'rgb(0,229,186)' }}>{isGerman ? '100% Erneuerbar' : '100% Renewable'}</span></div>

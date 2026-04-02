@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentImages } from '../../../lib/images/unsplash';
+import ZstreamShieldPanel from '../../../components/shield/ZstreamShieldPanel';
 
 type StudioTab = 'overview' | 'content' | 'analytics' | 'monetization' | 'community' | 'settings';
 
@@ -92,6 +93,12 @@ function OverviewTab() {
           </motion.div>
         ))}
       </div>
+
+      <ZstreamShieldPanel
+        mode="creator"
+        title="ZSTREAM Shield Creator Protection"
+        subtitle="These are the creator-safe protection signals we can surface in Studio while keeping case management and enforcement operations private."
+      />
 
       {/* Views Chart */}
       <div className="p-5 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
